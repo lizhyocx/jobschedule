@@ -1,0 +1,255 @@
+2016-10-13 14:54:07,040 - Log4JLogChute initialized using file 'velocity.log'
+2016-10-13 14:54:07,040 - Starting Apache Velocity v1.5 (compiled: 2007-02-22 08:52:29)
+2016-10-13 14:54:07,040 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
+2016-10-13 14:54:07,040 - Trying to use logger class middlegen.DontCloseLog4JLogSystem
+2016-10-13 14:54:07,041 - Using logger class middlegen.DontCloseLog4JLogSystem
+2016-10-13 14:54:07,043 - Default ResourceManager initializing. (class org.apache.velocity.runtime.resource.ResourceManagerImpl)
+2016-10-13 14:54:07,046 - ResourceLoader instantiated: middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,047 - Do unicode file recognition:  false
+2016-10-13 14:54:07,048 - FileResourceLoader : adding path 'E:\workspace\jobschedule\mybatis-dalgen/templates/mergedir'
+2016-10-13 14:54:07,056 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl)
+2016-10-13 14:54:07,057 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2016-10-13 14:54:07,058 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2016-10-13 14:54:07,059 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2016-10-13 14:54:07,060 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2016-10-13 14:54:07,061 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2016-10-13 14:54:07,084 - Created '20' parsers.
+2016-10-13 14:54:07,091 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+2016-10-13 14:54:07,092 - KindFileResourceLoader : file loader failed to load: VM_global_library.vm
+2016-10-13 14:54:07,092 - KindFileResourceLoader : classpath loader failed to load: VM_global_library.vm
+2016-10-13 14:54:07,092 - Velocimacro : adding VMs from VM library : VM_global_library.vm
+2016-10-13 14:54:07,093 - KindFileResourceLoader : file loader failed to load: VM_global_library.vm
+2016-10-13 14:54:07,093 - KindFileResourceLoader : classpath loader failed to load: VM_global_library.vm
+2016-10-13 14:54:07,096 - ResourceManager : found VM_global_library.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,096 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2016-10-13 14:54:07,096 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2016-10-13 14:54:07,096 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2016-10-13 14:54:07,096 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2016-10-13 14:54:07,201 - ResourceManager : found copyright.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,213 - ResourceManager : found description-java.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,221 - ResourceManager : found do-fields.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,262 - ResourceManager : found copyright.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,264 - ResourceManager : found description-java.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,266 - ResourceManager : found operation/op-insert.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,267 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,274 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,276 - Left side ($tempName) of '==' operation has null value. If a reference, it may not be in the context. Operation not possible. operation/op-signature.vm [line 1, column 18]
+2016-10-13 14:54:07,282 - ResourceManager : found operation/op-select.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,284 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,286 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,286 - Left side ($tempName) of '==' operation has null value. If a reference, it may not be in the context. Operation not possible. operation/op-signature.vm [line 1, column 18]
+2016-10-13 14:54:07,287 - ResourceManager : found operation/op-update.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,288 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,296 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,297 - Left side ($tempName) of '==' operation has null value. If a reference, it may not be in the context. Operation not possible. operation/op-signature.vm [line 1, column 18]
+2016-10-13 14:54:07,308 - ResourceManager : found operation/op-select.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,310 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,315 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,315 - Left side ($tempName) of '==' operation has null value. If a reference, it may not be in the context. Operation not possible. operation/op-signature.vm [line 1, column 18]
+2016-10-13 14:54:07,320 - ResourceManager : found operation/op-select.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,321 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,327 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,327 - Left side ($tempName) of '==' operation has null value. If a reference, it may not be in the context. Operation not possible. operation/op-signature.vm [line 1, column 18]
+2016-10-13 14:54:07,332 - ResourceManager : found operation/op-delete.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,334 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,338 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,339 - Left side ($tempName) of '==' operation has null value. If a reference, it may not be in the context. Operation not possible. operation/op-signature.vm [line 1, column 18]
+2016-10-13 14:54:07,413 - ResourceManager : found copyright.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,423 - ResourceManager : found description-java.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,425 - ResourceManager : found operation/op-insert.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,426 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,431 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,437 - ResourceManager : found operation/opbody-insert.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,444 - ResourceManager : found operation/op-select.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,447 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,450 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,461 - ResourceManager : found operation/opbody-select.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,464 - ResourceManager : found operation/op-update.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,465 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,477 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,498 - ResourceManager : found operation/opbody-update.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,517 - ResourceManager : found operation/op-select.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,518 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,521 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,529 - ResourceManager : found operation/opbody-select.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,530 - Left side (${operation.parameterClass}) of '==' operation has null value. If a reference, it may not be in the context. Operation not possible. operation/opbody-select.vm [line 17, column 40]
+2016-10-13 14:54:07,531 - ResourceManager : found operation/op-select.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,532 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,535 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,544 - ResourceManager : found operation/opbody-select.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,545 - Left side (${operation.parameterClass}) of '==' operation has null value. If a reference, it may not be in the context. Operation not possible. operation/opbody-select.vm [line 17, column 40]
+2016-10-13 14:54:07,547 - ResourceManager : found operation/op-delete.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,548 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,551 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,556 - ResourceManager : found operation/opbody-delete.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:54:07,584 - ResourceManager : found description-xml.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:13,873 - Log4JLogChute initialized using file 'velocity.log'
+2016-10-13 14:57:13,873 - Starting Apache Velocity v1.5 (compiled: 2007-02-22 08:52:29)
+2016-10-13 14:57:13,873 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
+2016-10-13 14:57:13,873 - Trying to use logger class middlegen.DontCloseLog4JLogSystem
+2016-10-13 14:57:13,873 - Using logger class middlegen.DontCloseLog4JLogSystem
+2016-10-13 14:57:13,875 - Default ResourceManager initializing. (class org.apache.velocity.runtime.resource.ResourceManagerImpl)
+2016-10-13 14:57:13,879 - ResourceLoader instantiated: middlegen.KindFileResourceLoader
+2016-10-13 14:57:13,880 - Do unicode file recognition:  false
+2016-10-13 14:57:13,880 - FileResourceLoader : adding path 'E:\workspace\jobschedule\mybatis-dalgen/templates/mergedir'
+2016-10-13 14:57:13,890 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl)
+2016-10-13 14:57:13,892 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2016-10-13 14:57:13,893 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2016-10-13 14:57:13,894 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2016-10-13 14:57:13,896 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2016-10-13 14:57:13,896 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2016-10-13 14:57:13,922 - Created '20' parsers.
+2016-10-13 14:57:13,929 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+2016-10-13 14:57:13,929 - KindFileResourceLoader : file loader failed to load: VM_global_library.vm
+2016-10-13 14:57:13,930 - KindFileResourceLoader : classpath loader failed to load: VM_global_library.vm
+2016-10-13 14:57:13,930 - Velocimacro : adding VMs from VM library : VM_global_library.vm
+2016-10-13 14:57:13,931 - KindFileResourceLoader : file loader failed to load: VM_global_library.vm
+2016-10-13 14:57:13,931 - KindFileResourceLoader : classpath loader failed to load: VM_global_library.vm
+2016-10-13 14:57:13,934 - ResourceManager : found VM_global_library.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:13,934 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2016-10-13 14:57:13,934 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2016-10-13 14:57:13,934 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2016-10-13 14:57:13,934 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2016-10-13 14:57:14,040 - ResourceManager : found copyright.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,049 - ResourceManager : found description-java.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,055 - ResourceManager : found do-fields.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,087 - ResourceManager : found copyright.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,089 - ResourceManager : found description-java.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,092 - ResourceManager : found operation/op-insert.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,094 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,100 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,101 - Left side ($tempName) of '==' operation has null value. If a reference, it may not be in the context. Operation not possible. operation/op-signature.vm [line 1, column 18]
+2016-10-13 14:57:14,115 - ResourceManager : found operation/op-select.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,116 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,118 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,119 - Left side ($tempName) of '==' operation has null value. If a reference, it may not be in the context. Operation not possible. operation/op-signature.vm [line 1, column 18]
+2016-10-13 14:57:14,120 - ResourceManager : found operation/op-update.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,121 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,130 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,131 - Left side ($tempName) of '==' operation has null value. If a reference, it may not be in the context. Operation not possible. operation/op-signature.vm [line 1, column 18]
+2016-10-13 14:57:14,137 - ResourceManager : found operation/op-select.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,138 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,141 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,141 - Left side ($tempName) of '==' operation has null value. If a reference, it may not be in the context. Operation not possible. operation/op-signature.vm [line 1, column 18]
+2016-10-13 14:57:14,143 - ResourceManager : found operation/op-select.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,144 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,148 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,149 - Left side ($tempName) of '==' operation has null value. If a reference, it may not be in the context. Operation not possible. operation/op-signature.vm [line 1, column 18]
+2016-10-13 14:57:14,153 - ResourceManager : found operation/op-delete.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,154 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,157 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,157 - Left side ($tempName) of '==' operation has null value. If a reference, it may not be in the context. Operation not possible. operation/op-signature.vm [line 1, column 18]
+2016-10-13 14:57:14,233 - ResourceManager : found copyright.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,236 - ResourceManager : found description-java.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,239 - ResourceManager : found operation/op-insert.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,240 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,249 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,252 - ResourceManager : found operation/opbody-insert.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,255 - ResourceManager : found operation/op-select.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,256 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,258 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,266 - ResourceManager : found operation/opbody-select.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,270 - ResourceManager : found operation/op-update.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,272 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,276 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,285 - ResourceManager : found operation/opbody-update.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,295 - ResourceManager : found operation/op-select.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,296 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,299 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,309 - ResourceManager : found operation/opbody-select.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,310 - Left side (${operation.parameterClass}) of '==' operation has null value. If a reference, it may not be in the context. Operation not possible. operation/opbody-select.vm [line 17, column 40]
+2016-10-13 14:57:14,313 - ResourceManager : found operation/op-select.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,314 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,317 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,327 - ResourceManager : found operation/opbody-select.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,328 - Left side (${operation.parameterClass}) of '==' operation has null value. If a reference, it may not be in the context. Operation not possible. operation/opbody-select.vm [line 17, column 40]
+2016-10-13 14:57:14,330 - ResourceManager : found operation/op-delete.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,331 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,336 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,342 - ResourceManager : found operation/opbody-delete.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:57:14,369 - ResourceManager : found description-xml.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,206 - Log4JLogChute initialized using file 'velocity.log'
+2016-10-13 14:58:37,206 - Starting Apache Velocity v1.5 (compiled: 2007-02-22 08:52:29)
+2016-10-13 14:58:37,206 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
+2016-10-13 14:58:37,206 - Trying to use logger class middlegen.DontCloseLog4JLogSystem
+2016-10-13 14:58:37,206 - Using logger class middlegen.DontCloseLog4JLogSystem
+2016-10-13 14:58:37,209 - Default ResourceManager initializing. (class org.apache.velocity.runtime.resource.ResourceManagerImpl)
+2016-10-13 14:58:37,215 - ResourceLoader instantiated: middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,216 - Do unicode file recognition:  false
+2016-10-13 14:58:37,216 - FileResourceLoader : adding path 'E:\workspace\jobschedule\mybatis-dalgen/templates/mergedir'
+2016-10-13 14:58:37,223 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl)
+2016-10-13 14:58:37,224 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2016-10-13 14:58:37,226 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2016-10-13 14:58:37,227 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2016-10-13 14:58:37,229 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2016-10-13 14:58:37,230 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2016-10-13 14:58:37,260 - Created '20' parsers.
+2016-10-13 14:58:37,266 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+2016-10-13 14:58:37,267 - KindFileResourceLoader : file loader failed to load: VM_global_library.vm
+2016-10-13 14:58:37,267 - KindFileResourceLoader : classpath loader failed to load: VM_global_library.vm
+2016-10-13 14:58:37,267 - Velocimacro : adding VMs from VM library : VM_global_library.vm
+2016-10-13 14:58:37,268 - KindFileResourceLoader : file loader failed to load: VM_global_library.vm
+2016-10-13 14:58:37,268 - KindFileResourceLoader : classpath loader failed to load: VM_global_library.vm
+2016-10-13 14:58:37,271 - ResourceManager : found VM_global_library.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,271 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2016-10-13 14:58:37,271 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2016-10-13 14:58:37,271 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2016-10-13 14:58:37,271 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2016-10-13 14:58:37,376 - ResourceManager : found copyright.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,385 - ResourceManager : found description-java.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,390 - ResourceManager : found do-fields.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,421 - ResourceManager : found copyright.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,422 - ResourceManager : found description-java.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,424 - ResourceManager : found operation/op-insert.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,425 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,439 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,440 - Left side ($tempName) of '==' operation has null value. If a reference, it may not be in the context. Operation not possible. operation/op-signature.vm [line 1, column 18]
+2016-10-13 14:58:37,451 - ResourceManager : found operation/op-select.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,453 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,455 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,455 - Left side ($tempName) of '==' operation has null value. If a reference, it may not be in the context. Operation not possible. operation/op-signature.vm [line 1, column 18]
+2016-10-13 14:58:37,456 - ResourceManager : found operation/op-update.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,457 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,470 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,470 - Left side ($tempName) of '==' operation has null value. If a reference, it may not be in the context. Operation not possible. operation/op-signature.vm [line 1, column 18]
+2016-10-13 14:58:37,475 - ResourceManager : found operation/op-select.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,475 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,479 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,479 - Left side ($tempName) of '==' operation has null value. If a reference, it may not be in the context. Operation not possible. operation/op-signature.vm [line 1, column 18]
+2016-10-13 14:58:37,483 - ResourceManager : found operation/op-select.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,484 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,487 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,487 - Left side ($tempName) of '==' operation has null value. If a reference, it may not be in the context. Operation not possible. operation/op-signature.vm [line 1, column 18]
+2016-10-13 14:58:37,491 - ResourceManager : found operation/op-delete.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,492 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,495 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,496 - Left side ($tempName) of '==' operation has null value. If a reference, it may not be in the context. Operation not possible. operation/op-signature.vm [line 1, column 18]
+2016-10-13 14:58:37,556 - ResourceManager : found copyright.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,567 - ResourceManager : found description-java.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,569 - ResourceManager : found operation/op-insert.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,570 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,573 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,582 - ResourceManager : found operation/opbody-insert.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,586 - ResourceManager : found operation/op-select.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,587 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,589 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,597 - ResourceManager : found operation/opbody-select.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,600 - ResourceManager : found operation/op-update.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,602 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,607 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,616 - ResourceManager : found operation/opbody-update.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,625 - ResourceManager : found operation/op-select.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,626 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,629 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,637 - ResourceManager : found operation/opbody-select.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,639 - Left side (${operation.parameterClass}) of '==' operation has null value. If a reference, it may not be in the context. Operation not possible. operation/opbody-select.vm [line 17, column 40]
+2016-10-13 14:58:37,640 - ResourceManager : found operation/op-select.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,641 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,645 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,653 - ResourceManager : found operation/opbody-select.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,654 - Left side (${operation.parameterClass}) of '==' operation has null value. If a reference, it may not be in the context. Operation not possible. operation/opbody-select.vm [line 17, column 40]
+2016-10-13 14:58:37,656 - ResourceManager : found operation/op-delete.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,657 - ResourceManager : found operation/op-javadoc.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,660 - ResourceManager : found operation/op-signature.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,664 - ResourceManager : found operation/opbody-delete.vm with loader middlegen.KindFileResourceLoader
+2016-10-13 14:58:37,687 - ResourceManager : found description-xml.vm with loader middlegen.KindFileResourceLoader

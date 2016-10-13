@@ -18,7 +18,7 @@ public class MyJob1 implements Job , Serializable{
     private static final long serialVersionUID = -4816708186668603950L;
 
     public void execute(JobExecutionContext context) throws JobExecutionException {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd HH:MM:ss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         System.out.println("MyJob***1 execute==================="+format.format(new Date()));
     }
 }
