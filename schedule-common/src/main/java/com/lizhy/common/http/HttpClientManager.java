@@ -18,6 +18,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.ssl.SSLContexts;
+import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -95,7 +96,7 @@ public class HttpClientManager {
                 int statusCode = response.getStatusLine().getStatusCode();
                 if(statusCode >= 200 && statusCode < 303) {
                     HttpEntity entity = response.getEntity();
-                    return new HttpResult(true, statusCode, entity.toString());
+                    return new HttpResult(true, statusCode, EntityUtils.toString(entity));
                 }
                 return new HttpResult(false, statusCode, null);
             } catch (Exception e) {
