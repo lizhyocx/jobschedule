@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<property resource="app.properties" />
+	<!-- 默认输出文件 -->
+	<appender name="DEFAULT-APPENDER"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log.home}/default/common-default.log.%d{yyyyMMdd}
+			</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder charset="UTF-8">
+			<pattern>[%d] [%t] [%-4p] [%c{2}] [%X{traceRootId}/%X{uniqueId}/%X{userId}/%X{userEmail}/%X{userPhone}] - [%m]%n</pattern>
+		</encoder>
+	</appender>
+	<!-- 默认错误文件 -->
+	<appender name="ERROR-APPENDER"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log.home}/error/common-error.log.%d{yyyyMMdd}
+			</fileNamePattern>
+		</rollingPolicy>
+		<encoder charset="UTF-8">
+			<pattern>[%d] [%t] [%-4p] [%c{2}] [%X{traceRootId}/%X{uniqueId}/%X{userId}/%X{userEmail}/%X{userPhone}] - [%m]%n</pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>WARN</level>
+		</filter>
+	</appender>
+	<!-- 默认dao日志文件 -->
+	<appender name="DAO-APPENDER"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log.home}/dao/common-dao.log.%d{yyyyMMdd}
+			</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder charset="UTF-8">
+			<pattern>[%d] [%t] [%-4p] [%c{2}] [%X{traceRootId}/%X{uniqueId}/%X{userId}/%X{userEmail}/%X{userPhone}] - [%m]%n</pattern>
+		</encoder>
+	</appender>
+	<!-- service日志文件 -->
+	<appender name="SERVICE-APPENDER"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log.home}/service/common-service.log.%d{yyyyMMdd}
+			</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder charset="UTF-8">
+			<pattern>[%d] [%t] [%-4p] [%c{2}] [%X{traceRootId}/%X{uniqueId}/%X{userId}/%X{userEmail}/%X{userPhone}] - [%m]%n</pattern>
+		</encoder>
+	</appender>
+	<!-- 默认web日志文件 -->
+	<appender name="WEB-APPENDER"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log.home}/web/common-web.log.%d{yyyyMMdd}
+			</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder charset="UTF-8">
+			<pattern>[%d] [%t] [%-4p] [%c{2}] [%X{traceRootId}/%X{uniqueId}/%X{userId}/%X{userEmail}/%X{userPhone}] - [%m]%n</pattern>
+		</encoder>
+	</appender>
+	<!-- ===================================================================== -->
+	<!-- Loggers -->
+	<!-- ===================================================================== -->
+	<!-- 性能日志 -->
+	<logger name="com.lizhy.dao.auto" additivity="false">
+		<level value="${log.root.level}" />
+		<appender-ref ref="DAO-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+	<logger name="java.sql" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="DAO-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+	<logger name="com.lizhy.web" additivity="false">
+		<level value="${log.root.level}" />
+		<appender-ref ref="WEB-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+	<logger name="com.lizhy.service" additivity="false">
+		<level value="${log.root.level}" />
+		<appender-ref ref="SERVICE-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+
+	<!-- 屏蔽logger -->
+	<logger name="org.springframework" level="WARN" />
+	<logger name="org.apache" level="WARN" />
+	<logger name="org.mybatis.spring" level="WARN" />
+	<!-- 屏蔽jdk日志 -->
+	<logger name="java" level="WARN" />
+	<logger name="com.mchange" additivity="false">
+		<level value="WARN" />
+		<appender-ref ref="DAO-APPENDER" />
+	</logger>
+	<!-- 屏蔽logger 结束 -->
+	<root level="${log.root.level}">
+		<appender-ref ref="DEFAULT-APPENDER"></appender-ref>
+		<appender-ref ref="ERROR-APPENDER"></appender-ref>
+		<appender-ref ref="WARN-APPENDER"></appender-ref>
+	</root>
+</configuration> 
