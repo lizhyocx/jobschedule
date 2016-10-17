@@ -31,7 +31,7 @@ public interface UserDAO {
    	 *  <tt></tt>
 	 *  <p>
 	 *  The sql statement for this operation is <br>
-	 *  <tt>insert into user(name,age,password) values (?, ?, ?)</tt>
+	 *  <tt>insert into test_user(name,age,password) values (?, ?, ?)</tt>
 	 *
 	 *	@param user
 	 *	@return Integer
@@ -47,7 +47,7 @@ public interface UserDAO {
    	 *  <tt></tt>
 	 *  <p>
 	 *  The sql statement for this operation is <br>
-	 *  <tt>select COUNT(*) from user where (age BETWEEN ? AND ?)</tt>
+	 *  <tt>select COUNT(*) from test_user where (age BETWEEN ? AND ?)</tt>
 	 *
 	 *	@return Long
 	 *	@throws DataAccessException
@@ -62,7 +62,7 @@ public interface UserDAO {
    	 *  <tt></tt>
 	 *  <p>
 	 *  The sql statement for this operation is <br>
-	 *  <tt>update user set age=?, password=? where (name = ?)</tt>
+	 *  <tt>update test_user set age=?, password=? where (name = ?)</tt>
 	 *
 	 *	@param age
 	 *	@param password
@@ -80,7 +80,7 @@ public interface UserDAO {
    	 *  <tt></tt>
 	 *  <p>
 	 *  The sql statement for this operation is <br>
-	 *  <tt>select * from user where (name = ?)</tt>
+	 *  <tt>select * from test_user where (name = ?)</tt>
 	 *
 	 *	@param name
 	 *	@return List<UserDO>
@@ -96,7 +96,7 @@ public interface UserDAO {
    	 *  <tt></tt>
 	 *  <p>
 	 *  The sql statement for this operation is <br>
-	 *  <tt>select * from user where (id = ?)</tt>
+	 *  <tt>select * from test_user where (id = ?)</tt>
 	 *
 	 *	@param id
 	 *	@return UserDO
@@ -112,7 +112,7 @@ public interface UserDAO {
    	 *  <tt></tt>
 	 *  <p>
 	 *  The sql statement for this operation is <br>
-	 *  <tt>delete from user where (name = ?)</tt>
+	 *  <tt>delete from test_user where (name = ?)</tt>
 	 *
 	 *	@param name
 	 *	@return int

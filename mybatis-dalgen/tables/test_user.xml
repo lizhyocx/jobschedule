@@ -4,12 +4,12 @@
 	<operation name="insertUser">
 		<description>添加用户</description>
 		<sql>
-			insert into user
+			insert into test_user
 			(name, age, password)
 			values(?,?,?)
 		</sql>
 		<sqlmap>
-			insert into user
+			insert into test_user
 				(name, age, password)
 			values(#{name}, #{age}, #{password})
 		</sqlmap>		
@@ -19,10 +19,10 @@
 		<description>根据年龄查询用户个数</description>
 		
 		<sql>
-			select count(*) from user where age between ? and ?
+			select count(*) from test_user where age between ? and ?
 		</sql>
 		<sqlmap>
-			select count(*) from user where age between #{minAge} and #{maxAge}
+			select count(*) from test_user where age between #{minAge} and #{maxAge}
 		</sqlmap>	
 			
 	</operation>
@@ -30,11 +30,11 @@
 	<operation name="updateUser">
 		<description>更新用户信息</description>
 		<sql>
-			update user set age = ?, password=?
+			update test_user set age = ?, password=?
 			where name = ?
 		</sql>
 		<sqlmap>
-			update user set age = #{age}, password=#{password}
+			update test_user set age = #{age}, password=#{password}
 			where name = #{name}
 		</sqlmap>	
 	</operation>
@@ -42,11 +42,11 @@
 	<operation name="selectByName" multiplicity="many">
 		<description>通过名称查询用户</description>
 		<sql>
-			select * from user
+			select * from test_user
 			where name = ?
 		</sql>
 		<sqlmap>
-			select * from user
+			select * from test_user
 			where name = #{name} 
 		</sqlmap>	
 	</operation>
@@ -54,23 +54,23 @@
 	<operation name="selectById">
 		<description>通过id查询用户</description>
 		<sql>
-			select * from user
+			select * from test_user
 			where id = ?
 		</sql>
 		<sqlmap>
-			select * from user
-			where name = #{name} 
+			select * from test_user
+			where id = #{id}
 		</sqlmap>	
 	</operation>
 	
 	<operation name="deleteByName">
 		<description>根据用户删除</description>
 		<sql>
-			delete from user
+			delete from test_user
 			where name = ?
 		</sql>
 		<sqlmap>
-			delete from user
+			delete from test_user
 			where name = #{name} 
 		</sqlmap>		
 	</operation>

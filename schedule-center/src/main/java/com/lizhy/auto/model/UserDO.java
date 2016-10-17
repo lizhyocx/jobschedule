@@ -2,6 +2,7 @@
  * Copyright (c) 2014 All Rights Reserved.
  */
 package com.lizhy.auto.model;
+import com.lizhy.common.BaseDO;
 // auto generated imports
 
 /**

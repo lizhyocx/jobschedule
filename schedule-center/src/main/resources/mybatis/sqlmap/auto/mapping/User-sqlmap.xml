@@ -37,7 +37,7 @@
     <!-- ============================================= -->
     <!-- mapped statement for UserDAOImpl.insertUser -->
 	<insert id="USER-INSERT-USER">
-	insert into user
+	insert into test_user
 				(name, age, password)
 			values(#{name}, #{age}, #{password})
     <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
@@ -47,30 +47,30 @@
 
     <!-- mapped statement for UserDAOImpl.selectCountByAge -->
     <select id="USER-SELECT-COUNT-BY-AGE" resultType="java.lang.Long">
-        select count(*) from user where age between #{minAge} and #{maxAge}
+        select count(*) from test_user where age between #{minAge} and #{maxAge}
     </select>
 
     <!-- mapped statement for UserDAOImpl.updateUser -->
     <update id="USER-UPDATE-USER">
-        update user set age = #{age}, password=#{password}
+        update test_user set age = #{age}, password=#{password}
 			where name = #{name}
     </update>
 
     <!-- mapped statement for UserDAOImpl.selectByName -->
     <select id="USER-SELECT-BY-NAME" resultMap="RM-USER">
-        select * from user
+        select * from test_user
 			where name = #{name}
     </select>
 
     <!-- mapped statement for UserDAOImpl.selectById -->
     <select id="USER-SELECT-BY-ID" resultMap="RM-USER">
-        select * from user
-			where name = #{name}
+        select * from test_user
+			where id = #{id}
     </select>
 
     <!-- mapped statement for UserDAOImpl.deleteByName -->
     <delete id="USER-DELETE-BY-NAME">
-        delete from user
+        delete from test_user
 			where name = #{name}
     </delete>
 
