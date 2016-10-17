@@ -6,4 +6,5 @@
                             http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context.xsd">
         <context:property-placeholder location="classpath:app.properties" />
         <import resource="classpath:bean/dao-env-bean.xml" />
+        <import resource="classpath:spring-quartz.xml" />
 </beans>

@@ -10,5 +10,4 @@
             <property name="configLocation" value="classpath:quartz.properties" />
         </bean>
 
-
 </beans>

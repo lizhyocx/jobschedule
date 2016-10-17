@@ -17,6 +17,21 @@
         <com.jobschedule.client.version>1.0.0.20161013</com.jobschedule.client.version>
         <com.jobschedule.common.version>1.0.0.20161013</com.jobschedule.common.version>
     </properties>
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>dev</value>
+                </property>
+            </activation>
+            <properties>
+                <profile.file.name>/profile/env.properties.dev</profile.file.name>
+                <maven.test.skip>true</maven.test.skip>
+            </properties>
+        </profile>
+    </profiles>
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -127,6 +142,15 @@
         </dependencies>
     </dependencyManagement>
     <build>
+        <filters>
+            <filter>${user.dir}${profile.file.name}</filter>
+        </filters>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
