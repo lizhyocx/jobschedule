@@ -14,12 +14,31 @@ public interface ScheduleService {
      */
     boolean checkFirstRun();
 
+    /**
+     * 启动调度
+     */
     void start();
 
+    /**
+     * 添加一个定时任务
+     * @param jobModel
+     * @param jobDataMap
+     * @param clazz
+     */
     void scheduleJob(JobModel jobModel, JobDataMap jobDataMap, Class<? extends Job> clazz);
 
+    /**
+     * 暂停定时任务
+     * @param jobName
+     * @return
+     */
     boolean pauseJob(String jobName);
 
+    /**
+     * 恢复定时任务
+     * @param jobName
+     * @return
+     */
     boolean resumeJob(String jobName);
 
 }

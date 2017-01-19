@@ -155,7 +155,7 @@ public class ScheduleServiceImpl implements ScheduleService {
         try {
             scheduler.resumeJob(new JobKey(jobName, Scheduler.DEFAULT_GROUP));
         } catch (Exception e) {
-            logger.error("pauseJob exception ", e);
+            logger.error("resumeJob exception ", e);
             return false;
         }
         return true;
