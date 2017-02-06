@@ -1,6 +1,6 @@
 package com.lizhy.service;
 
-import com.lizhy.model.JobModel;
+import com.lizhy.model.JobData;
 import org.quartz.Job;
 import org.quartz.JobDataMap;
 
@@ -21,11 +21,11 @@ public interface ScheduleService {
 
     /**
      * 添加一个定时任务
-     * @param jobModel
+     * @param jobData
      * @param jobDataMap
      * @param clazz
      */
-    void scheduleJob(JobModel jobModel, JobDataMap jobDataMap, Class<? extends Job> clazz);
+    void scheduleJob(JobData jobData, JobDataMap jobDataMap, Class<? extends Job> clazz);
 
     /**
      * 暂停定时任务

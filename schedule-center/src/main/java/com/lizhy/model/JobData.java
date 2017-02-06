@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * Created by lizhiyang on 2017-01-17 10:09.
  */
-public class JobModel extends BaseDO {
+public class JobData extends BaseDO {
 
     private static final long serialVersionUID = -4982510071328309657L;
     //simple/cron

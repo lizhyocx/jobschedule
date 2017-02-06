@@ -7,4 +7,6 @@
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
    <bean id="scheduleService" class="com.lizhy.service.impl.ScheduleServiceImpl" />
+   <bean id="jobService" class="com.lizhy.service.impl.JobServiceImpl" />
+   <bean id="executorService" class="com.lizhy.service.impl.ExecutorServiceImpl" />
 </beans>

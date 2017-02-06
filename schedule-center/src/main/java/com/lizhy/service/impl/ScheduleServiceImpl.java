@@ -1,6 +1,6 @@
 package com.lizhy.service.impl;
 
-import com.lizhy.model.JobModel;
+import com.lizhy.model.JobData;
 import com.lizhy.service.ScheduleService;
 import org.apache.commons.lang.StringUtils;
 import org.quartz.*;
@@ -51,48 +51,48 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public void scheduleJob(JobModel jobModel, JobDataMap jobDataMap, Class<? extends Job> clazz) {
+    public void scheduleJob(JobData jobData, JobDataMap jobDataMap, Class<? extends Job> clazz) {
         try {
-            if(jobModel == null) {
-                logger.warn("scheduleJob jobModel is null");
+            if(jobData == null) {
+                logger.warn("scheduleJob jobData is null");
             }
-            if("simple".equals(jobModel.getCategory())) {
+            if("simple".equals(jobData.getCategory())) {
                 //普通定时任务
-                scheduleSimple(jobModel, jobDataMap, clazz);
-            } else if("cron".equals(jobModel.getCategory())) {
+                scheduleSimple(jobData, jobDataMap, clazz);
+            } else if("cron".equals(jobData.getCategory())) {
                 //cron定时任务
-                scheduleCron(jobModel, jobDataMap, clazz);
+                scheduleCron(jobData, jobDataMap, clazz);
             } else {
-                logger.warn("error job category:"+jobModel.getCategory());
+                logger.warn("error job category:"+jobData.getCategory());
             }
         } catch (Exception e) {
             logger.error("scheduleJob Exception ",e);
         }
     }
 
-    private void scheduleSimple(JobModel jobModel, JobDataMap jobDataMap, Class<? extends Job> clazz) {
-        JobBuilder jobB = newJob(clazz).withIdentity(jobModel.getName(), Scheduler.DEFAULT_GROUP);
+    private void scheduleSimple(JobData jobData, JobDataMap jobDataMap, Class<? extends Job> clazz) {
+        JobBuilder jobB = newJob(clazz).withIdentity(jobData.getName(), Scheduler.DEFAULT_GROUP);
 
         if(jobDataMap!=null){
             jobB.usingJobData(jobDataMap);
         }
         JobDetail jobDetail = jobB.build();
         TriggerBuilder<Trigger> triggerB = newTrigger()
-                .withIdentity(getTriggerName(jobModel.getName()), Scheduler.DEFAULT_GROUP);
+                .withIdentity(getTriggerName(jobData.getName()), Scheduler.DEFAULT_GROUP);
         // 设置开始时间
-        Date startTime = jobModel.getStartTime();
+        Date startTime = jobData.getStartTime();
         if (null != startTime) {
             triggerB.startAt(startTime);
         }
         // 设置结束时间
-        Date endTime = jobModel.getEndTime();
+        Date endTime = jobData.getEndTime();
         if (null != endTime) {
             triggerB.endAt(endTime);
         }
         // 设置执行次数
-        int repeatCount = jobModel.getRepeatCount();
+        int repeatCount = jobData.getRepeatCount();
         // 设置执行时间间隔
-        long repeatInterval = jobModel.getRepeatInterval();
+        long repeatInterval = jobData.getRepeatInterval();
         if (repeatCount > 0 || repeatInterval>0) {
             SimpleScheduleBuilder ssb = simpleSchedule();
             if(repeatCount>0){
@@ -107,14 +107,14 @@ public class ScheduleServiceImpl implements ScheduleService {
         try {
             scheduler.scheduleJob(jobDetail, triggerB.build());
             if(logger.isInfoEnabled()){
-                logger.info("加入调度：Name->"+jobDetail.getKey()+ ", Description->"+jobModel.getDesc());
+                logger.info("加入调度：Name->"+jobDetail.getKey()+ ", Description->"+jobData.getDesc());
             }
         } catch (SchedulerException e) {
             logger.error("加入任务调度出现异常!", e);
         }
     }
 
-    private void scheduleCron(JobModel jobModel, JobDataMap jobDataMap, Class<? extends Job> clazz) {
+    private void scheduleCron(JobData jobModel, JobDataMap jobDataMap, Class<? extends Job> clazz) {
         String triggerName = getTriggerName(jobModel.getName());
         try {
             JobBuilder jobB = newJob(clazz)
