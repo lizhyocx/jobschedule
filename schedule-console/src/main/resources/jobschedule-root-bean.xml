@@ -5,6 +5,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
                             http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context.xsd">
         <context:property-placeholder location="classpath:app.properties" />
+        <bean id="springContextUtil" class="com.lizhy.common.util.SpringContextUtil" />
         <import resource="classpath:bean/dao-env-bean.xml" />
         <import resource="classpath:spring-quartz.xml" />
         <import resource="classpath:bean/schedule-service-bean.xml" />

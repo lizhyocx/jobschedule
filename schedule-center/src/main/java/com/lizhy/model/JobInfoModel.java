@@ -13,7 +13,7 @@ public class JobInfoModel extends BaseDO {
     private String jobName;
     private String jobDesc;
     private int timeout;
-    private int executorSelect;
+    private int executeSelect;
     private int executeRules;
     private long creatTime;
     private int status;
@@ -52,12 +52,12 @@ public class JobInfoModel extends BaseDO {
         this.timeout = timeout;
     }
 
-    public int getExecutorSelect() {
-        return executorSelect;
+    public int getExecuteSelect() {
+        return executeSelect;
     }
 
-    public void setExecutorSelect(int executorSelect) {
-        this.executorSelect = executorSelect;
+    public void setExecuteSelect(int executeSelect) {
+        this.executeSelect = executeSelect;
     }
 
     public int getExecuteRules() {
