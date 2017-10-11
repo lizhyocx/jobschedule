@@ -5,6 +5,7 @@ import com.lizhy.client.config.ScheduleConfig;
 import com.lizhy.common.http.HttpClientManager;
 import com.lizhy.common.http.HttpResult;
 import com.lizhy.common.util.SpringContextUtil;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
@@ -154,6 +155,9 @@ public class ExecutorManager {
 		List<String> urls = config.getScheduleCenterUrls();
 		if(!CollectionUtils.isEmpty(urls)) {
 			for(String url : urls) {
+				if(StringUtils.isNotBlank(url)) {
+					url = url.concat("/job/feedback.do");
+				}
 				logger.info("ExecutorManager callback url :"+url+",param="+param);
 				HttpResult res = HttpClientManager.executePost(url, param);
 				if(res != null && res.isSuccess()) {
