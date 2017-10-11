@@ -1,4 +1,4 @@
-package com.lizhy.enu;
+package com.lizhy.common.enu;
 
 /**
  * 执行机器选择枚举类

@@ -1,4 +1,4 @@
-package com.lizhy.enu;
+package com.lizhy.common.enu;
 
 /**
  * 执行规则枚举

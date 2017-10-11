@@ -3,7 +3,7 @@ package com.lizhy.job;
 import com.lizhy.common.http.HttpClientManager;
 import com.lizhy.common.http.HttpResult;
 import com.lizhy.common.util.SpringContextUtil;
-import com.lizhy.enu.ExecuteSelectEnum;
+import com.lizhy.common.enu.ExecuteSelectEnum;
 import com.lizhy.model.ExecutorModel;
 import com.lizhy.service.ExecutorService;
 import org.quartz.*;
