@@ -21,11 +21,8 @@ import static org.quartz.TriggerBuilder.newTrigger;
  */
 public class ScheduleServiceImpl implements ScheduleService {
     private static Logger logger = LoggerFactory.getLogger(ScheduleServiceImpl.class);
-    private Scheduler scheduler;
 
-    public void setScheduler(Scheduler scheduler) {
-        this.scheduler = scheduler;
-    }
+    private Scheduler scheduler;
 
     @Override
     public boolean checkFirstRun() {
@@ -42,12 +39,8 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public void start() {
-        try {
-            scheduler.start();
-        } catch (SchedulerException e) {
-            logger.error("scheduler start exception", e);
-        }
+    public void start() throws SchedulerException {
+        scheduler.start();
     }
 
     @Override
@@ -159,5 +152,9 @@ public class ScheduleServiceImpl implements ScheduleService {
             return false;
         }
         return true;
+    }
+
+    public void setScheduler(Scheduler scheduler) {
+        this.scheduler = scheduler;
     }
 }

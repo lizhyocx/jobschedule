@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-	<property resource="app.properties" />
 	<!-- 默认输出文件 -->
 	<appender name="DEFAULT-APPENDER"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">

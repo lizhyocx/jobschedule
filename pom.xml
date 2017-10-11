@@ -211,12 +211,7 @@
         <filters>
             <filter>${user.dir}${profile.file.name}</filter>
         </filters>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -245,11 +240,11 @@
     </build>
 
     <modules>
-        
-        <module>schedule-center</module>
-        <module>schedule-client</module>
-	    <module>schedule-console</module>
+
         <module>schedule-common</module>
+        <module>schedule-client</module>
+        <module>schedule-center</module>
+        <module>schedule-console</module>
     </modules>
 
 </project>

@@ -3,6 +3,7 @@ package com.lizhy.service;
 import com.lizhy.model.JobData;
 import org.quartz.Job;
 import org.quartz.JobDataMap;
+import org.quartz.SchedulerException;
 
 /**
  * Created by lizhiyang on 2016/11/17.
@@ -17,7 +18,7 @@ public interface ScheduleService {
     /**
      * 启动调度
      */
-    void start();
+    void start() throws SchedulerException;
 
     /**
      * 添加一个定时任务
