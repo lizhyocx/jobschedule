@@ -10,7 +10,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>schedule-center</artifactId>
-    <version>${com.jobschedule.center.version}</version>
+    <version>${com.jobschedule.version}</version>
     <packaging>jar</packaging>
 
     <name>schedule-center</name>
@@ -75,6 +75,10 @@
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz-jobs</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.lizhy</groupId>
+            <artifactId>schedule-common</artifactId>
         </dependency>
     </dependencies>
     <build>

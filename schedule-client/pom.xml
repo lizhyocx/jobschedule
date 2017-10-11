@@ -8,7 +8,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <version>${com.jobschedule.client.version}</version>
+    <version>${com.jobschedule.version}</version>
     <artifactId>schedule-client</artifactId>
     <packaging>jar</packaging>
     <dependencies>
@@ -19,6 +19,14 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.lizhy</groupId>
+            <artifactId>schedule-common</artifactId>
         </dependency>
     </dependencies>
 

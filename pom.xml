@@ -12,10 +12,8 @@
 	<name>jobschedule</name>
     <properties>
         <org.spring.version>3.2.12.RELEASE</org.spring.version>
-        <com.jobschedule.center.version>1.0.0.20161013</com.jobschedule.center.version>
+        <com.jobschedule.version>1.0.0.20161013</com.jobschedule.version>
         <com.jobschedule.console.version>1.0</com.jobschedule.console.version>
-        <com.jobschedule.client.version>1.0.0.20161013</com.jobschedule.client.version>
-        <com.jobschedule.common.version>1.0.0.20161013</com.jobschedule.common.version>
     </properties>
     <profiles>
         <profile>
@@ -37,17 +35,17 @@
             <dependency>
                 <groupId>com.lizhy</groupId>
                 <artifactId>schedule-common</artifactId>
-                <version>${com.jobschedule.common.version}</version>
+                <version>${com.jobschedule.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.lizhy</groupId>
                 <artifactId>schedule-client</artifactId>
-                <version>${com.jobschedule.client.version}</version>
+                <version>${com.jobschedule.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.lizhy</groupId>
                 <artifactId>schedule-center</artifactId>
-                <version>${com.jobschedule.center.version}</version>
+                <version>${com.jobschedule.version}</version>
             </dependency>
             <dependency>
                 <groupId>commons-lang</groupId>

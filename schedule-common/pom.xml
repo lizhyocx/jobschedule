@@ -8,7 +8,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <version>${com.jobschedule.common.version}</version>
+    <version>${com.jobschedule.version}</version>
     <artifactId>schedule-common</artifactId>
     <packaging>jar</packaging>
     <dependencies>
