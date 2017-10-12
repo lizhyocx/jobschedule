@@ -1,0 +1,309 @@
+@import "../../components/MainLayout/_color";
+.zhk-pro-body {
+    width: 100%;
+    height: 100%;
+    background: #eee;
+    //overflow-x: auto;
+    .customer-service {
+        background: #333333;
+        width: 100%;
+        height: 28px;
+        min-width: 1260px;
+        div {
+            line-height: 28px;
+            height: 28px;
+            font-size: 12px;
+            width: 1200px;
+            margin: 0 auto;
+            text-align: right;
+            color: #fff;
+            >.link {
+                color: #fff;
+                text-decoration: none;
+            }
+            >.spline {
+                border-right: 1px solid #ececec;
+                margin: 0 8px;
+                height: 14px;
+            }
+            >.tel {
+                line-height: 28px;
+                height: 28px;
+                font-size: 12px;
+                width: 1200px;
+                margin: 0 auto;
+                text-align: right;
+                color: #fff;
+            }
+        }
+    }
+    .page-content {
+        width: 1000px;
+        margin: 16px auto 0;
+        height: 100%;
+    }
+    .page-content-with-menu {
+        height: 100%;
+        width: 1200px;
+        margin: 32px auto 0;
+        position: relative;
+        margin-bottom: 48px;
+        .left-menu {
+            float: left;
+            z-index: 10;
+            position: relative;
+        }
+        .left-bg {
+            position: absolute;
+            height: 100%;
+            background: #fff;
+            width: 200px;
+            left: 0;
+            top: 0;
+            z-index: 1;
+        }
+        .right-content {
+            float: left;
+            width: 968px;
+            margin: 0 16px 0 16px;
+            position: relative;
+            z-index: 50;
+        }
+        .right-bg {
+            position: absolute;
+            height: 100%;
+            background: #fff;
+            width: 100%;
+            left: 0;
+            top: 0;
+            >.top {
+                width: 100%;
+                height: 16px;
+                /*background: #eee;*/
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            >.left {
+                width: 1px;
+                height: 100%;
+                background: #eee;
+                position: absolute;
+                top: 0;
+                left: 200px;
+                z-index: 100;
+            }
+            >.right {
+                width: 16px;
+                height: 100%;
+                background: #eee;
+                position: absolute;
+                top: 0;
+                left: 1240px;
+            }
+        }
+    }
+    .splitLine {
+        position: relative;
+        padding: 28px 0 18px 0;
+        width: 100%;
+        text-align: left;
+        .icon {
+            position: relative;
+            display: inline-block;
+            background: @color-blue;
+            width: 6px;
+            height: 14px;
+            z-index: 2;
+            top: 0;
+        }
+        .name {
+            position: relative;
+            padding: 0 16px 0 8px;
+            display: inline-block;
+            z-index: 2;
+            font-size: 18px;
+            color: #1a1a1a;
+        }
+        .rightInfo {
+            position: absolute;
+            right: 0;
+        }
+    }
+    .breadcrumb {
+        height: 76px;
+        line-height: 76px;
+        color: #999999;
+        background: #fff;
+        .current {
+            color: #666666;
+        }
+    }
+}
+
+:global {
+    html{
+        background: #eee;
+    }
+    body {
+        background: #fff;
+        overflow:auto;
+    }
+    a{
+        text-decoration: none;
+    }
+    a:focus{
+        text-decoration:none !important;
+    }
+    .ant-message-notice-content {
+        display: inline-block!important;
+        right: 0!important;
+    }
+    .ant-radio-group {
+        .ant-radio-button-wrapper-checked {
+            background: #2db7f5!important;
+            border-color: #2db7f5!important;
+            color: #fff;
+            box-shadow: -1px 0 0 0 #2db7f5!important;
+        }
+        .ant-radio-button-wrapper:active,
+        .ant-radio-button-wrapper:hover {
+            color: #2db7f5;
+        }
+        .ant-radio-button-wrapper-checked:active,
+        .ant-radio-button-wrapper-checked:hover {
+            color: #fff;
+        }
+    }
+    .ant-input:focus,
+    .ant-input:hover {
+        border-color: #2db7f5!important;
+    }
+    /* use css to set position of modal */
+    /*.vertical-center-modal {
+        text-align: center;
+        white-space: nowrap;
+    }
+    .vertical-center-modal:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        width: 0;
+    }
+    .vertical-center-modal .ant-modal {
+        display: inline-block;
+        vertical-align: middle;
+        top: 0;
+        text-align: left;
+    }*/
+    .ant-modal-wrap {
+        text-align: center; //white-space: nowrap;
+    }
+    .ant-modal-wrap:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        width: 0;
+    }
+    .ant-modal-wrap .ant-modal {
+        display: inline-block;
+        vertical-align: middle;
+        top: 0;
+        text-align: left;
+    }
+    .ant-breadcrumb {
+        /*面包屑*/
+        .ant-breadcrumb-link {
+            color: #666;
+            font-weight: normal;
+            >a {
+                color: #999;
+            }
+        }
+        .ant-breadcrumb-separator {
+            color: #ccc;
+        }
+    }
+    .ant-steps-head {
+        border: none!important;
+    }
+    /*
+// Use flex which not working in IE
+.vertical-center-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vertical-center-modal .ant-modal {
+  top: 0;
+}
+*/
+    .ant-popover-placement-bottomRight>.ant-popover-content>.ant-popover-arrow {
+        right: 10px!important;
+    }
+    .ant-message-notice {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+    .ant-message-notice:first-child {
+        margin-top: 0!important;
+    }
+    .zhk-sm-menu {
+        .ant-menu-item:hover,
+        .ant-menu-item-active,
+        .ant-menu-submenu-active {
+            background-color: #f7f7f7!important;
+            >a {
+                color: #333333!important;
+            }
+        }
+        .ant-menu-submenu-title {
+            cursor: initial!important;
+            color: #333333!important;
+            background-color: #fff!important;
+        }
+        .ant-menu-submenu-title:after {
+            display: none!important;
+            content: "";
+        }
+        .ant-menu-submenu-title:hover {
+            background-color: #fff!important;
+            color: #333333!important;
+            cursor: initial!important;
+        }
+        .ant-menu-item-selected {
+            background-color: #2db7f5!important;
+            >a {
+                color: #fff!important;
+            }
+        }
+        .ant-menu-item-selected:hover {
+            background-color: #2db7f5!important;
+            >a {
+                color: #fff!important;
+            }
+        }
+        .ant-menu-inline .ant-menu-item:after,
+        .ant-menu-vertical .ant-menu-item:after {
+            transition: all 0!important;
+            border-right: none!important;
+        }
+        .ant-menu-inline,
+        .ant-menu-vertical {
+            border-right: none!important;
+        }
+        .ant-menu-inline .ant-menu-item,
+        .ant-menu-vertical .ant-menu-item {
+            margin-left: 0!important;
+            left: 0!important;
+            >a {
+                color: #333333;
+            }
+        }
+    }
+}
