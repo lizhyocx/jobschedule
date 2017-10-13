@@ -5,7 +5,7 @@ import styles from './Footer.less';
 const Footer = React.createClass({
   render() {
     return (
-        <div className={styles['zhk-pro-footer']}>
+        <div className={styles['pro-footer']}>
             <div className={styles['content']}>
                 <div className={styles['footer-info']}>
                     <p>Copyright© 个人版权所有</p>
