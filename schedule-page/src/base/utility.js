@@ -3,7 +3,7 @@ import moment from 'moment';
 window.commonUtility = {
 	
 	// 错误提示时间（秒）
-	errorTipTime: 3,
+	tipTime: 3,
 
 	showConfirm(obj) {
 	    Modal.confirm({

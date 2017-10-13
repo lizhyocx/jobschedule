@@ -10,6 +10,26 @@ class AddJobForm extends React.Component {
 		}
 	}
 
+	handleSubmit = (e) => {
+		e.preventDefault();
+		this.props.form.validateFields((err, values) => {
+			if(!err) {
+				let serverUrl = commonUtil.serverIp() + '/mockjs/63/job/save.do';
+				let sucFunc = (data) => {
+					if(data && data.success) {
+						commonUtility.messageSuccess("保存成功", commonUtility.tipTime);
+					} else {
+						commonUtility.messageWarning(data.msg || "保存任务失败", commonUtility.tipTime);
+					}
+				};
+				let errFunc = () => {
+					commonUtility.messageWarning("保存任务异常", commonUtility.tipTime);
+				};
+				commonUtil.ajaxRequest(serverUrl, 'POST', values, sucFunc, errFunc, false);
+			}
+		});
+	}
+
 	render() {
 		const { getFieldDecorator } = this.props.form;
 		const formItemLayout = {
@@ -35,9 +55,9 @@ class AddJobForm extends React.Component {
                             )}
                         </FormItem>
 		                <FormItem {...formItemLayout} label="执行机器选择">
-		                    {getFieldDecorator('exeOrder', {
+		                    {getFieldDecorator('executeSelect', {
 		                        rules: [{required: true, message: '请选择执行机器'}],
-		                        initialValue: _state.exeOrder || '0',
+		                        initialValue: _state.executeSelect || '0',
 		                    })(
 		                        <Select style={{display: "inline-block", width: 230}}>
 		                        	<Option value="0">第一台</Option>
@@ -48,9 +68,9 @@ class AddJobForm extends React.Component {
 		                    )}
 		                </FormItem>
 		                <FormItem {...formItemLayout} label="通知保证">
-		                    {getFieldDecorator('notify', {
+		                    {getFieldDecorator('executeRules', {
 		                        rules: [{required: true, message: '请选择通知保证'}],
-		                        initialValue: _state.notify || '0',
+		                        initialValue: _state.executeRules || '0',
 		                    })(
 		                        <Select style={{display: "inline-block", width: 230}} >
 		                        	<Option value="0">只通知一次</Option>
