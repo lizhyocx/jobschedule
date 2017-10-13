@@ -86,7 +86,7 @@ class AddJobForm extends React.Component {
 		                    })(
 		                        <InputNumber style={{display: "inline-block", width: 230}}
 		                        	   min={1}
-		                               placeholder="请输入超时警告时间"
+		                               placeholder="超时警告时间"
 		                        />
 		                    )}<span>秒</span>
 		                </FormItem>
@@ -96,7 +96,7 @@ class AddJobForm extends React.Component {
 		                        initialValue: _state.desc || '',
 		                    })(
 		                        <Input style={{display: "inline-block", width: 230}}
-		                               placeholder="请输入任务描述"
+		                               placeholder="任务描述"
 		                        />
 		                    )}
 		                </FormItem>
