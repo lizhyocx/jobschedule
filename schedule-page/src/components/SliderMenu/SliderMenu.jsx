@@ -9,7 +9,7 @@ const SliderMenu = React.createClass({
         return {
             theme: 'light',
             current: this.getCurrent(),
-            defaultOpenKeys: ['rwgl', 'ddgl'],
+            defaultOpenKeys: ['rwgl', 'ddgl', 'rwjk'],
             visible: false,
         };
     },
@@ -86,11 +86,23 @@ const SliderMenu = React.createClass({
                         title={
                             <span>
                                 <Icon type="clock-circle" />
-                                <span>调度管理</span>
+                                <span>任务调度</span>
                             </span>
                         }>
                         <Menu.Item key="ScheduleList">
-                            <Link to="/AddJob">任务列表</Link>
+                            <Link to="/AddJob">调度列表</Link>
+                        </Menu.Item>
+                    </SubMenu>
+                    <SubMenu
+                        key="rwjk"
+                        title={
+                            <span>
+                                <Icon type="area-chart" />
+                                <span>任务监控</span>
+                            </span>
+                        }>
+                        <Menu.Item key="MonitorList">
+                            <Link to="/AddJob">监控列表</Link>
                         </Menu.Item>
                     </SubMenu>
                     

@@ -1,0 +1,32 @@
+@color-blue: #2db7f5;
+.boxSizing {
+    box-sizing: border-box;
+}
+.boxWrapper {
+    height: 50px;
+    padding-left: 20px;
+    line-height: 50px;
+    position: relative;
+}
+.leftName {
+    text-align: right;
+    font-size: 12px;
+    padding-right: 16px;
+    .boxSizing;
+}
+.itemTitle {
+    text-align: left!important;
+    font-size: 14px!important;
+    color: #1a1a1a;
+}
+.infoLine {
+    display: inline-block;
+    width: 6px;
+    height: 14px;
+    background: @color-blue;
+    vertical-align: baseline;
+    line-height: 1;
+    margin-right: 3px;
+    position: relative;
+    top: 2px;
+}

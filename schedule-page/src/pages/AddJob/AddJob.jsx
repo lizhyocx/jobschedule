@@ -1,6 +1,7 @@
 import React from 'react';
 import {Form, Input, Button, Select, InputNumber} from 'antd';
 import ProTitle from '../../components/ProTitle/ProTitle';
+import ItemTitleName from '../../components/ItemTitleName/ItemTitleName';
 const FormItem = Form.Item;
 class AddJobForm extends React.Component {
 	constructor(props) {
@@ -39,7 +40,7 @@ class AddJobForm extends React.Component {
         let _state = this.state.job;
 		return (
 			<div>
-                <ProTitle name='添加任务'/>
+                <ProTitle name='任务设置'/>
                 <div>
                     <Form onSubmit={this.handleSubmit}>
                         <FormItem {...formItemLayout} label="任务名称">
@@ -96,6 +97,8 @@ class AddJobForm extends React.Component {
 		                        initialValue: _state.desc || '',
 		                    })(
 		                        <Input style={{display: "inline-block", width: 230}}
+		                        	   type="textarea"
+		                        	   rows={4}
 		                               placeholder="任务描述"
 		                        />
 		                    )}
