@@ -8,7 +8,7 @@ import Footer from '../../components/Footer/Footer';
 const BasePage = React.createClass({
     render() {
         return (
-        	<div className={mainLayout['zhk-pro-body']}>
+        	<div className={mainLayout['pro-body']}>
         		<Header />
         			{this.props.children}
             	<Footer />

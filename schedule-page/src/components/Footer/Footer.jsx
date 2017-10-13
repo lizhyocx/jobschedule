@@ -8,8 +8,7 @@ const Footer = React.createClass({
         <div className={styles['zhk-pro-footer']}>
             <div className={styles['content']}>
                 <div className={styles['footer-info']}>
-                    <p>Copyright © Beijing Yunzong Co., Ltd., All Rights Reserved 京ICP备15054615号</p>
-                    <p>北京云纵信息技术有限公司版权所有</p>
+                    <p>Copyright© 个人版权所有</p>
                 </div>
             </div>
         </div>

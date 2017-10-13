@@ -15,6 +15,12 @@ const NotFound = (location, cb) => {
     },'NotFound');
 };
 
+const AddJob = (location, cb) => {
+    require.ensure([], require => {
+        cb(null, require('../pages/AddJob/AddJob'))
+    }, 'AddJob');
+}
+
 
 const Routes = React.createClass({
     render() {
@@ -27,7 +33,9 @@ const Routes = React.createClass({
             <Router history={hashHistory} onUpdate={updatePage}>
                 <Route name="app" component={BasePage}>
                     <Route name="app" component={BasePageWithMenu}>
-                        <Route name="NotFound" breadcrumbName="404" path="/" getComponent={NotFound} />
+                    <Route name="IndexPage" breadcrumbName="首页" path="/" getComponent={NotFound} />
+                        <Route name="NotFound" breadcrumbName="404" path="/NotFound" getComponent={NotFound} />
+                        <Route name="AddJob" breadcrumbName="添加任务" path="/AddJob" getComponent={AddJob} />
                     </Route>
                 </Route>
             </Router>

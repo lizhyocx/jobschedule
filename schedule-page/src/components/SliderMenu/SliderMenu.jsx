@@ -48,11 +48,12 @@ const SliderMenu = React.createClass({
         this.setState({
             current: e.key,
         });
+        console.log(e.key)
     },
 
     render() {
         return (
-            <div className={styles['zhk-slider-menu'] + ' ' + 'zhk-sm-menu'}>
+            <div className={styles['slider-menu'] + ' ' + 'sm-menu'}>
                 <Menu theme={this.state.theme} onClick={this.handleClick} style={{ width: 200 }} openKeys={this.state.defaultOpenKeys} selectedKeys={[this.state.current]} mode="inline">
                     <Menu.Item key="index">
                         <Link to="/">
@@ -69,14 +70,14 @@ const SliderMenu = React.createClass({
                                 <span>任务管理</span>
                             </span>
                         }>
-                        <Menu.Item key="1">
-                            <Link to="/">任务列表</Link>
+                        <Menu.Item key="JobList">
+                            <Link to="/NotFound">任务列表</Link>
                         </Menu.Item>
-                        <Menu.Item key="2">
-                            <Link to="/">添加任务</Link>
+                        <Menu.Item key="AddJob">
+                            <Link to="/AddJob">添加任务</Link>
                         </Menu.Item>
-                        <Menu.Item key="3">
-                            <Link to="/">导入任务</Link>
+                        <Menu.Item key="ImportJob">
+                            <Link to="/ImportJob">导入任务</Link>
                         </Menu.Item>
                     </SubMenu>
                     <SubMenu
@@ -87,8 +88,8 @@ const SliderMenu = React.createClass({
                                 <span>调度管理</span>
                             </span>
                         }>
-                        <Menu.Item key="1">
-                            <Link to="/">任务列表</Link>
+                        <Menu.Item key="ScheduleList">
+                            <Link to="/AddJob">任务列表</Link>
                         </Menu.Item>
                     </SubMenu>
                     
