@@ -72,7 +72,7 @@ const SliderMenu = React.createClass({
                             </span>
                         }>
                         <Menu.Item key="JobList">
-                            <Link to="/NotFound">任务列表</Link>
+                            <Link to="/JobList">任务列表</Link>
                         </Menu.Item>
                         <Menu.Item key="AddJob">
                             <Link to="/AddJob">添加任务</Link>
