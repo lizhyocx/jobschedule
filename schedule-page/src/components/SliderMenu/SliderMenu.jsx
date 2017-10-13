@@ -58,6 +58,7 @@ const SliderMenu = React.createClass({
                     <Menu.Item key="index">
                         <Link to="/">
                             <span>
+                                <Icon type="home" />
                                 <span>首页</span>
                             </span>
                         </Link>
@@ -66,7 +67,7 @@ const SliderMenu = React.createClass({
                         key="rwgl"
                         title={
                             <span>
-                                
+                                <Icon type="bars" />
                                 <span>任务管理</span>
                             </span>
                         }>
@@ -84,7 +85,7 @@ const SliderMenu = React.createClass({
                         key="ddgl"
                         title={
                             <span>
-                                
+                                <Icon type="clock-circle" />
                                 <span>调度管理</span>
                             </span>
                         }>
