@@ -43,6 +43,7 @@ const Routes = React.createClass({
                         <Route name="NotFound" breadcrumbName="404" path="/NotFound" getComponent={NotFound} />
                         <Route name="AddJob" breadcrumbName="添加任务" path="/AddJob" getComponent={AddJob} />
                         <Route name="JobList" breadcrumbName="任务列表" path="/JobList" getComponent={JobList} />
+                        <Route name="EditJob" breadcrumbName="修改任务" path="/JobList/EditJob/:id" getComponent={AddJob} />
                     </Route>
                 </Route>
             </Router>

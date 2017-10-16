@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Table, Popconfirm, Form, Select, Input, Row, Col } from 'antd';
 import ProTitle from '../../components/ProTitle/ProTitle';
+import OperMore from '../../components/OperMore/OperMore';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -123,13 +124,7 @@ class JobList extends React.Component {
 				key: 'operationis',
 				render: (text, record, index) =>{
 	        		return (
-	        			<div>
-		        			<Popconfirm key={1} title="确定审核通过？" okText="确定" cancelText="取消" onConfirm={() => this.adAudit(record.mallId, record.adId, 2)} ><a>通过</a></Popconfirm>
-	                        <span className="ant-divider"></span>
-	                        <Popconfirm key={2} title="确定审核不通过？" okText="确定" cancelText="取消" onConfirm={() => this.adAudit(record.mallId, record.adId, 3)} ><a>不通过</a></Popconfirm>	
-	        			</div>
-                        
-                    
+	        		    <OperMore jobId={record.jobId} status={record.status}/>
 	        		)
 	        	}
 			}
@@ -151,7 +146,7 @@ class JobList extends React.Component {
 				executeSelect: '随机选取',
 				executeRule: '只通知一次',
 				timeout:300,
-				status:'有效',
+				status:'1',
 				updateTime:'2014-12-23 12:00:03'
 			},
 			{	key: 2,
@@ -160,7 +155,7 @@ class JobList extends React.Component {
 				executeSelect: '随机选取',
 				executeRule: '只通知一次',
 				timeout:300,
-				status:'有效',
+				status:'2',
 				updateTime:'2014-12-23 12:00:03'
 			}
 		];
