@@ -16,10 +16,11 @@ class OperMore extends React.Component {
 		}
 		let timeRuleHref = "#/JobList/TimeRule/" + this.props.jobId;
 		let executorHref = "#/JobList/Executor/" + this.props.jobId;
+		let viewJobHref = "#/JobList/ViewJob/" + this.props.jobId;
 		const menu = (
 			<Menu>
 				<Menu.Item>
-			      <a href="http://www.alipay.com/">查看</a>
+			      <a href={viewJobHref}>查看</a>
 			    </Menu.Item>
 			    <Menu.Item>
 			      <a href={editHref}>修改</a>
@@ -30,9 +31,6 @@ class OperMore extends React.Component {
 			    </Menu.Item>
 			    <Menu.Item>
 			      <a href={executorHref}>设置执行机器</a>
-			    </Menu.Item>
-			    <Menu.Item>
-			      <a href="http://www.tmall.com/">设置告警人</a>
 			    </Menu.Item>
 			</Menu>
 		);
