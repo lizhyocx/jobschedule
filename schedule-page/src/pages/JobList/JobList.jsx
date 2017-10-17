@@ -139,27 +139,57 @@ class JobList extends React.Component {
     };
 
 	dataRequest = (params) => {
-		let datas = [
-			{	key: 1,
-				jobId: 1,
-				jobName: '任务ee',
-				executeSelect: '随机选取',
-				executeRule: '只通知一次',
-				timeout:300,
-				status:'1',
-				updateTime:'2014-12-23 12:00:03'
-			},
-			{	key: 2,
-				jobId: 1,
-				jobName: '任务ee',
-				executeSelect: '随机选取',
-				executeRule: '只通知一次',
-				timeout:300,
-				status:'2',
-				updateTime:'2014-12-23 12:00:03'
-			}
-		];
-		this.setState({datas:datas});
+        let serverUrl = commonUtil.serverIp() + '/mockjsdata/63/job/list.do';
+        let sucFunc = (data) => {
+            if(data && data.success) {
+                let results = data.resultObject.dataList || [];
+                let datas = [];
+                for(let i=0;i<results.length;i++) {
+                    let res = results[i];
+                    let executeSelect;
+                    if(Object.is(res.executeSelect, 1)) {
+                        executeSelect = '第一台';
+                    } else if(Object.is(res.executeSelect, 2)) {
+                        executeSelect = '顺序选取';
+                    } else if(Object.is(res.executeSelect, 3)) {
+                        executeSelect = '随机选取';
+                    } else if(Object.is(res.executeSelect, 4)) {
+                        executeSelect = '全部执行';
+                    }
+                    let executeRule;
+                    if(Object.is(res.executeRule, 1)) {
+                        executeRule = '只通知一次';
+                    } else if(Object.is(res.executeRule, 2)) {
+                        executeRule = '保证通知成功';
+                    }
+                    let status;
+                    if(Object.is(res.status, 1)) {
+                        status = '有效';
+                    } else if(Object.is(res.status, 2)) {
+                        status = '无效';
+                    }
+                    let obj = {
+                        key:i,
+                        jobId:res.jobId,
+                        jobName:res.jobName,
+                        executeSelect:executeSelect,
+                        executeRule:executeRule,
+                        timeout:res.timeout,
+                        status:status,
+                        updateTime:res.updateTime,
+                    };
+                    datas.push(obj);
+                }
+                let count = data.resultObject.totalNumber || 0;
+                this.setState({datas:datas, totalCount:count});
+            } else {
+                commonUtility.messageWarning(data.msg || "获取任务列表失败", commonUtility.tipTime);
+            }
+        };
+        let errFunc = () => {
+            commonUtility.messageWarning("获取任务列表失败", commonUtility.tipTime);
+        }
+		commonUtil.ajaxRequest(serverUrl, 'GET', params, sucFunc, errFunc, false);
 	}
 
 	//当搜索panal变化时

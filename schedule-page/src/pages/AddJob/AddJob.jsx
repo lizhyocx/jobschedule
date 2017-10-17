@@ -15,7 +15,7 @@ class AddJobForm extends React.Component {
 		e.preventDefault();
 		this.props.form.validateFields((err, values) => {
 			if(!err) {
-				let serverUrl = commonUtil.serverIp() + '/mockjs/63/job/save.do';
+				let serverUrl = commonUtil.serverIp() + '/mockjsdata/63/job/save.do';
 				let sucFunc = (data) => {
 					if(data && data.success) {
 						commonUtility.messageSuccess("保存成功", commonUtility.tipTime);
