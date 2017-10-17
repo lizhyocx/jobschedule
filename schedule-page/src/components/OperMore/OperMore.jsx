@@ -14,7 +14,7 @@ class OperMore extends React.Component {
 		} else if(this.props.status == 2) {//无效
 			statusHtml = <Menu.Item><a href="http://www.tmall.com/">启用</a></Menu.Item>
 		}
-		let timeRuleHref = "#/JobList/AddTimeRule/" + this.props.jobId;
+		let timeRuleHref = "#/JobList/TimeRule/" + this.props.jobId;
 		const menu = (
 			<Menu>
 				<Menu.Item>

@@ -27,10 +27,10 @@ const JobList = (location, cb) => {
     }, 'JObList');
 }
 
-const AddTimeRule = (location, cb) => {
+const TimeRule = (location, cb) => {
     require.ensure([], require => {
-        cb(null, require('../pages/JobList/AddTimeRule'))
-    }, 'AddTimeRule');
+        cb(null, require('../pages/JobList/TimeRule'))
+    }, 'TimeRule');
 }
 
 
@@ -50,7 +50,7 @@ const Routes = React.createClass({
                         <Route name="AddJob" breadcrumbName="添加任务" path="/AddJob" getComponent={AddJob} />
                         <Route name="JobList" breadcrumbName="任务列表" path="/JobList" getComponent={JobList} />
                         <Route name="EditJob" breadcrumbName="修改任务" path="/JobList/EditJob/:jobId" getComponent={AddJob} />
-                        <Route name="AddTimeRule" breadcrumbName="设置时间规则" path="/JobList/AddTimeRule/:jobId" getComponent={AddTimeRule} />
+                        <Route name="TimeRule" breadcrumbName="设置时间规则" path="/JobList/TimeRule/:jobId" getComponent={TimeRule} />
                     </Route>
                 </Route>
             </Router>

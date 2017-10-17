@@ -125,7 +125,7 @@ class AddTimeRuleForm extends React.Component {
 }
 const Info = Form.create()(AddTimeRuleForm);
 
-class AddTimeRule extends React.Component {
+class TimeRule extends React.Component {
 
     render() {
         return (
@@ -135,4 +135,4 @@ class AddTimeRule extends React.Component {
         );
     }
 };
-export default AddTimeRule;
+export default TimeRule;
