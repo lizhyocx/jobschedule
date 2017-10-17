@@ -9,7 +9,6 @@ class AddTimeRuleForm extends React.Component {
 	constructor(params) {
 		super(params);
 		this.state = {
-			jobId:this.props.jobId,
 			jobName:'',
 			editable:false,
 			timeRule:{}
@@ -17,7 +16,6 @@ class AddTimeRuleForm extends React.Component {
 	}
 
 	componentDidMount() {
-		console.log(this.state.jobId);
 		this.setState({
 			jobName:'异步读取任务名称',
 			timeRule:{
@@ -36,7 +34,7 @@ class AddTimeRuleForm extends React.Component {
 		this.props.form.validateFields((err, values) => {
 			if(!err) {
 				values.effectiveTime = values.effectiveTime.format('YYYY-MM-DD HH:mm:ss');
-				values.jobId = this.state.jobId;
+				values.jobId = this.props.jobId;
 				let serverUrl = commonUtil.serverIp() + '/mockjsdata/63/job/save.do';
 				let sucFunc = (data) => {
 					if(data && data.success) {

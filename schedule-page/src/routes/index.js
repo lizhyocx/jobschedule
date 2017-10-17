@@ -33,6 +33,12 @@ const TimeRule = (location, cb) => {
     }, 'TimeRule');
 }
 
+const Executor = (location, cb) => {
+    require.ensure([], require => {
+        cb(null, require('../pages/JobList/Executor'))
+    }, 'Executor');
+}
+
 
 const Routes = React.createClass({
     render() {
@@ -51,6 +57,7 @@ const Routes = React.createClass({
                         <Route name="JobList" breadcrumbName="任务列表" path="/JobList" getComponent={JobList} />
                         <Route name="EditJob" breadcrumbName="修改任务" path="/JobList/EditJob/:jobId" getComponent={AddJob} />
                         <Route name="TimeRule" breadcrumbName="设置时间规则" path="/JobList/TimeRule/:jobId" getComponent={TimeRule} />
+                        <Route name="Executor" breadcrumbName="设置执行机器" path="/JobList/Executor/:jobId" getComponent={Executor} />
                     </Route>
                 </Route>
             </Router>
