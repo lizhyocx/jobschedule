@@ -14,6 +14,7 @@ class OperMore extends React.Component {
 		} else if(this.props.status == 2) {//无效
 			statusHtml = <Menu.Item><a href="http://www.tmall.com/">启用</a></Menu.Item>
 		}
+		let timeRuleHref = "#/JobList/AddTimeRule/" + this.props.jobId;
 		const menu = (
 			<Menu>
 				<Menu.Item>
@@ -24,7 +25,7 @@ class OperMore extends React.Component {
 			    </Menu.Item>
 			    {statusHtml}
 			    <Menu.Item>
-			      <a href="http://www.tmall.com/">设置时间规则</a>
+			      <a href={timeRuleHref}>设置时间规则</a>
 			    </Menu.Item>
 			    <Menu.Item>
 			      <a href="http://www.tmall.com/">设置执行机器</a>

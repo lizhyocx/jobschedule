@@ -19,6 +19,7 @@ class AddJobForm extends React.Component {
 				let sucFunc = (data) => {
 					if(data && data.success) {
 						commonUtility.messageSuccess("保存成功", commonUtility.tipTime);
+						window.location = "#/JobList"
 					} else {
 						commonUtility.messageWarning(data.msg || "保存任务失败", commonUtility.tipTime);
 					}
