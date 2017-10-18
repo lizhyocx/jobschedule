@@ -6,7 +6,9 @@ import com.lizhy.service.JobService;
 import java.util.List;
 
 /**
- * Created by lizhiyang on 2017-02-06 14:43.
+ * @Description: 任务相关服务类
+ * @author lizhiyang
+ * @Date 2017-10-18 14:19:12
  */
 public class JobServiceImpl implements JobService {
     @Override

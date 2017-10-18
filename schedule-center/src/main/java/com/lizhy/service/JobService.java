@@ -5,8 +5,9 @@ import com.lizhy.model.JobInfoModel;
 import java.util.List;
 
 /**
- * 定时任务服务类
- * Created by lizhiyang on 2017-02-06 14:41.
+ * @Description: 定时任务服务类
+ * @author lizhiyang
+ * @Date 2017-10-18 14:21:57
  */
 public interface JobService {
     /**
