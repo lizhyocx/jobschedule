@@ -7,7 +7,10 @@ import org.quartz.*;
 import org.quartz.impl.matchers.GroupMatcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.Date;
 import java.util.Set;
 
@@ -19,9 +22,11 @@ import static org.quartz.TriggerBuilder.newTrigger;
  * 定时任务调度管理类
  * Created by lizhiyang on 2016/11/17.
  */
+@Service
 public class ScheduleServiceImpl implements ScheduleService {
     private static Logger logger = LoggerFactory.getLogger(ScheduleServiceImpl.class);
 
+    @Autowired
     private Scheduler scheduler;
 
     @Override
@@ -39,6 +44,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
+    @PostConstruct
     public void start() throws SchedulerException {
         scheduler.start();
     }
@@ -152,9 +158,5 @@ public class ScheduleServiceImpl implements ScheduleService {
             return false;
         }
         return true;
-    }
-
-    public void setScheduler(Scheduler scheduler) {
-        this.scheduler = scheduler;
     }
 }

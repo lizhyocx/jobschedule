@@ -9,22 +9,30 @@ import com.lizhy.BaseObject;
 public class JobInfoModel extends BaseObject {
 
     private static final long serialVersionUID = 5572033482086578111L;
-    private long jobId;
-    private String jobName;
-    private String jobDesc;
-    private int timeout;
-    private int executeSelect;
-    private int executeRules;
-    private long creatTime;
-    private int status;
-    private long disableTime;
-    private long modifyTime;
 
-    public long getJobId() {
+    private Long jobId;
+
+    private String jobName;
+
+    private Integer executeSelect;
+
+    private Integer executeRule;
+
+    private String jobDesc;
+
+    private Integer timeout;
+
+    private Long createTime;
+
+    private Long updateTime;
+
+    private Integer status;
+
+    public Long getJobId() {
         return jobId;
     }
 
-    public void setJobId(long jobId) {
+    public void setJobId(Long jobId) {
         this.jobId = jobId;
     }
 
@@ -36,6 +44,22 @@ public class JobInfoModel extends BaseObject {
         this.jobName = jobName;
     }
 
+    public Integer getExecuteSelect() {
+        return executeSelect;
+    }
+
+    public void setExecuteSelect(Integer executeSelect) {
+        this.executeSelect = executeSelect;
+    }
+
+    public Integer getExecuteRule() {
+        return executeRule;
+    }
+
+    public void setExecuteRule(Integer executeRule) {
+        this.executeRule = executeRule;
+    }
+
     public String getJobDesc() {
         return jobDesc;
     }
@@ -44,59 +68,35 @@ public class JobInfoModel extends BaseObject {
         this.jobDesc = jobDesc;
     }
 
-    public int getTimeout() {
+    public Integer getTimeout() {
         return timeout;
     }
 
-    public void setTimeout(int timeout) {
+    public void setTimeout(Integer timeout) {
         this.timeout = timeout;
     }
 
-    public int getExecuteSelect() {
-        return executeSelect;
+    public Long getCreateTime() {
+        return createTime;
     }
 
-    public void setExecuteSelect(int executeSelect) {
-        this.executeSelect = executeSelect;
+    public void setCreateTime(Long createTime) {
+        this.createTime = createTime;
     }
 
-    public int getExecuteRules() {
-        return executeRules;
+    public Long getUpdateTime() {
+        return updateTime;
     }
 
-    public void setExecuteRules(int executeRules) {
-        this.executeRules = executeRules;
+    public void setUpdateTime(Long updateTime) {
+        this.updateTime = updateTime;
     }
 
-    public long getCreatTime() {
-        return creatTime;
-    }
-
-    public void setCreatTime(long creatTime) {
-        this.creatTime = creatTime;
-    }
-
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
-    }
-
-    public long getDisableTime() {
-        return disableTime;
-    }
-
-    public void setDisableTime(long disableTime) {
-        this.disableTime = disableTime;
-    }
-
-    public long getModifyTime() {
-        return modifyTime;
-    }
-
-    public void setModifyTime(long modifyTime) {
-        this.modifyTime = modifyTime;
     }
 }

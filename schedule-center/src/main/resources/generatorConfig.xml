@@ -38,7 +38,7 @@
 
         <!--表名和Java对象名，支持父类，必须有一个enable为true-->
         <table tableName="schedule_job" domainObjectName="ScheduleJobDO" mapperName="ScheduleJobDAO"
-               enableInsert="false" enableUpdateByPrimaryKey="true" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="false"
+               enableInsert="true" enableUpdateByPrimaryKey="true" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="false"
                enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <property name="rootClass" value="com.lizhy.BaseObject"/>
         </table>

@@ -5,7 +5,9 @@
 			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
        default-autowire="byName">
 
-   <bean id="scheduleService" class="com.lizhy.service.impl.ScheduleServiceImpl" init-method="start" />
-   <bean id="jobService" class="com.lizhy.service.impl.JobServiceImpl" />
-   <bean id="executorService" class="com.lizhy.service.impl.ExecutorServiceImpl" />
+        <bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+            <property name="applicationContextSchedulerContextKey" value="applicationContext" />
+            <property name="configLocation" value="classpath:quartz-test.properties" />
+        </bean>
+
 </beans>
