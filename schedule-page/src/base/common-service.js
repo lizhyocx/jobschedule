@@ -9,7 +9,7 @@ window.commonUtil = {
     tipTime: 3,
 
     serverIp() {
-       const preIp = "http://10.200.41.131";
+       const preIp = "http://localhost:8080";
        return preIp;
     },
 
@@ -24,14 +24,14 @@ window.commonUtil = {
      * @param dataType
      * @param contentType
      */
-    ajaxRequest: function(url, type, params, sucFunc, errorFunc, async, dataType, contentType){
+    ajaxRequest: function(url, type, params, sucFunc, errorFunc, async, contentType){
         let hide = message.loading('正在执行中...', 0);
         $.ajax({
             url : url,
             type : type,
             data : params,
             async: !async,
-            dataType : dataType || 'json',
+            dataType : 'json',
             contentType : contentType || 'application/x-www-form-urlencoded',
             success: function (data) {
                 hide();

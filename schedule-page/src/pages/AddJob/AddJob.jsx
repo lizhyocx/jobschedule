@@ -15,7 +15,7 @@ class AddJobForm extends React.Component {
 		e.preventDefault();
 		this.props.form.validateFields((err, values) => {
 			if(!err) {
-				let serverUrl = commonUtil.serverIp() + '/mockjsdata/63/job/save.do';
+				let serverUrl = commonUtil.serverIp() + '/job/save.do';
 				let sucFunc = (data) => {
 					if(data && data.success) {
 						commonUtility.messageSuccess("保存成功", commonUtility.tipTime);
@@ -27,7 +27,8 @@ class AddJobForm extends React.Component {
 				let errFunc = () => {
 					commonUtility.messageWarning("保存任务异常", commonUtility.tipTime);
 				};
-				commonUtil.ajaxRequest(serverUrl, 'POST', values, sucFunc, errFunc, false);
+				debugger
+				commonUtil.ajaxRequest(serverUrl, 'POST', values, sucFunc, errFunc, false,);
 			}
 		});
 	}

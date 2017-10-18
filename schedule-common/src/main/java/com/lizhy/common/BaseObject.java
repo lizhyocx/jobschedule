@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * Created by lizhiyang on 2016/10/17.
  */
-public class BaseDO implements Serializable {
+public class BaseObject implements Serializable {
     @Override
     public String toString() {
         try {

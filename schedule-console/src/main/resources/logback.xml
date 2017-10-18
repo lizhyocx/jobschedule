@@ -3,6 +3,7 @@
 	<!-- 默认输出文件 -->
 	<appender name="DEFAULT-APPENDER"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log.home}/default/common-default.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<fileNamePattern>${log.home}/default/common-default.log.%d{yyyyMMdd}
 			</fileNamePattern>
@@ -15,6 +16,7 @@
 	<!-- 默认错误文件 -->
 	<appender name="ERROR-APPENDER"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log.home}/error/common-error.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<fileNamePattern>${log.home}/error/common-error.log.%d{yyyyMMdd}
 			</fileNamePattern>
@@ -29,6 +31,7 @@
 	<!-- 默认dao日志文件 -->
 	<appender name="DAO-APPENDER"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log.home}/dao/common-dao.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<fileNamePattern>${log.home}/dao/common-dao.log.%d{yyyyMMdd}
 			</fileNamePattern>
@@ -41,6 +44,7 @@
 	<!-- service日志文件 -->
 	<appender name="SERVICE-APPENDER"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log.home}/service/common-service.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<fileNamePattern>${log.home}/service/common-service.log.%d{yyyyMMdd}
 			</fileNamePattern>
@@ -54,6 +58,7 @@
 	<appender name="WEB-APPENDER"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<file>${log.home}/web/common-web.log</file>
 			<fileNamePattern>${log.home}/web/common-web.log.%d{yyyyMMdd}
 			</fileNamePattern>
 			<maxHistory>30</maxHistory>
@@ -66,7 +71,7 @@
 	<!-- Loggers -->
 	<!-- ===================================================================== -->
 	<!-- 性能日志 -->
-	<logger name="com.lizhy.dao.auto" additivity="false">
+	<logger name="com.lizhy.auto.dao" additivity="false">
 		<level value="${log.root.level}" />
 		<appender-ref ref="DAO-APPENDER" />
 		<appender-ref ref="ERROR-APPENDER" />
@@ -76,7 +81,7 @@
 		<appender-ref ref="DAO-APPENDER" />
 		<appender-ref ref="ERROR-APPENDER" />
 	</logger>
-	<logger name="com.lizhy.web" additivity="false">
+	<logger name="com.lizhy.controller" additivity="false">
 		<level value="${log.root.level}" />
 		<appender-ref ref="WEB-APPENDER" />
 		<appender-ref ref="ERROR-APPENDER" />

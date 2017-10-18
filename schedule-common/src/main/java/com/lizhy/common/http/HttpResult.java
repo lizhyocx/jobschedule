@@ -1,11 +1,11 @@
 package com.lizhy.common.http;
 
-import com.lizhy.common.BaseDO;
+import com.lizhy.common.BaseObject;
 
 /**
  * Created by lizhiyang on 2016/10/17.
  */
-public class HttpResult extends BaseDO {
+public class HttpResult extends BaseObject {
     private boolean isSuccess;
     private int statusCode;
     private String responseTxt;

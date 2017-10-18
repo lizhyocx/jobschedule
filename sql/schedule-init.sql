@@ -7,7 +7,7 @@ CREATE TABLE `schedule_job` (
   `job_desc` varchar(256) NOT NULL DEFAULT '' COMMENT '任务描述',
   `timeout` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '任务执行的超时时间',
   `create_time` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
-  `update_time` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '失效时间',
+  `update_time` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '修改时间',
   `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '1:启用，2：禁用',
   PRIMARY KEY (`job_id`),
   KEY `job_name` (`job_name`)
