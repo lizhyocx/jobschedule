@@ -27,7 +27,7 @@
         </javaModelGenerator>
 
         <!--SQL Mapper-->
-        <sqlMapGenerator targetPackage="mybatis/auto/sqlmap"  targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="mybatis/auto"  targetProject="src/main/resources">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 

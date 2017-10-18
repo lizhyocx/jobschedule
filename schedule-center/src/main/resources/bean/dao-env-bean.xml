@@ -39,7 +39,10 @@
     </bean>
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="configLocation" value="classpath:mybatis/sqlMapConfig.xml" />
+        <property name="mapperLocations" value="classpath:mybatis/auto/*.xml" />
     </bean>
-    <import resource="classpath:bean/jobschedule-auto-dao-bean.xml" />
+    <!--自动注入Mapper-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.lizhy.auto.dao" />
+    </bean>
 </beans>
