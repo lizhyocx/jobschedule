@@ -45,12 +45,28 @@ const ViewJob = (location, cb) => {
     }, 'ViewJob');
 }
 
+const ScheduleList = (location, cb) => {
+    require.ensure([], require => {
+        cb(null, require('../pages/ScheduleList/ScheduleList'))
+    }, 'ScheduleList');
+}
+
+const MonitorList = (location, cb) => {
+    require.ensure([], require => {
+        cb(null, require('../pages/MonitorList/MonitorList'))
+    }, 'MonitorList');
+}
+const MonitorView = (location, cb) => {
+    require.ensure([], require => {
+        cb(null, require('../pages/MonitorList/MonitorView'))
+    }, 'MonitorView');
+}
 
 const Routes = React.createClass({
     render() {
         let updatePage = function() {
             var cur = this.router.routes;
-            document.title = cur[cur.length - 1].breadcrumbName;
+            //document.title = cur[cur.length - 1].breadcrumbName;
             window.scrollTo(0, 0);
         };
         return (
@@ -65,6 +81,9 @@ const Routes = React.createClass({
                         <Route name="TimeRule" breadcrumbName="设置时间规则" path="/JobList/TimeRule/:jobId" getComponent={TimeRule} />
                         <Route name="Executor" breadcrumbName="设置执行机器" path="/JobList/Executor/:jobId" getComponent={Executor} />
                         <Route name="ViewJob" breadcrumbName="查看任务" path="/JobList/ViewJob/:jobId" getComponent={ViewJob} />
+                        <Route name="ScheduleList" breadcrumbName="调度列表" path="/ScheduleList" getComponent={ScheduleList} />
+                        <Route name="MonitorList" breadcrumbName="监控列表" path="/MonitorList" getComponent={MonitorList} />
+                        <Route name="MonitorView" breadcrumbName="监控列表" path="/MonitorList/MonitorView/:jobId" getComponent={MonitorView} />
                     </Route>
                 </Route>
             </Router>

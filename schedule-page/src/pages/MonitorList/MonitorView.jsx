@@ -10,6 +10,7 @@ class SearchPanleForm extends React.Component{
     constructor(props){
         super(props);
     }
+
     handleSearch=(e)=>{
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
@@ -30,39 +31,25 @@ class SearchPanleForm extends React.Component{
         return(
                 <Form onSubmit={this.handleSearch} layout="inline">
                     <Row gutter={0}>
-                    	<Col span={6}>
-                            <FormItem label="任务ID" style={sty}>
-                                  {getFieldDecorator('jobId',{
-                                    initialValue:''
-                                  })(
-                                    <Input style={{width:150}}/>
-                                  )}
-                            </FormItem>
-                        </Col>
                         <Col  span={6}>
                             <FormItem label="任务名称" style={sty}>
-                                  {getFieldDecorator('jobName',{
-                                      initialValue:''
-                                  })(
-                                    <Input style={{width:150}}/>
-                                  )}
+                                  <span>{this.props.jobName}</span>
                             </FormItem>
                         </Col>
                         <Col  span={6}>
-                            <FormItem label="状态" style={sty}>
-                                {getFieldDecorator('status',{
-                                    initialValue:'1'
+                            <FormItem label="执行结果" style={sty}>
+                                {getFieldDecorator('exeResult',{
+                                    initialValue:'0'
                                 })(
                                      <Select size="large" style={{width:150}}>
-                                            <Option value="1">有效</Option>
-                                            <Option value="0">无效</Option>
+                                            <Option value="0">全部结果</Option>
+                                            <Option value="1">非成功结果</Option>
                                     </Select>
                                 )}
                             </FormItem>
                         </Col>
                         <Col  span={6}>
-                           <Button type="primary" htmlType="submit" size="large">搜索</Button>
-                           <Button size="large" style={{marginLeft:16}} onClick={this.reset}>清除条件</Button>
+                           <Button type="primary" htmlType="submit" size="large">刷新</Button>
                         </Col>
                     </Row>
                 </Form>
@@ -71,63 +58,61 @@ class SearchPanleForm extends React.Component{
 }
 const SearchPanle = Form.create()(SearchPanleForm);
 
-class JobList extends React.Component {
+class MonitorView extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			params:{
+                jobId:this.props.params.jobId,
 				pageSize:10,
 				pageNo:1
 			},
 			totalCount:0,
-			datas:[]
+			datas:[],
+            jobName:'',
 		};
 		this.columns = [
 			{
-				title: '任务ID',
-				dataIndex: 'jobId',
-				key: 'jobId',
-				width:130
+				title: '执行ID',
+				dataIndex: 'exeId',
+				key: 'exeId',
+				width:60
 			}, {
-				title: '任务名称',
-				dataIndex: 'jobName',
-				key: 'jobName',
-				width:130
+				title: '触发时间',
+				dataIndex: 'exeBeginTime',
+				key: 'exeBeginTime',
+				width:100
 			}, {
-				title: '执行机器',
-				dataIndex: 'executeSelect',
-				key: 'executeSelect',
-				width:130
+				title: '结束时间',
+				dataIndex: 'exeEndTime',
+				key: 'exeEndTime',
+				width:100
 			}, {
-				title: '通知保证',
-				dataIndex: 'executeRule',
-				key: 'executeRule',
-				width:130
+				title: '耗时',
+				dataIndex: 'exeTime',
+				key: 'exeTime',
+				width:50
 			}, {
-				title: '超时时间',
+				title: '是否超时',
 				dataIndex: 'timeout',
 				key: 'timeout',
-				width:130
+				width:70
 			}, {
-				title: '状态',
-				dataIndex: 'status',
-				key: 'status',
-				width:130
+				title: '执行URL',
+				dataIndex: 'exeUrl',
+				key: 'exeUrl',
+				width:250
 			}, {
-				title: '更新时间',
-				dataIndex: 'updateTime',
-				key: 'updateTime',
-				width:130
-			}, {
-				title: '操作',
-				dataIndex: 'operations',
-				key: 'operationis',
-				render: (text, record, index) =>{
-	        		return (
-	        		    <OperMore jobId={record.jobId} status={record.status}/>
-	        		)
-	        	}
-			}
+                title: '执行结果',
+                dataIndex: 'exeResult',
+                key: 'exeResult',
+                width:100
+            }, {
+                title: '结果说明',
+                dataIndex: 'resMsg',
+                key: 'resMsg',
+                width:150
+            }
 		];
 	}
 
@@ -136,6 +121,7 @@ class JobList extends React.Component {
      */
     componentDidMount = () => {
         this.dataRequest(this.state.params);
+        this.setState({jobName:'异步获取任务名称'});
     };
 
 	dataRequest = (params) => {
@@ -146,48 +132,25 @@ class JobList extends React.Component {
                 let datas = [];
                 for(let i=0;i<results.length;i++) {
                     let res = results[i];
-                    let executeSelect;
-                    if(Object.is(res.executeSelect, 1)) {
-                        executeSelect = '第一台';
-                    } else if(Object.is(res.executeSelect, 2)) {
-                        executeSelect = '顺序选取';
-                    } else if(Object.is(res.executeSelect, 3)) {
-                        executeSelect = '随机选取';
-                    } else if(Object.is(res.executeSelect, 4)) {
-                        executeSelect = '全部执行';
-                    }
-                    let executeRule;
-                    if(Object.is(res.executeRule, 1)) {
-                        executeRule = '只通知一次';
-                    } else if(Object.is(res.executeRule, 2)) {
-                        executeRule = '保证通知成功';
-                    }
-                    let status;
-                    if(Object.is(res.status, 1)) {
-                        status = '有效';
-                    } else if(Object.is(res.status, 2)) {
-                        status = '无效';
-                    }
                     let obj = {
                         key:i,
                         jobId:res.jobId,
                         jobName:res.jobName,
-                        executeSelect:executeSelect,
-                        executeRule:executeRule,
-                        timeout:res.timeout,
-                        status:status,
-                        updateTime:res.updateTime,
+                        lastExecuteTime:res.lastExecuteTime,
+                        exeUrl:res.exeUrl,
+                        exeResult:res.exeResult,
+                        resMsg:res.resMsg
                     };
                     datas.push(obj);
                 }
                 let count = data.resultObject.totalNumber || 0;
                 this.setState({datas:datas, totalCount:count});
             } else {
-                commonUtility.messageWarning(data.msg || "获取任务列表失败", commonUtility.tipTime);
+                commonUtility.messageWarning(data.msg || "获取监控明细失败", commonUtility.tipTime);
             }
         };
         let errFunc = () => {
-            commonUtility.messageWarning("获取任务列表失败", commonUtility.tipTime);
+            commonUtility.messageWarning("获取监控明细失败", commonUtility.tipTime);
         }
 		commonUtil.ajaxRequest(serverUrl, 'GET', params, sucFunc, errFunc, false);
 	}
@@ -233,8 +196,8 @@ class JobList extends React.Component {
         };
 		return (
 			<div>
-	            <ProTitle name="任务列表" />
-                {<SearchPanle callbackParent={this.onChildChanged} />}
+	            <ProTitle name="任务监控明细" />
+                {<SearchPanle jobName={this.state.jobName} callbackParent={this.onChildChanged} />}
 	            <div style={{ position: 'relative' }}>
 	                <Table pagination={pagination} columns={this.columns} dataSource={this.state.datas} bordered />
 	            </div>
@@ -243,4 +206,4 @@ class JobList extends React.Component {
 	}
 
 }
-export default JobList;
+export default MonitorView;

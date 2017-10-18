@@ -77,9 +77,6 @@ const SliderMenu = React.createClass({
                         <Menu.Item key="AddJob">
                             <Link to="/AddJob">添加任务</Link>
                         </Menu.Item>
-                        <Menu.Item key="ImportJob">
-                            <Link to="/ImportJob">导入任务</Link>
-                        </Menu.Item>
                     </SubMenu>
                     <SubMenu
                         key="ddgl"
@@ -90,7 +87,7 @@ const SliderMenu = React.createClass({
                             </span>
                         }>
                         <Menu.Item key="ScheduleList">
-                            <Link to="/AddJob">调度列表</Link>
+                            <Link to="/ScheduleList">调度列表</Link>
                         </Menu.Item>
                     </SubMenu>
                     <SubMenu
@@ -102,7 +99,7 @@ const SliderMenu = React.createClass({
                             </span>
                         }>
                         <Menu.Item key="MonitorList">
-                            <Link to="/AddJob">监控列表</Link>
+                            <Link to="/MonitorList">监控列表</Link>
                         </Menu.Item>
                     </SubMenu>
                     
