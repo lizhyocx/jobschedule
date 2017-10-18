@@ -1,12 +1,12 @@
 package com.lizhy.model;
 
-import com.lizhy.auto.model.BaseDO;
+import com.lizhy.BaseObject;
 
 /**
  * 告警人
  * Created by lizhiyang on 2017-02-06 14:35.
  */
-public class WarnModel extends BaseDO {
+public class WarnModel extends BaseObject {
     private static final long serialVersionUID = 3926999519994941143L;
     private long jobId;
     private String warnName;

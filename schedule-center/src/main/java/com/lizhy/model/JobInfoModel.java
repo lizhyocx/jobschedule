@@ -1,12 +1,12 @@
 package com.lizhy.model;
 
-import com.lizhy.auto.model.BaseDO;
+import com.lizhy.BaseObject;
 
 /**
  * 定时任务基本信息
  * Created by lizhiyang on 2017-02-06 14:29.
  */
-public class JobInfoModel extends BaseDO {
+public class JobInfoModel extends BaseObject {
 
     private static final long serialVersionUID = 5572033482086578111L;
     private long jobId;

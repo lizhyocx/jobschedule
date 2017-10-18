@@ -11,9 +11,5 @@
     <!-- ======================================================================== -->
     <!--  DAO                                                                     -->
     <!-- ======================================================================== -->
-#foreach ($table in $plugin.sortedTables)
-    <bean id="${table.beanName}DAO" class="${table.package}.dao.impl.${table.baseClassName}DAOImpl">
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-	</bean>
-#end
+
 </beans>

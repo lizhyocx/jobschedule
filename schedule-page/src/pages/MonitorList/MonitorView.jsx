@@ -120,8 +120,8 @@ class MonitorView extends React.Component {
      * 生命周期函数调用
      */
     componentDidMount = () => {
-        this.dataRequest(this.state.params);
         this.setState({jobName:'异步获取任务名称'});
+        this.dataRequest(this.state.params);
     };
 
 	dataRequest = (params) => {

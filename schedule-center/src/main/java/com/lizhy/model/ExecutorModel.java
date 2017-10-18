@@ -1,12 +1,12 @@
 package com.lizhy.model;
 
-import com.lizhy.auto.model.BaseDO;
+import com.lizhy.BaseObject;
 
 /**
  * 执行集齐
  * Created by lizhiyang on 2017-02-06 14:32.
  */
-public class ExecutorModel extends BaseDO {
+public class ExecutorModel extends BaseObject {
 
     private static final long serialVersionUID = -5142705388166989841L;
     private long executorId;

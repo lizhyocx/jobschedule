@@ -1,12 +1,12 @@
 package com.lizhy.model;
 
-import com.lizhy.auto.model.BaseDO;
+import com.lizhy.BaseObject;
 
 /**
  * 任务监控
  * Created by lizhiyang on 2017-02-06 14:35.
  */
-public class JobLogModel extends BaseDO{
+public class JobLogModel extends BaseObject {
     private static final long serialVersionUID = 1554015179231338655L;
     private long jobId;
     private long executorId;

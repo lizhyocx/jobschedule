@@ -1,13 +1,13 @@
 package com.lizhy.model;
 
-import com.lizhy.auto.model.BaseDO;
+import com.lizhy.BaseObject;
 
 import java.util.Date;
 
 /**
  * Created by lizhiyang on 2017-01-17 10:09.
  */
-public class JobData extends BaseDO {
+public class JobData extends BaseObject {
 
     private static final long serialVersionUID = -4982510071328309657L;
     //simple/cron

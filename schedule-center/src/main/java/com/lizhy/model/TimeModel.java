@@ -1,12 +1,12 @@
 package com.lizhy.model;
 
-import com.lizhy.auto.model.BaseDO;
+import com.lizhy.BaseObject;
 
 /**
  * 执行时间
  * Created by lizhiyang on 2017-02-06 14:34.
  */
-public class TimeModel extends BaseDO {
+public class TimeModel extends BaseObject {
     private static final long serialVersionUID = 5141293497693946595L;
     private long jobId;
     private String cronExpression;

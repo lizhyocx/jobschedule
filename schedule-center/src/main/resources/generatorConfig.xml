@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3"  defaultModelType="flat">
+        <property name="javaFileEncoding" value="UTF-8" />
+        <commentGenerator>
+            <property name="addRemarkComments" value="true"/>
+            <property name="dateFormat" value="yyyy-MM-dd HH:mm:ss"/>
+        </commentGenerator>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://10.100.21.21:3306/test?useUnicode=true&amp;characterEncoding=utf-8"
+                        userId="deployment"
+                        password="123456">
+        </jdbcConnection>
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!--model DO对象-->
+        <javaModelGenerator targetPackage="com.lizhy.auto.model" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaModelGenerator>
+
+        <!--SQL Mapper-->
+        <sqlMapGenerator targetPackage="mybatis/auto/sqlmap"  targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!--dao java代码-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.lizhy.auto.dao"  targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!--表名和Java对象名，支持父类，必须有一个enable为true-->
+        <table tableName="schedule_job" domainObjectName="ScheduleJobDO" mapperName="ScheduleJobDAO"
+               enableInsert="false" enableUpdateByPrimaryKey="true" enableSelectByPrimaryKey="true" enableDeleteByPrimaryKey="false"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <property name="rootClass" value="com.lizhy.BaseObject"/>
+        </table>
+
+    </context>
+
+</generatorConfiguration>

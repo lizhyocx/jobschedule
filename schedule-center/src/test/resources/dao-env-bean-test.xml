@@ -39,7 +39,7 @@
     </bean>
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="configLocation" value="classpath:mybatis/auto/sqlMapConfig.xml" />
+        <property name="configLocation" value="classpath:mybatis/sqlMapConfig.xml" />
     </bean>
-    <import resource="classpath:bean/auto/jobschedule-auto-dao-bean.xml" />
+    <import resource="classpath:bean/jobschedule-auto-dao-bean.xml" />
 </beans>

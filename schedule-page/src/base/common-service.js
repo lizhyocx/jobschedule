@@ -9,7 +9,7 @@ window.commonUtil = {
     tipTime: 3,
 
     serverIp() {
-       const preIp = "";
+       const preIp = "http://10.200.41.131";
        return preIp;
     },
 
