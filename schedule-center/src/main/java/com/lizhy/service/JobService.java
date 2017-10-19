@@ -2,6 +2,7 @@ package com.lizhy.service;
 
 import com.lizhy.common.CallResult;
 import com.lizhy.model.JobInfoModel;
+import com.lizhy.model.PageData;
 
 import java.util.List;
 
@@ -18,6 +19,13 @@ public interface JobService {
      * @Date 2017-10-18 14:39:29
      */
     CallResult<Boolean> saveJob(JobInfoModel model);
+
+    /**
+     * @Description: 查询定时任务列表
+     * @author lizhiyang
+     * @Date 2017-10-19 11:17:16
+     */
+    CallResult<PageData<JobInfoModel>> getJobList(JobInfoModel queryModel, Integer pageNo, Integer pageSize);
     /**
      * 获取有效的定时任务
      * @return

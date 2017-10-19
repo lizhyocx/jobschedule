@@ -27,7 +27,6 @@ class AddJobForm extends React.Component {
 				let errFunc = () => {
 					commonUtility.messageWarning("保存任务异常", commonUtility.tipTime);
 				};
-				debugger
 				commonUtil.ajaxRequest(serverUrl, 'POST', values, sucFunc, errFunc, false,);
 			}
 		});
@@ -71,9 +70,9 @@ class AddJobForm extends React.Component {
 		                    )}
 		                </FormItem>
 		                <FormItem {...formItemLayout} label="通知保证">
-		                    {getFieldDecorator('executeRules', {
+		                    {getFieldDecorator('executeRule', {
 		                        rules: [{required: true, message: '请选择通知保证'}],
-		                        initialValue: _state.executeRules || '0',
+		                        initialValue: _state.executeRule || '0',
 		                    })(
 		                        <Select style={{display: "inline-block", width: 230}} >
 		                        	<Option value="0">只通知一次</Option>
@@ -94,9 +93,9 @@ class AddJobForm extends React.Component {
 		                    )}<span>秒</span>
 		                </FormItem>
 		                <FormItem {...formItemLayout} label="任务描述">
-		                    {getFieldDecorator('desc', {
+		                    {getFieldDecorator('jobDesc', {
 		                        rules: [{required: true, message: '请输入任务描述'}],
-		                        initialValue: _state.desc || '',
+		                        initialValue: _state.jobDesc || '',
 		                    })(
 		                        <Input style={{display: "inline-block", width: 230}}
 		                        	   type="textarea"

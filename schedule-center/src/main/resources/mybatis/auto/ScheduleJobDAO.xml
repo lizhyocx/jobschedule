@@ -170,4 +170,37 @@
       status = #{status,jdbcType=INTEGER}
     where job_id = #{jobId,jdbcType=BIGINT}
   </update>
+  
+  <select id="selectCountByParam" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select count(*) from schedule_job
+    <where>
+      <if test="jobId != null">
+        AND job_id = #{jobId}
+      </if>
+      <if test="jobName != null">
+        AND job_name LIKE concat('%', #{jobName}, '%')
+      </if>
+      <if test="status != null">
+        AND status = #{status}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectListByParam" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from schedule_job
+    <where>
+      <if test="jobId != null">
+        AND job_id = #{jobId}
+      </if>
+      <if test="jobName != null">
+        AND job_name LIKE concat('%', #{jobName}, '%')
+      </if>
+      <if test="status != null">
+        AND status = #{status}
+      </if>
+    </where>
+    limit #{offset}, #{pageSize}
+  </select>
 </mapper>

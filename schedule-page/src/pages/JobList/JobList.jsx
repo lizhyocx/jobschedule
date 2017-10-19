@@ -55,7 +55,7 @@ class SearchPanleForm extends React.Component{
                                 })(
                                      <Select size="large" style={{width:150}}>
                                             <Option value="1">有效</Option>
-                                            <Option value="0">无效</Option>
+                                            <Option value="2">无效</Option>
                                     </Select>
                                 )}
                             </FormItem>
@@ -76,6 +76,7 @@ class JobList extends React.Component {
 		super(props);
 		this.state = {
 			params:{
+                status:1,
 				pageSize:10,
 				pageNo:1
 			},
@@ -139,7 +140,7 @@ class JobList extends React.Component {
     };
 
 	dataRequest = (params) => {
-        let serverUrl = commonUtil.serverIp() + '/mockjsdata/63/job/list.do';
+        let serverUrl = commonUtil.serverIp() + '/job/list.do';
         let sucFunc = (data) => {
             if(data && data.success) {
                 let results = data.resultObject.dataList || [];
@@ -189,7 +190,7 @@ class JobList extends React.Component {
         let errFunc = () => {
             commonUtility.messageWarning("获取任务列表失败", commonUtility.tipTime);
         }
-		commonUtil.ajaxRequest(serverUrl, 'GET', params, sucFunc, errFunc, false);
+		commonUtil.ajaxRequest(serverUrl, 'POST', params, sucFunc, errFunc, false);
 	}
 
 	//当搜索panal变化时

@@ -7,11 +7,12 @@ class OperMore extends React.Component {
 	}
 
 	render() {
+		debugger
 		let editHref = "#/JobList/EditJob/" + this.props.jobId;
 		let statusHtml;
-		if(this.props.status == 1) {//有效
+		if(Object.is(this.props.status, '有效')) {//有效
 			statusHtml = <Menu.Item><a href="http://www.tmall.com/">禁用</a></Menu.Item>
-		} else if(this.props.status == 2) {//无效
+		} else if(Object.is(this.props.status, '无效')) {//无效
 			statusHtml = <Menu.Item><a href="http://www.tmall.com/">启用</a></Menu.Item>
 		}
 		let timeRuleHref = "#/JobList/TimeRule/" + this.props.jobId;

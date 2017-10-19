@@ -2,6 +2,7 @@ package com.lizhy.controller;
 
 import com.lizhy.common.CallResult;
 import com.lizhy.model.JobInfoModel;
+import com.lizhy.model.PageData;
 import com.lizhy.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,4 +27,18 @@ public class JobController {
     public CallResult<Boolean> save(JobInfoModel model) {
         return jobService.saveJob(model);
     }
+
+    @RequestMapping(value = "/list.do")
+    @ResponseBody
+    public CallResult<PageData<JobInfoModel>> list(JobInfoModel model, Integer pageNo, Integer pageSize) {
+        return jobService.getJobList(model, pageNo, pageSize);
+    }
+
+    /*@ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public String messageNotReadable(HttpMessageNotReadableException exception, HttpServletResponse response){
+        exception.printStackTrace();
+        return exception.getMessage();
+    }*/
 }

@@ -2,7 +2,9 @@ package com.lizhy.test;
 
 import com.lizhy.common.CallResult;
 import com.lizhy.model.JobInfoModel;
+import com.lizhy.model.PageData;
 import com.lizhy.service.JobService;
+import jdk.nashorn.internal.runtime.regexp.JoniRegExp;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,6 +24,15 @@ public class JobServiceImplTest extends BaseSpringTest {
         model.setJobName("测试");
         model.setTimeout(100);
         CallResult<Boolean> result = jobService.saveJob(model);
+        System.out.println(result);
+    }
+
+    @Test
+    public void testList() {
+        JobInfoModel model = new JobInfoModel();
+        model.setJobName("4");
+
+        CallResult<PageData<JobInfoModel>> result = jobService.getJobList(model, 1, 100);
         System.out.println(result);
     }
 }

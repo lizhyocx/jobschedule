@@ -1,6 +1,12 @@
 package com.lizhy.model;
 
 import com.lizhy.BaseObject;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 /**
  * 定时任务基本信息
@@ -12,12 +18,18 @@ public class JobInfoModel extends BaseObject {
 
     private Long jobId;
 
+    @NotNull(message = "jobName is null")
+    @NotEmpty(message = "jobName is empty")
     private String jobName;
 
+    @Range(min = 0, max = 3, message = "executeSelect is illegal")
     private Integer executeSelect;
 
+    @Range(min = 0, max = 1, message = "executeRule is illegal")
     private Integer executeRule;
 
+    @NotNull(message = "jobDesc is null")
+    @NotEmpty(message = "jobDesc is empty")
     private String jobDesc;
 
     private Integer timeout;
