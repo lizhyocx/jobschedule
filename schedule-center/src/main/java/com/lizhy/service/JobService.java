@@ -33,6 +33,13 @@ public interface JobService {
      * @Date 2017-10-19 15:03:38
      */
     CallResult<JobInfoModel> getJobById(Long jobId);
+
+    /**
+     * @Description: 修改任务状态：启用/禁用
+     * @author lizhiyang
+     * @Date 2017-10-19 16:10:30
+     */
+    CallResult<Boolean> changeJobStatus(Long jobId, Integer status);
     /**
      * 获取有效的定时任务
      * @return

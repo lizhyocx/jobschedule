@@ -34,10 +34,16 @@ public class JobController {
         return jobService.getJobList(model, pageNo, pageSize);
     }
 
-    @RequestMapping(value = "get.do")
+    @RequestMapping(value = "/get.do")
     @ResponseBody
     public CallResult<JobInfoModel> get(Long jobId) {
         return jobService.getJobById(jobId);
+    }
+
+    @RequestMapping(value = "status.do")
+    @ResponseBody
+    public CallResult<Boolean> status(Long jobId, Integer status) {
+        return jobService.changeJobStatus(jobId, status);
     }
 
     /*@ResponseBody

@@ -10,9 +10,9 @@ class OperMore extends React.Component {
 		let editHref = "#/JobList/EditJob/" + this.props.jobId;
 		let statusHtml;
 		if(Object.is(this.props.status, '有效')) {//有效
-			statusHtml = <Menu.Item><a href="http://www.tmall.com/">禁用</a></Menu.Item>
+			statusHtml = <Menu.Item><a style={{color:'rgba(0, 0, 0, 0.65)'}} onClick={() => {this.props.changeJobStatus(this.props.jobId, 0)}}>禁用</a></Menu.Item>
 		} else if(Object.is(this.props.status, '无效')) {//无效
-			statusHtml = <Menu.Item><a href="http://www.tmall.com/">启用</a></Menu.Item>
+			statusHtml = <Menu.Item><a style={{color:'rgba(0, 0, 0, 0.65)'}} onClick={() => {this.props.changeJobStatus(this.props.jobId, 1)}}>启用</a></Menu.Item>
 		}
 		let timeRuleHref = "#/JobList/TimeRule/" + this.props.jobId;
 		let executorHref = "#/JobList/Executor/" + this.props.jobId;

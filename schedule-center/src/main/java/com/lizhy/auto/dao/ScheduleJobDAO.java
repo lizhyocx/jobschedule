@@ -49,4 +49,6 @@ public interface ScheduleJobDAO {
     int selectCountByParam(Map<String, Object> params);
 
     List<ScheduleJobDO> selectListByParam(Map<String, Object> params);
+
+    int updateJobStatus(Map<String, Object> params);
 }

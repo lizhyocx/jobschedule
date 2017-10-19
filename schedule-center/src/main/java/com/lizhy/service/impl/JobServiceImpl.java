@@ -160,6 +160,42 @@ public class JobServiceImpl extends AbstractBaseService implements JobService {
     }
 
     @Override
+    public CallResult<Boolean> changeJobStatus(final Long jobId, final Integer status) {
+        try {
+            return serviceTemplate.exeOnMaster(new AbstractTemplateAction<Boolean>() {
+                @Override
+                public CallResult<Boolean> checkParam() {
+                    if(jobId == null || status == null) {
+                        logger.warn("jobId={} ,status={} is null", jobId, status);
+                        return CallResult.failure("参数错误");
+                    }
+                    if(JobStatusEnum.VALID.getCode() != status && JobStatusEnum.INVALID.getCode() != status ) {
+                        logger.warn("status={} is invalid");
+                        return CallResult.failure("参数错误");
+                    }
+                    return super.checkParam();
+                }
+
+                @Override
+                public CallResult<Boolean> doAction() {
+                    Map<String, Object> params = new HashMap<>();
+                    params.put("jobId", jobId);
+                    params.put("status", status);
+                    int n = scheduleJobDAO.updateJobStatus(params);
+                    if(n == 1) {
+                        return CallResult.success(true);
+                    }
+                    logger.warn("updateJobStatus fail, n ={}", n);
+                    return CallResult.failure("操作失败");
+                }
+            });
+        } catch (Exception e) {
+            logger.error("changeJobStatus exception", e);
+        }
+        return CallResult.failure("操作失败");
+    }
+
+    @Override
     public List<JobInfoModel> getEffectiveJob() {
         return null;
     }

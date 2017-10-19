@@ -125,7 +125,7 @@ class JobList extends React.Component {
 				key: 'operationis',
 				render: (text, record, index) =>{
 	        		return (
-	        		    <OperMore jobId={record.jobId} status={record.status}/>
+	        		    <OperMore jobId={record.jobId} status={record.status} changeJobStatus={this.changeJobStatus}/>
 	        		)
 	        	}
 			}
@@ -138,6 +138,27 @@ class JobList extends React.Component {
     componentDidMount = () => {
         this.dataRequest(this.state.params);
     };
+
+    changeJobStatus = (jobId, status) => {
+        let params = {jobId:jobId, status:status};
+        let serverUrl = commonUtil.serverIp() + '/job/status.do';
+        let sucFunc = (data) => {
+            if(data && data.success) {
+                commonUtility.messageSuccess('操作成功', commonUtility.tipTime);
+                let target = this.state.params;
+                let source = {pageNo: 1};
+                Object.assign(target, source);
+                this.setState({params: target});
+                this.dataRequest(this.state.params);
+            } else {
+                commonUtility.messageWarning(data.msg || "操作失败", commonUtility.tipTime);
+            }
+        };
+        let errFunc = () => {
+            commonUtility.messageWarning("操作失败", commonUtility.tipTime);
+        }
+        commonUtil.ajaxRequest(serverUrl, 'POST', params, sucFunc, errFunc, false);
+    }
 
 	dataRequest = (params) => {
         let serverUrl = commonUtil.serverIp() + '/job/list.do';
