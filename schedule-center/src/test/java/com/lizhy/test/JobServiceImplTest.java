@@ -35,4 +35,10 @@ public class JobServiceImplTest extends BaseSpringTest {
         CallResult<PageData<JobInfoModel>> result = jobService.getJobList(model, 1, 100);
         System.out.println(result);
     }
+
+    @Test
+    public void testGet() {
+        CallResult result = jobService.getJobById(1L);
+        System.out.println(result);
+    }
 }

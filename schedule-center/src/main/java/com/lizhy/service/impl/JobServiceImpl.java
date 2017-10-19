@@ -57,9 +57,15 @@ public class JobServiceImpl extends AbstractBaseService implements JobService {
                 public CallResult<Boolean> doAction() {
                     ScheduleJobDO jobDO = new ScheduleJobDO();
                     model2doCopier.copy(model, jobDO, null);
-                    jobDO.setStatus(JobStatusEnum.VALID.getCode());
-                    jobDO.setCreateTime(System.currentTimeMillis());
-                    int n = scheduleJobDAO.insertSelective(jobDO);
+                    int n = 0;
+                    if(model.getJobId() == null) {
+                        jobDO.setStatus(JobStatusEnum.VALID.getCode());
+                        jobDO.setCreateTime(System.currentTimeMillis());
+                        n = scheduleJobDAO.insertSelective(jobDO);
+                    } else {
+                        jobDO.setUpdateTime(System.currentTimeMillis());
+                        n = scheduleJobDAO.updateByPrimaryKey(jobDO);
+                    }
                     if(n == 1) {
                         return CallResult.success(true);
                     }
@@ -120,6 +126,37 @@ public class JobServiceImpl extends AbstractBaseService implements JobService {
             logger.error("getJobList exception", e);
         }
         return CallResult.failure("获取任务列表失败");
+    }
+
+    @Override
+    public CallResult<JobInfoModel> getJobById(final Long jobId) {
+        try {
+            return serviceTemplate.exeOnSlave(new AbstractTemplateAction<JobInfoModel>() {
+                @Override
+                public CallResult<JobInfoModel> checkParam() {
+                    if(jobId == null) {
+                        logger.warn("jobId is null");
+                        return CallResult.failure("参数错误");
+                    }
+                    return super.checkParam();
+                }
+
+                @Override
+                public CallResult<JobInfoModel> doAction() {
+                    ScheduleJobDO jobDO = scheduleJobDAO.selectByPrimaryKey(jobId);
+                    if(jobDO == null) {
+                        logger.warn("select job return null, jobId={}", jobId);
+                        return CallResult.failure("获取任务失败");
+                    }
+                    JobInfoModel model = new JobInfoModel();
+                    do2modelCopier.copy(jobDO, model, null);
+                    return CallResult.success(model);
+                }
+            });
+        } catch (Exception e) {
+            logger.error("getJobById exception", e);
+        }
+        return CallResult.failure("查询任务失败");
     }
 
     @Override

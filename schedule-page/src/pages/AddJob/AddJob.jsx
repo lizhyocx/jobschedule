@@ -11,6 +11,28 @@ class AddJobForm extends React.Component {
 		}
 	}
 
+	componentDidMount() {
+		if(this.props.jobId) {
+			this.dataRequest({jobId:this.props.jobId});
+		}
+	}
+
+	dataRequest = (params) => {
+		let serverUrl = commonUtil.serverIp() + '/job/get.do';
+		let sucFunc = (data) => {
+			if(data && data.success) {
+				commonUtility.messageSuccess("获取任务成功", commonUtility.tipTime);
+				this.setState({job:data.resultObject})
+			} else {
+				commonUtility.messageWarning(data.msg || "获取任务失败", commonUtility.tipTime);
+			}
+		};
+		let errFunc = () => {
+			commonUtility.messageWarning("获取任务异常", commonUtility.tipTime);
+		};
+		commonUtil.ajaxRequest(serverUrl, 'GET', params, sucFunc, errFunc, false,);
+	}
+
 	handleSubmit = (e) => {
 		e.preventDefault();
 		this.props.form.validateFields((err, values) => {
@@ -27,7 +49,13 @@ class AddJobForm extends React.Component {
 				let errFunc = () => {
 					commonUtility.messageWarning("保存任务异常", commonUtility.tipTime);
 				};
-				commonUtil.ajaxRequest(serverUrl, 'POST', values, sucFunc, errFunc, false,);
+				let params = values;
+				if(this.props.jobId) {
+					let job = this.state.job;
+					Object.assign(job, values);
+					params = job;
+				}
+				commonUtil.ajaxRequest(serverUrl, 'POST', params, sucFunc, errFunc, false,);
 			}
 		});
 	}
@@ -39,16 +67,20 @@ class AddJobForm extends React.Component {
             wrapperCol: {span: 17},
         };
         let _state = this.state.job;
+        let title = '任务设置';
+        if(this.props.jobId) {
+        	title = '编辑任务'
+        }
 		return (
 			<div>
-                <ProTitle name='任务设置'/>
+                <ProTitle name={title}/>
                 <div>
                     <Form onSubmit={this.handleSubmit}>
                         <FormItem {...formItemLayout} label="任务名称">
                             {getFieldDecorator('jobName', {
                                 rules: [{required: true, message: '请输入任务名称'},{
                                          validator: ''}],
-                                initialValue:'',
+                                initialValue: _state.jobName || '',
 
                             })(
                                 <Input  style={{display: "inline-block", width: 230}}
@@ -120,7 +152,7 @@ class AddJob extends React.Component {
     render() {
         return (
             <div>
-               <Info/>
+               <Info jobId={this.props.params.jobId}/>
             </div>
         );
     }

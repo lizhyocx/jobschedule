@@ -26,6 +26,13 @@ public interface JobService {
      * @Date 2017-10-19 11:17:16
      */
     CallResult<PageData<JobInfoModel>> getJobList(JobInfoModel queryModel, Integer pageNo, Integer pageSize);
+
+    /**
+     * @Description: 获取任务详情
+     * @author lizhiyang
+     * @Date 2017-10-19 15:03:38
+     */
+    CallResult<JobInfoModel> getJobById(Long jobId);
     /**
      * 获取有效的定时任务
      * @return

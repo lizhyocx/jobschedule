@@ -34,6 +34,12 @@ public class JobController {
         return jobService.getJobList(model, pageNo, pageSize);
     }
 
+    @RequestMapping(value = "get.do")
+    @ResponseBody
+    public CallResult<JobInfoModel> get(Long jobId) {
+        return jobService.getJobById(jobId);
+    }
+
     /*@ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(HttpMessageNotReadableException.class)

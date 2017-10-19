@@ -55,7 +55,7 @@ class SearchPanleForm extends React.Component{
                                 })(
                                      <Select size="large" style={{width:150}}>
                                             <Option value="1">有效</Option>
-                                            <Option value="2">无效</Option>
+                                            <Option value="0">无效</Option>
                                     </Select>
                                 )}
                             </FormItem>
@@ -148,25 +148,25 @@ class JobList extends React.Component {
                 for(let i=0;i<results.length;i++) {
                     let res = results[i];
                     let executeSelect;
-                    if(Object.is(res.executeSelect, 1)) {
+                    if(Object.is(res.executeSelect, 0)) {
                         executeSelect = '第一台';
-                    } else if(Object.is(res.executeSelect, 2)) {
+                    } else if(Object.is(res.executeSelect, 1)) {
                         executeSelect = '顺序选取';
-                    } else if(Object.is(res.executeSelect, 3)) {
+                    } else if(Object.is(res.executeSelect, 2)) {
                         executeSelect = '随机选取';
-                    } else if(Object.is(res.executeSelect, 4)) {
+                    } else if(Object.is(res.executeSelect, 3)) {
                         executeSelect = '全部执行';
                     }
                     let executeRule;
-                    if(Object.is(res.executeRule, 1)) {
+                    if(Object.is(res.executeRule, 0)) {
                         executeRule = '只通知一次';
-                    } else if(Object.is(res.executeRule, 2)) {
+                    } else if(Object.is(res.executeRule, 1)) {
                         executeRule = '保证通知成功';
                     }
                     let status;
                     if(Object.is(res.status, 1)) {
                         status = '有效';
-                    } else if(Object.is(res.status, 2)) {
+                    } else if(Object.is(res.status, 0)) {
                         status = '无效';
                     }
                     let obj = {
@@ -177,7 +177,7 @@ class JobList extends React.Component {
                         executeRule:executeRule,
                         timeout:res.timeout,
                         status:status,
-                        updateTime:res.updateTime,
+                        updateTime:commonUtil.formatYYYY_MM_DD_HH_mm(res.updateTime),
                     };
                     datas.push(obj);
                 }

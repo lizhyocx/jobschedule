@@ -7,7 +7,6 @@ class OperMore extends React.Component {
 	}
 
 	render() {
-		debugger
 		let editHref = "#/JobList/EditJob/" + this.props.jobId;
 		let statusHtml;
 		if(Object.is(this.props.status, '有效')) {//有效

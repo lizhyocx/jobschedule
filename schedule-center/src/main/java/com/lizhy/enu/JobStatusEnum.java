@@ -7,8 +7,8 @@ package com.lizhy.enu;
  * @Date 2017-10-19 11:08
  */
 public enum JobStatusEnum {
-    VALID(1, "启用"),
-    INVALID(2, "无效")
+    INVALID(0, "无效"),
+    VALID(1, "启用")
     ;
     private int code;
     private String msg;
