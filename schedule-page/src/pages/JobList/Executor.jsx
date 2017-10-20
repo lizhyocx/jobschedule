@@ -15,18 +15,40 @@ class ExecutorForm extends React.Component {
 	}
 
 	componentDidMount() {
-		this.setState({
-			jobName:'异步获取任务名称',
-		});
+		this.getJobName();
+	}
+
+	/*
+	 * 获取任务名称
+	*/
+	getJobName = () => {
+		let serverUrl = commonUtil.serverIp() + "/job/get.do";
+		let params = {jobId:this.props.jobId};
+		let sucFunc = (data) => {
+			if(data && data.success && data.resultObject) {
+				this.setState({jobName:data.resultObject.jobName})
+			} else {
+				commonUtility.messageWarning(data.msg || "获取任务名称失败", commonUtility.tipTime);
+			}
+		}
+		let errFunc = () => {
+			commonUtility.messageWarning(data.msg || "获取任务名称失败", commonUtility.tipTime);
+		}
+		commonUtil.ajaxRequest(serverUrl,  'GET', params, sucFunc, errFunc, false);
 	}
 
 	handleSubmit = (e) => {
 		e.preventDefault();
+		//let _this = this;
 		this.props.form.validateFields((err, values) => {
 			if(!err) {
-				values.effectiveTime = values.effectiveTime.format(dateFormat);
+				let formatTime = values.effectiveTime.format(dateFormat);
+				values.effectiveTime = Date.parse(new Date(formatTime))
 				values.jobId = this.props.jobId;
-				let serverUrl = commonUtil.serverIp() + '/mockjsdata/63/job/save.do';
+				if(this.props.editExecutor) {
+					values.exeId = this.props.editExecutor.exeId;
+				}
+				let serverUrl = commonUtil.serverIp() + '/executor/save.do';
 				let sucFunc = (data) => {
 					if(data && data.success) {
 						commonUtility.messageSuccess("保存成功", commonUtility.tipTime);
@@ -52,6 +74,10 @@ class ExecutorForm extends React.Component {
             wrapperCol: {span: 17},
         };
         let _executor = this.props.editExecutor;
+        let effectiveTime;
+        if(_executor && _executor.effectiveTime) {
+        	effectiveTime = moment(_executor.effectiveTime, dateFormat);
+        }
 		return (
 			<div>
                 <ProTitle name='任务设置'/>
@@ -91,10 +117,10 @@ class ExecutorForm extends React.Component {
 		                        />
 		                    )}
 		                </FormItem>
-		                <FormItem {...formItemLayout} label="生效时间" style={{display:this.state.editable ? 'block' : 'none'}}>
+		                <FormItem {...formItemLayout} label="生效时间">
 		                    {getFieldDecorator('effectiveTime', {
 		                        rules: [{required: true, message: '请输入生效时间'}],
-		                        initialValue: moment(_executor.effectiveTime, dateFormat) || '',
+		                        initialValue: effectiveTime,
 		                    })(
 		                        <DatePicker style={{display: "inline-block", width: 230}}
 			                        showTime={
@@ -141,17 +167,22 @@ class Executor extends React.Component {
 				title: '执行URL',
 				dataIndex: 'exeUrl',
 				key: 'exeUrl',
-				width:300
+				width:250
 			}, {
 				title: '执行接口',
 				dataIndex: 'exeInterface',
 				key: 'exeInterface',
-				width:200
+				width:180
 			}, {
 				title: '生效时间',
 				dataIndex: 'effectiveTime',
 				key: 'effectiveTime',
 				width:130
+			}, {
+				title: '状态',
+				dataIndex: 'status',
+				key: 'status',
+				width:80
 			}, {
 				title: '操作',
 				dataIndex: 'operations',
@@ -174,10 +205,16 @@ class Executor extends React.Component {
 
 	/* 保存执行机器后，刷新列表 */
 	handleBack = () => {
+		this.setState({editExecutor:{}})
 		this.dataRequest();
 	}
 	/* 编辑执行机器，表单填充数据 */
 	editExecutor = (record) => {
+		if(record.effectiveTime) {
+			record.effectiveTime = commonUtil.formatTime(record.effectiveTime)
+		} else {
+			record.effectiveTime = '';
+		}
 		this.setState({editExecutor:record});
 	}
 	/* 删除执行机器 */
@@ -186,7 +223,7 @@ class Executor extends React.Component {
 	}
 
 	dataRequest = () => {
-		let serverUrl = commonUtil.serverIp() + '/mockjsdata/63/executor/list.do';
+		let serverUrl = commonUtil.serverIp() + '/executor/list.do';
 		let params = {jobId:this.props.params.jobId}
         let sucFunc = (data) => {
             if(data && data.success) {
@@ -194,13 +231,23 @@ class Executor extends React.Component {
                 let datas = [];
                 for(let i=0;i<results.length;i++) {
                     let res = results[i];
+                    let status = '';
+                    if(Object.is(res.status, 0)) {
+                    	status = '无效';
+                    } else if(Object.is(res.status, 1)) {
+                    	status = '有效';
+                    } else if(Object.is(res.status, 2)) {
+                    	status = '未来生效';
+                    }
                     let obj = {
                         key:i,
                         exeId:res.exeId,
 						exeName:res.exeName,
 						exeUrl:res.exeUrl,
 						exeInterface:res.exeInterface,
-						effectiveTime:res.effectiveTime
+						effectiveTime:commonUtil.formatTime(res.effectiveTime),
+						status:status
+
                     };
                     datas.push(obj);
                 }
@@ -221,7 +268,7 @@ class Executor extends React.Component {
 				<FormInfo jobId={this.props.params.jobId} editExecutor={this.state.editExecutor} handleBack={this.handleBack} />
 				<ItemTitleName titleName="已有执行机器" />
 				<div style={{ position: 'relative' }}>
-	                <Table columns={this.columns} dataSource={this.state.datas} bordered />
+	                <Table columns={this.columns} pagination={false} dataSource={this.state.datas} bordered />
 	            </div>
 			</div>
 		)

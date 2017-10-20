@@ -11,5 +11,23 @@ CREATE TABLE `schedule_job` (
   `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '1:启用，0：禁用',
   PRIMARY KEY (`job_id`),
   KEY `job_name` (`job_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=gbk COMMENT='任务表';
+) ENGINE=InnoDB DEFAULT COMMENT='任务表';
+
+DROP TABLE IF EXISTS SCHEDULE_EXECUTOR;
+CREATE TABLE `schedule_executor` (
+  `exe_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '执行者ID',
+  `job_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '执行者所属任务ID',
+  `exe_name` varchar(60) NOT NULL DEFAULT '' COMMENT '执行者名称',
+  `exe_url` varchar(60) NOT NULL DEFAULT '' COMMENT '执行者IP',
+  `exe_interface` varchar(60) DEFAULT NULL,
+  `status` int(1) unsigned NOT NULL DEFAULT '0' COMMENT '状态 0 无效 1 有效 2未来有效',
+  `effective_time` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '生效时间',
+  `create_time` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '修改时间',
+  PRIMARY KEY (`exe_id`),
+  KEY `job_id` (`job_id`),
+  KEY `effective_time` (`effective_time`)
+) ENGINE=InnoDB COMMENT='执行机器表';
+
+
 

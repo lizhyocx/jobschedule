@@ -42,11 +42,11 @@ public class ExecuteJob implements Job {
         if(executeSelect == ExecuteSelectEnum.ANY.getCode()) {
             //任选其一
             ExecutorModel executorModel = executorModelList.get(new Random().nextInt(executorModelList.size()));
-            doExecute(jobId, executorModel.getExecuteInterface(), executorModel.getExecuteUrl());
+            doExecute(jobId, executorModel.getExeInterface(), executorModel.getExeUrl());
         } else if(executeSelect == ExecuteSelectEnum.ALL.getCode()) {
             //全部执行
             for(ExecutorModel executorModel : executorModelList) {
-                doExecute(jobId, executorModel.getExecuteInterface(), executorModel.getExecuteUrl());
+                doExecute(jobId, executorModel.getExeInterface(), executorModel.getExeUrl());
             }
         }
     }
