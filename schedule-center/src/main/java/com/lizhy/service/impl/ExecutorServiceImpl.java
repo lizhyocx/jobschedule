@@ -87,17 +87,17 @@ public class ExecutorServiceImpl extends AbstractBaseService implements Executor
                 public CallResult<Boolean> doAction() {
                     ScheduleExecutorDO executorDO = new ScheduleExecutorDO();
                     model2doCopier.copy(model, executorDO, null);
+                    long now = System.currentTimeMillis();
+                    if(now >= model.getEffectiveTime()) {
+                        executorDO.setStatus(ExecutorStatusEnum.VALID.getCode());
+                    } else {
+                        executorDO.setStatus(ExecutorStatusEnum.FUTURE.getCode());
+                    }
                     int n = 0;
                     if(model.getExeId() != null) {
                         executorDO.setUpdateTime(System.currentTimeMillis());
                         n = scheduleExecutorDAO.updateByPrimaryKeySelective(executorDO);
                     } else {
-                        long now = System.currentTimeMillis();
-                        if(now >= model.getEffectiveTime()) {
-                            executorDO.setStatus(ExecutorStatusEnum.VALID.getCode());
-                        } else {
-                            executorDO.setStatus(ExecutorStatusEnum.FUTURE.getCode());
-                        }
                         executorDO.setCreateTime(now);
                         n = scheduleExecutorDAO.insertSelective(executorDO);
                     }
