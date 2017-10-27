@@ -9,6 +9,7 @@ import com.lizhy.model.JobInfoModel;
 import com.lizhy.model.PageData;
 import com.lizhy.service.AbstractBaseService;
 import com.lizhy.service.JobService;
+import com.lizhy.service.ScheduleService;
 import com.lizhy.validator.ValidateResult;
 import com.lizhy.validator.ValidateUtil;
 import org.slf4j.Logger;
@@ -36,6 +37,8 @@ public class JobServiceImpl extends AbstractBaseService implements JobService {
 
     @Autowired
     private ScheduleJobDAO scheduleJobDAO;
+    @Autowired
+    private ScheduleService scheduleService;
 
     @Override
     public CallResult<Boolean> saveJob(final JobInfoModel model) {
@@ -199,4 +202,7 @@ public class JobServiceImpl extends AbstractBaseService implements JobService {
     public List<JobInfoModel> getEffectiveJob() {
         return null;
     }
+
+    /*===================================================================================================*/
+
 }

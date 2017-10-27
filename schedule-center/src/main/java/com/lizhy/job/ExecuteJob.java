@@ -28,6 +28,8 @@ public class ExecuteJob implements Job {
         JobDetail jobDetail = context.getJobDetail();
         JobDataMap map = jobDetail.getJobDataMap();
 
+        logger.info("ExecuteJob execute....JobDetail={}, JobDataMap={}", jobDetail, map);
+
         long jobId = (Long)map.get("jobId");
         String jobName = map.getString("jobName");
         int executeSelect = (Integer)map.get("executeSelect");

@@ -7,7 +7,9 @@
 
         <context:property-placeholder location="classpath:app.properties" />
         <bean id="springContextUtil" class="com.lizhy.common.util.SpringContextUtil" />
-        <bean id="serviceTemplate" class="com.lizhy.common.service.ServiceTemplateImpl" />
+        <bean id="serviceTemplate" class="com.lizhy.common.service.ServiceTemplateImpl">
+                <property name="transactionTemplate" ref="transactionTemplate" />
+        </bean>
         <import resource="classpath:bean/dao-env-bean.xml" />
         <import resource="classpath:spring-quartz.xml" />
 </beans>

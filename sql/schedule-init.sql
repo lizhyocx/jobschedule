@@ -10,7 +10,7 @@ CREATE TABLE `schedule_job` (
   `update_time` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '修改时间',
   `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '1:启用，0：禁用',
   PRIMARY KEY (`job_id`),
-  KEY `job_name` (`job_name`)
+  UNIQUE KEY `job_name` (`job_name`) USING BTREE
 ) ENGINE=InnoDB DEFAULT COMMENT='任务表';
 
 DROP TABLE IF EXISTS schedule_executor;

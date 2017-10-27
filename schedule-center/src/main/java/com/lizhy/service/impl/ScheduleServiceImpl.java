@@ -1,5 +1,6 @@
 package com.lizhy.service.impl;
 
+import com.lizhy.enu.JobCategoryEnum;
 import com.lizhy.model.JobData;
 import com.lizhy.service.ScheduleService;
 import org.apache.commons.lang.StringUtils;
@@ -50,26 +51,27 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public void scheduleJob(JobData jobData, JobDataMap jobDataMap, Class<? extends Job> clazz) {
+    public boolean scheduleJob(JobData jobData, JobDataMap jobDataMap, Class<? extends Job> clazz) {
         try {
             if(jobData == null) {
                 logger.warn("scheduleJob jobData is null");
             }
-            if("simple".equals(jobData.getCategory())) {
+            if(JobCategoryEnum.SIMPLE.getType().equals(jobData.getCategory())) {
                 //普通定时任务
-                scheduleSimple(jobData, jobDataMap, clazz);
-            } else if("cron".equals(jobData.getCategory())) {
+                return scheduleSimple(jobData, jobDataMap, clazz);
+            } else if(JobCategoryEnum.CRON.getType().equals(jobData.getCategory())) {
                 //cron定时任务
-                scheduleCron(jobData, jobDataMap, clazz);
+                return scheduleCron(jobData, jobDataMap, clazz);
             } else {
                 logger.warn("error job category:"+jobData.getCategory());
             }
         } catch (Exception e) {
             logger.error("scheduleJob Exception ",e);
         }
+        return false;
     }
 
-    private void scheduleSimple(JobData jobData, JobDataMap jobDataMap, Class<? extends Job> clazz) {
+    private boolean scheduleSimple(JobData jobData, JobDataMap jobDataMap, Class<? extends Job> clazz) {
         JobBuilder jobB = newJob(clazz).withIdentity(jobData.getName(), Scheduler.DEFAULT_GROUP);
 
         if(jobDataMap!=null){
@@ -102,18 +104,19 @@ public class ScheduleServiceImpl implements ScheduleService {
             }
             triggerB.withSchedule(ssb);
         }
-
         try {
             scheduler.scheduleJob(jobDetail, triggerB.build());
             if(logger.isInfoEnabled()){
                 logger.info("加入调度：Name->"+jobDetail.getKey()+ ", Description->"+jobData.getDesc());
             }
+            return true;
         } catch (SchedulerException e) {
             logger.error("加入任务调度出现异常!", e);
+            return false;
         }
     }
 
-    private void scheduleCron(JobData jobModel, JobDataMap jobDataMap, Class<? extends Job> clazz) {
+    private boolean scheduleCron(JobData jobModel, JobDataMap jobDataMap, Class<? extends Job> clazz) {
         String triggerName = getTriggerName(jobModel.getName());
         try {
             JobBuilder jobB = newJob(clazz)
@@ -129,8 +132,10 @@ public class ScheduleServiceImpl implements ScheduleService {
             if(logger.isInfoEnabled()){
                 logger.info("加入调度任务：Name->"+jobModel.getName()+ ", Description->"+jobModel.getDesc());
             }
+            return true;
         } catch (Exception e) {
             logger.error("加入执行cron触发器出现异常!{}", jobModel.getName(),e);
+            return false;
         }
     }
 

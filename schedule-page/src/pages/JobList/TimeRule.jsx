@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form, Input, Button, DatePicker} from 'antd';
+import {Form, Input, Button, DatePicker, Icon} from 'antd';
 import ProTitle from '../../components/ProTitle/ProTitle'
 import moment from 'moment';
 
@@ -62,6 +62,11 @@ class AddTimeRuleForm extends React.Component {
 		this.setState({editable:true});
 	}
 
+	/* 删除时间规则 */
+	deleteRule = (timerId, jobId) => {
+		alert(timerId+","+jobId);
+	}
+
 	handleSubmit = (e) => {
 		e.preventDefault();
 		this.props.form.validateFields((err, values) => {
@@ -92,6 +97,36 @@ class AddTimeRuleForm extends React.Component {
             labelCol: {span: 6},
             wrapperCol: {span: 17},
         };
+        let currentTimeRule;
+        if(this.state.timeRule.cron && this.state.timeRule.effectiveTime && this.state.timeRule.timerId) {
+        	currentTimeRule = 
+        		<div>
+	        		<span>
+	                	{this.state.timeRule.cron} -- {this.state.timeRule.effectiveTime}
+	                </span>	
+
+	                <span style={{"marginLeft":10}}>
+	                	<Button type="primary" icon="delete" size="small" ghost="true" 
+	                		onClick={() => {this.deleteRule(this.state.timeRule.timerId, this.state.timeRule.jobId)}} />
+	                </span>
+        		</div>
+        		
+            
+        }
+        let futureTimeRule;
+         if(this.state.timeRule.futureCron && this.state.timeRule.futureEffectiveTime && this.state.timeRule.futureTimerId) {
+        	futureTimeRule = 
+        		<div>
+	        		<span>
+	                	{this.state.timeRule.futureCron} -- {this.state.timeRule.futureEffectiveTime}
+	                </span>	
+	                <span style={{"marginLeft":10}}>
+		            	<Button type="primary" icon="delete" size="small" ghost="true"
+		            		onClick={() => {this.deleteRule(this.state.timeRule.futureTimerId, this.state.timeRule.jobId)}} />
+		            </span>
+	            </div>
+            
+        }
 		return (
 			<div>
                 <ProTitle name='时间规则设置'/>
@@ -101,24 +136,10 @@ class AddTimeRuleForm extends React.Component {
                             <span>{this.state.jobName}</span>
                         </FormItem>
                         <FormItem {...formItemLayout} label="当前时间规则">
-                            <span>
-                            	{this.state.timeRule.cron}
-                            </span>
-                        </FormItem>
-                        <FormItem {...formItemLayout} label="当前生效时间">
-                            <span>
-                            	{this.state.timeRule.effectiveTime}
-                            </span>
+                            {currentTimeRule}
                         </FormItem>
                         <FormItem {...formItemLayout} label="未来时间规则">
-                            <span>
-                            	{this.state.timeRule.futureCron}
-                            </span>
-                        </FormItem>
-                        <FormItem {...formItemLayout} label="未来生效时间">
-                            <span>
-                            	{this.state.timeRule.futureEffectiveTime}
-                            </span>
+                            {futureTimeRule}
                         </FormItem>
                         <FormItem {...formItemLayout} label="时间规则" style={{display:this.state.editable ? 'block' : 'none'}}>
 		                    {getFieldDecorator('cron', {

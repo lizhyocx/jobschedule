@@ -15,6 +15,8 @@ public class TimerModel extends BaseObject {
     /* 任务id */
     @NotNull(message = "jobId is null")
     private Long jobId;
+    /* 当前时间规则id */
+    private Long timerId;
     /* 当前时间表达式 */
     @NotNull(message = "cron is null")
     @NotEmpty(message = "cron is empty")
@@ -24,6 +26,8 @@ public class TimerModel extends BaseObject {
     @NotEmpty(message = "effectTime is empty")
     @DateTimeFormat(message = "effectTime is illegal")
     private String effectiveTime;
+    /* 未来生效时间规则id */
+    private Long futureTimerId;
     /* 未来生效表达式 */
     private String futureCron;
     /* 未来生效时间 */
@@ -35,6 +39,14 @@ public class TimerModel extends BaseObject {
 
     public void setJobId(Long jobId) {
         this.jobId = jobId;
+    }
+
+    public Long getTimerId() {
+        return timerId;
+    }
+
+    public void setTimerId(Long timerId) {
+        this.timerId = timerId;
     }
 
     public String getCron() {
@@ -51,6 +63,14 @@ public class TimerModel extends BaseObject {
 
     public void setEffectiveTime(String effectiveTime) {
         this.effectiveTime = effectiveTime;
+    }
+
+    public Long getFutureTimerId() {
+        return futureTimerId;
+    }
+
+    public void setFutureTimerId(Long futureTimerId) {
+        this.futureTimerId = futureTimerId;
     }
 
     public String getFutureCron() {

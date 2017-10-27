@@ -1,16 +1,23 @@
 package com.lizhy.service.impl;
 
+import com.lizhy.auto.dao.ScheduleJobDAO;
 import com.lizhy.auto.dao.ScheduleTimerDAO;
+import com.lizhy.auto.model.ScheduleJobDO;
 import com.lizhy.auto.model.ScheduleTimerDO;
 import com.lizhy.common.CallResult;
 import com.lizhy.common.service.AbstractTemplateAction;
+import com.lizhy.enu.JobCategoryEnum;
 import com.lizhy.enu.TimerStatusEnum;
+import com.lizhy.job.ExecuteJob;
+import com.lizhy.model.JobData;
 import com.lizhy.model.TimerModel;
 import com.lizhy.service.AbstractBaseService;
+import com.lizhy.service.ScheduleService;
 import com.lizhy.service.TimerService;
 import com.lizhy.validator.ValidateResult;
 import com.lizhy.validator.ValidateUtil;
 import org.quartz.CronExpression;
+import org.quartz.JobDataMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,11 +40,16 @@ public class TimerServiceImpl extends AbstractBaseService implements TimerServic
     private Logger logger = LoggerFactory.getLogger(TimerServiceImpl.class);
     @Autowired
     private ScheduleTimerDAO scheduleTimerDAO;
+    @Autowired
+    private ScheduleJobDAO scheduleJobDAO;
+    @Autowired
+    private ScheduleService scheduleService;
 
     @Override
     public CallResult<Boolean> saveTimer(final TimerModel model) {
         try {
-            return serviceTemplate.exeOnMaster(new AbstractTemplateAction<Boolean>() {
+            return serviceTemplate.exeInTranscation(new AbstractTemplateAction<Boolean>() {
+                private ScheduleJobDO jobDO = null;
                 @Override
                 public CallResult<Boolean> checkParam() {
                     if(model == null) {
@@ -54,6 +66,16 @@ public class TimerServiceImpl extends AbstractBaseService implements TimerServic
                         return CallResult.failure("参数错误");
                     }
                     return super.checkParam();
+                }
+
+                @Override
+                public CallResult<Boolean> checkBiz() {
+                    jobDO = scheduleJobDAO.selectByPrimaryKey(model.getJobId());
+                    if(jobDO == null) {
+                        logger.warn("cannot find job by id {}", model.getJobId());
+                        return CallResult.failure("参数错误");
+                    }
+                    return super.checkBiz();
                 }
 
                 @Override
@@ -80,7 +102,14 @@ public class TimerServiceImpl extends AbstractBaseService implements TimerServic
                     }
                     int n = scheduleTimerDAO.upsertSelective(timerDO);
                     if(n > 0) {
-                        return CallResult.success(true);
+                        //timer保存成功，如果是现在生效，加入调度中
+                        if(TimerStatusEnum.VALID.getCode() == timerDO.getStatus()) {
+                            if(loadJob(jobDO, timerDO)) {
+                                return CallResult.success(true);
+                            }
+                            logger.warn("loadJob fail");
+                            return CallResult.failure("加入调度失败");
+                        }
                     }
                     logger.warn("upsert timer fail, n = {}", n);
                     return CallResult.failure("保存时间规则失败");
@@ -114,11 +143,13 @@ public class TimerServiceImpl extends AbstractBaseService implements TimerServic
                     if(!CollectionUtils.isEmpty(list)) {
                         for(ScheduleTimerDO timerDO : list) {
                             if(TimerStatusEnum.VALID.getCode() == timerDO.getStatus()) {
+                                model.setTimerId(timerDO.getTimerId());
                                 model.setCron(timerDO.getCron());
                                 Calendar calendar = Calendar.getInstance();
                                 calendar.setTimeInMillis(timerDO.getEffectiveTime());
                                 model.setEffectiveTime(format.format(calendar.getTime()));
                             } else if(TimerStatusEnum.FUTURE.getCode() == timerDO.getStatus()) {
+                                model.setFutureTimerId(timerDO.getTimerId());
                                 model.setFutureCron(timerDO.getCron());
                                 Calendar calendar = Calendar.getInstance();
                                 calendar.setTimeInMillis(timerDO.getEffectiveTime());
@@ -133,5 +164,21 @@ public class TimerServiceImpl extends AbstractBaseService implements TimerServic
             logger.error("getTime exception", e);
         }
         return CallResult.failure("获取时间规则失败");
+    }
+
+    /*=========================================================================================*/
+
+    private boolean loadJob(ScheduleJobDO jobDO, ScheduleTimerDO timerDO) {
+        JobData jobData = new JobData();
+        jobData.setCategory(JobCategoryEnum.CRON.getType());
+        jobData.setName(jobDO.getJobName());
+        jobData.setDesc(jobDO.getJobDesc());
+        jobData.setCronExpression(timerDO.getCron());
+        JobDataMap dataMap = new JobDataMap();
+        dataMap.put("executeRule", jobDO.getExecuteRule());
+        dataMap.put("executeSelect", jobDO.getExecuteSelect());
+        dataMap.put("jobId", jobDO.getJobId());
+        dataMap.put("jobName", jobDO.getJobName());
+        return scheduleService.scheduleJob(jobData, dataMap, ExecuteJob.class);
     }
 }

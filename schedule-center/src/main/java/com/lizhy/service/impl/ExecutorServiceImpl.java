@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * Created by lizhiyang on 2017-02-06 14:42.
  */
-@Service
+@Service("executeService")
 public class ExecutorServiceImpl extends AbstractBaseService implements ExecutorService {
     private Logger logger = LoggerFactory.getLogger(ExecutorServiceImpl.class);
     private BeanCopier do2modelCopier = BeanCopier.create(ScheduleExecutorDO.class, ExecutorModel.class, false);

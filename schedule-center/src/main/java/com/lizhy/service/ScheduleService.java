@@ -1,6 +1,7 @@
 package com.lizhy.service;
 
 import com.lizhy.model.JobData;
+import com.lizhy.model.JobInfoModel;
 import org.quartz.Job;
 import org.quartz.JobDataMap;
 import org.quartz.SchedulerException;
@@ -26,7 +27,7 @@ public interface ScheduleService {
      * @param jobDataMap
      * @param clazz
      */
-    void scheduleJob(JobData jobData, JobDataMap jobDataMap, Class<? extends Job> clazz);
+    boolean scheduleJob(JobData jobData, JobDataMap jobDataMap, Class<? extends Job> clazz);
 
     /**
      * 暂停定时任务
