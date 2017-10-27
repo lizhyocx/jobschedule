@@ -106,7 +106,7 @@ class AddTimeRuleForm extends React.Component {
 	                </span>	
 
 	                <span style={{"marginLeft":10}}>
-	                	<Button type="primary" icon="delete" size="small" ghost="true" 
+	                	<Button type="primary" icon="delete" shape="circle" size="small" ghost="true" 
 	                		onClick={() => {this.deleteRule(this.state.timeRule.timerId, this.state.timeRule.jobId)}} />
 	                </span>
         		</div>
@@ -121,7 +121,7 @@ class AddTimeRuleForm extends React.Component {
 	                	{this.state.timeRule.futureCron} -- {this.state.timeRule.futureEffectiveTime}
 	                </span>	
 	                <span style={{"marginLeft":10}}>
-		            	<Button type="primary" icon="delete" size="small" ghost="true"
+		            	<Button type="primary" icon="delete" shape="circle" size="small" ghost="true"
 		            		onClick={() => {this.deleteRule(this.state.timeRule.futureTimerId, this.state.timeRule.jobId)}} />
 		            </span>
 	            </div>

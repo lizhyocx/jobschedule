@@ -1,7 +1,6 @@
 package com.lizhy.service;
 
 import com.lizhy.model.JobData;
-import com.lizhy.model.JobInfoModel;
 import org.quartz.Job;
 import org.quartz.JobDataMap;
 import org.quartz.SchedulerException;
