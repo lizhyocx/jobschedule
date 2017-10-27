@@ -167,7 +167,11 @@ public class TimerServiceImpl extends AbstractBaseService implements TimerServic
     }
 
     /*=========================================================================================*/
-
+    /**
+     * @Description: 加载任务
+     * @author lizhiyang
+     * @Date 2017-10-27 15:13:08
+     */
     private boolean loadJob(ScheduleJobDO jobDO, ScheduleTimerDO timerDO) {
         JobData jobData = new JobData();
         jobData.setCategory(JobCategoryEnum.CRON.getType());

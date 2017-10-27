@@ -22,7 +22,7 @@ public interface ScheduleService {
     void start() throws SchedulerException;
 
     /**
-     * 添加一个定时任务
+     * 添加一个定时任务，如果存在则更新
      * @param jobData
      * @param jobDataMap
      * @param clazz

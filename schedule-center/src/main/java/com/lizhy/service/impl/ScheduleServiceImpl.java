@@ -56,6 +56,16 @@ public class ScheduleServiceImpl implements ScheduleService {
             if(jobData == null) {
                 logger.warn("scheduleJob jobData is null");
             }
+            if(StringUtils.isBlank(jobData.getName())) {
+                logger.warn("jobData.name is blank");
+            }
+            if(checkExist(jobData.getName())) {
+                boolean b = scheduler.deleteJob(new JobKey(jobData.getName(), Scheduler.DEFAULT_GROUP));
+                if(!b) {
+                    logger.warn("deleteJob fail, jobName={}", jobData.getName());
+                    return false;
+                }
+            }
             if(JobCategoryEnum.SIMPLE.getType().equals(jobData.getCategory())) {
                 //普通定时任务
                 return scheduleSimple(jobData, jobDataMap, clazz);
@@ -70,6 +80,32 @@ public class ScheduleServiceImpl implements ScheduleService {
         }
         return false;
     }
+
+    @Override
+    public boolean pauseJob(String jobName) {
+        try {
+            scheduler.pauseJob(new JobKey(jobName, Scheduler.DEFAULT_GROUP));
+        } catch (Exception e) {
+            logger.error("pauseJob exception ", e);
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean resumeJob(String jobName) {
+        try {
+            scheduler.resumeJob(new JobKey(jobName, Scheduler.DEFAULT_GROUP));
+        } catch (Exception e) {
+            logger.error("resumeJob exception ", e);
+            return false;
+        }
+        return true;
+    }
+
+
+
+    /*=================================================================================================*/
 
     private boolean scheduleSimple(JobData jobData, JobDataMap jobDataMap, Class<? extends Job> clazz) {
         JobBuilder jobB = newJob(clazz).withIdentity(jobData.getName(), Scheduler.DEFAULT_GROUP);
@@ -143,25 +179,17 @@ public class ScheduleServiceImpl implements ScheduleService {
         return StringUtils.trim(name + "_trigger");
     }
 
-    @Override
-    public boolean pauseJob(String jobName) {
-        try {
-            scheduler.pauseJob(new JobKey(jobName, Scheduler.DEFAULT_GROUP));
-        } catch (Exception e) {
-            logger.error("pauseJob exception ", e);
-            return false;
+    /**
+     * @Description: 检查任务是否存在调度中
+     * @author lizhiyang
+     * @Date 2017-10-27 15:12:34
+     */
+    private boolean checkExist(String jobName) throws SchedulerException {
+        JobDetail jobDetail = scheduler.getJobDetail(new JobKey(jobName, Scheduler.DEFAULT_GROUP));
+        if(jobDetail != null) {
+            return true;
         }
-        return true;
+        return false;
     }
 
-    @Override
-    public boolean resumeJob(String jobName) {
-        try {
-            scheduler.resumeJob(new JobKey(jobName, Scheduler.DEFAULT_GROUP));
-        } catch (Exception e) {
-            logger.error("resumeJob exception ", e);
-            return false;
-        }
-        return true;
-    }
 }
