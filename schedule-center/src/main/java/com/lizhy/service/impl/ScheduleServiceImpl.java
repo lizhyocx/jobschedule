@@ -30,21 +30,6 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Autowired
     private Scheduler scheduler;
 
-    @Override
-    public boolean checkFirstRun() {
-        try {
-            GroupMatcher<JobKey> matcher = GroupMatcher.anyGroup();
-            Set<JobKey> jobKeys = scheduler.getJobKeys(matcher);
-            if(jobKeys == null || jobKeys.isEmpty()) {
-                return true;
-            }
-        } catch (SchedulerException e) {
-            logger.error("scheduler getJObKeys exception", e);
-        }
-        return false;
-    }
-
-    @Override
     @PostConstruct
     public void start() throws SchedulerException {
         scheduler.start();

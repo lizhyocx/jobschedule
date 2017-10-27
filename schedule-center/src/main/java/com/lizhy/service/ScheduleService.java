@@ -10,17 +10,6 @@ import org.quartz.SchedulerException;
  */
 public interface ScheduleService {
     /**
-     * 校验是否是第一次运行
-     * @return
-     */
-    boolean checkFirstRun();
-
-    /**
-     * 启动调度
-     */
-    void start() throws SchedulerException;
-
-    /**
      * 添加一个定时任务，如果存在则更新
      * @param jobData
      * @param jobDataMap
