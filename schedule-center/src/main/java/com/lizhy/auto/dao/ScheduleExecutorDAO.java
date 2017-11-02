@@ -46,4 +46,6 @@ public interface ScheduleExecutorDAO {
     int updateByPrimaryKey(ScheduleExecutorDO record);
 
     List<ScheduleExecutorDO> selectAllByJobId(Long jobId);
+
+    List<ScheduleExecutorDO> selectEffective(Long jobId);
 }

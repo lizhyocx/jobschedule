@@ -147,7 +147,8 @@ public class ScheduleServiceImpl implements ScheduleService {
             }
             JobDetail jobDetail = jobB.build();
             TriggerBuilder<Trigger> triggerB = newTrigger().withIdentity(triggerName, Scheduler.DEFAULT_GROUP);
-            triggerB.withSchedule(CronScheduleBuilder.cronSchedule(jobModel.getCronExpression()));
+            //——不触发立即执行——等待下次Cron触发频率到达时刻开始按照Cron频率依次执行
+            triggerB.withSchedule(CronScheduleBuilder.cronSchedule(jobModel.getCronExpression()).withMisfireHandlingInstructionDoNothing());
             Trigger trigger = triggerB.build();
             scheduler.scheduleJob(jobDetail,trigger);
             if(logger.isInfoEnabled()){

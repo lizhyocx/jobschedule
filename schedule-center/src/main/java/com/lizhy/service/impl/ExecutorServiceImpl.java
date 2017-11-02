@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * Created by lizhiyang on 2017-02-06 14:42.
  */
-@Service("executeService")
+@Service("executorService")
 public class ExecutorServiceImpl extends AbstractBaseService implements ExecutorService {
     private Logger logger = LoggerFactory.getLogger(ExecutorServiceImpl.class);
     private BeanCopier do2modelCopier = BeanCopier.create(ScheduleExecutorDO.class, ExecutorModel.class, false);
@@ -112,10 +112,5 @@ public class ExecutorServiceImpl extends AbstractBaseService implements Executor
             logger.error("saveExecutor exception", e);
         }
         return CallResult.failure("保存失败");
-    }
-
-    @Override
-    public List<ExecutorModel> getEffectiveExecutor(Long jobId) {
-        return null;
     }
 }

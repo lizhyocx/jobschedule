@@ -19,7 +19,7 @@ import java.io.PrintWriter;
 public class NotifyController {
     private static Logger logger = LoggerFactory.getLogger(NotifyController.class);
 
-    @RequestMapping("/job/notify")
+    @RequestMapping("/job/notify.do")
     public void notify(HttpServletRequest request, HttpServletResponse response) throws Exception {
         request.setCharacterEncoding("UTF-8");
         String type = request.getParameter("type");

@@ -18,11 +18,11 @@ class ExecutorForm extends React.Component {
 		this.getJobName();
 	}
 
-	componentWillReceiveProps(nextProps) {
+	/*componentWillReceiveProps(nextProps) {
 		if(nextProps.editExecutor) {
 			this.props.form.resetFields();
 		}
-	}
+	}*/
 
 	/*
 	 * 获取任务名称

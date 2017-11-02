@@ -81,6 +81,10 @@
             <artifactId>schedule-common</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+        <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
         </dependency>
@@ -92,6 +96,10 @@
             <groupId>javax.el</groupId>
             <artifactId>javax.el-api</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.lizhy</groupId>
+            <artifactId>schedule-client</artifactId>
         </dependency>
     </dependencies>
     <build>

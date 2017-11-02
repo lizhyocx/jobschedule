@@ -43,6 +43,28 @@ CREATE TABLE `schedule_timer` (
   KEY `job_id` (`job_id`)
 ) ENGINE=InnoDB COMMENT='任务时间规则表';
 
+DROP TABLE IF EXISTS schedule_job_log;
+CREATE TABLE `schedule_job_log` (
+  `log_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '日志ID',
+  `job_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '本条日志所属任务ID',
+  `executor_id` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT '本条日志执行者ID',
+  `exe_url` varchar(60) DEFAULT NULL COMMENT '执行url',
+  `exe_interface` varchar(60) DEFAULT NULL COMMENT '执行接口',
+  `notify_start` bigint(13) unsigned NOT NULL DEFAULT '0' COMMENT '任务通知时间',
+  `notify_end` bigint(13) unsigned DEFAULT '0' COMMENT '任务通知返回时间',
+  `finished` bigint(13) unsigned DEFAULT '0' COMMENT '任务执行结束时间',
+  `ret_msg` varchar(125) DEFAULT '' COMMENT '执行返回信息',
+  `notify_status` int(1) unsigned NOT NULL DEFAULT '0' COMMENT '通知状态:0 未通知1 已通知－返回成功2 已通知－返回失败',
+  `return_status` int(1) unsigned NOT NULL DEFAULT '0' COMMENT '执行状态:0 未执行1 成功2 执行失败',
+  `alert_times` int(2) NOT NULL DEFAULT '0' COMMENT '警告发送次数',
+  PRIMARY KEY (`log_id`),
+  KEY `job_id` (`job_id`),
+  KEY `notify_start` (`notify_start`),
+  KEY `query_log_idx` (`job_id`,`notify_status`,`return_status`)
+) ENGINE=InnoDB DEFAULT CHARSET=gbk COMMENT='任务执行日志表';
+
+
+
 
 
 

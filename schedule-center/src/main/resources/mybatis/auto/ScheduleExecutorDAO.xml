@@ -181,4 +181,11 @@
     from schedule_executor
     where job_id = #{jobId,jdbcType=BIGINT}
   </select>
+
+  <select id="selectEffective" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from schedule_executor
+    where job_id = #{jobId,jdbcType=BIGINT} AND status = 1
+  </select>
 </mapper>

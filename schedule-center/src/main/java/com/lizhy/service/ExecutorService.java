@@ -24,10 +24,4 @@ public interface ExecutorService {
      * @Date 2017-10-20 14:22:51
      */
     CallResult<Boolean> saveExecutor(ExecutorModel model);
-    /**
-     * 根据任务Id获取有效执行机器
-     * @param jobId
-     * @return
-     */
-    List<ExecutorModel> getEffectiveExecutor(Long jobId);
 }
