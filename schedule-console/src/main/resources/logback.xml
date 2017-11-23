@@ -57,8 +57,8 @@
 	<!-- 默认web日志文件 -->
 	<appender name="WEB-APPENDER"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log.home}/web/common-web.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<file>${log.home}/web/common-web.log</file>
 			<fileNamePattern>${log.home}/web/common-web.log.%d{yyyyMMdd}
 			</fileNamePattern>
 			<maxHistory>30</maxHistory>

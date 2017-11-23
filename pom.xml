@@ -29,6 +29,19 @@
                 <maven.test.skip>true</maven.test.skip>
             </properties>
         </profile>
+        <profile>
+            <id>prod</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>prod</value>
+                </property>
+            </activation>
+            <properties>
+                <profile.file.name>/profile/env.properties.prod</profile.file.name>
+                <maven.test.skip>true</maven.test.skip>
+            </properties>
+        </profile>
     </profiles>
     <dependencyManagement>
         <dependencies>
