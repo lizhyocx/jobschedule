@@ -13,33 +13,96 @@ class ViewJob extends React.Component {
 			executors:[]
 		}
 	}
+
+	componentDidMount() {
+		this.requestJobInfo();
+		this.requestTimeRule();
+		this.requestExecutors();
+	}
+
+	/* 获取任务信息 */
+	requestJobInfo = () => {
+		let params = {"jobId":this.props.params.jobId};
+		let serverUrl = commonUtil.serverIp() + "/job/get.do"
+		let sucFunc = (data) => {
+            if(data && data.success && data.resultObject) {
+                this.setState({jobInfo: data.resultObject});
+            } else {
+                commonUtility.messageWarning(data.msg || "获取任务信息失败", commonUtility.tipTime);
+            }
+        };
+        let errFunc = () => {
+            commonUtility.messageWarning("获取任务信息失败", commonUtility.tipTime);
+        }
+        commonUtil.ajaxRequest(serverUrl, 'GET', params, sucFunc, errFunc, false);
+	}
+
+	/* 获取时间规则 */
+	requestTimeRule = () => {
+		let params = {"jobId":this.props.params.jobId};
+		let serverUrl = commonUtil.serverIp() + "/timer/get.do"
+		let sucFunc = (data) => {
+            if(data && data.success && data.resultObject) {
+                this.setState({timeRule: data.resultObject});
+            } else {
+                commonUtility.messageWarning(data.msg || "获取时间规则失败", commonUtility.tipTime);
+            }
+        };
+        let errFunc = () => {
+            commonUtility.messageWarning("获取时间规则失败", commonUtility.tipTime);
+        }
+        commonUtil.ajaxRequest(serverUrl, 'GET', params, sucFunc, errFunc, false);
+	}
+
+	/* 获取执行机器 */
+	requestExecutors = () => {
+		let params = {"jobId":this.props.params.jobId};
+		let serverUrl = commonUtil.serverIp() + "/executor/list.do"
+		let sucFunc = (data) => {
+            if(data && data.success && data.resultObject) {
+            	let executors = data.resultObject;
+            	for(var i=0;i<executors.length;i++) {
+            		executors[i].key = i;
+            		executors[i].effectiveTime = commonUtil.formatYYYY_MM_DD_HH_mm(executors[i].effectiveTime);
+            	}
+                this.setState({executors: executors});
+            } else {
+                commonUtility.messageWarning(data.msg || "获取执行机器失败", commonUtility.tipTime);
+            }
+        };
+        let errFunc = () => {
+            commonUtility.messageWarning("获取执行机器失败", commonUtility.tipTime);
+        }
+        commonUtil.ajaxRequest(serverUrl, 'GET', params, sucFunc, errFunc, false);
+	}
+
 	render() {
 		this.executorColumns = [
 			{
 				title: '机器Id',
 				dataIndex: 'exeId',
 				key: 'exeId',
-				width:80
+				width:20
 			}, {
 				title: '机器名称',
 				dataIndex: 'exeName',
 				key: 'exeName',
-				width:100
+				width:20
 			}, {
 				title: '执行URL',
 				dataIndex: 'exeUrl',
 				key: 'exeUrl',
-				width:250
+				width:20
 			}, {
 				title: '执行接口',
 				dataIndex: 'exeInterface',
 				key: 'exeInterface',
-				width:150
+				width:20
 			}, {
 				title: '生效时间',
 				dataIndex: 'effectiveTime',
 				key: 'effectiveTime',
-				width:150
+				width:20
 			}
 		];
 
@@ -97,7 +160,7 @@ class ViewJob extends React.Component {
 					</tbody>
 				</table>
 				<ItemTitleName titleName="执行机器" />
-				<Table className={styles.tableMax} columns={this.executorColumns} dataSource={this.state.executors} />
+				<Table className={styles.tableMax} columns={this.executorColumns} dataSource={this.state.executors} bordered />
 			</div>
 		)
 	}
