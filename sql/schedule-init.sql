@@ -11,7 +11,7 @@ CREATE TABLE `schedule_job` (
   `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '1:启用，0：禁用',
   PRIMARY KEY (`job_id`),
   UNIQUE KEY `job_name` (`job_name`) USING BTREE
-) ENGINE=InnoDB DEFAULT COMMENT='任务表';
+) ENGINE=InnoDB COMMENT='任务表';
 
 DROP TABLE IF EXISTS schedule_executor;
 CREATE TABLE `schedule_executor` (
@@ -61,7 +61,7 @@ CREATE TABLE `schedule_job_log` (
   KEY `job_id` (`job_id`),
   KEY `notify_start` (`notify_start`),
   KEY `query_log_idx` (`job_id`,`notify_status`,`return_status`)
-) ENGINE=InnoDB DEFAULT CHARSET=gbk COMMENT='任务执行日志表';
+) ENGINE=InnoDB COMMENT='任务执行日志表';
 
 
 
