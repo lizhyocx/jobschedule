@@ -48,4 +48,11 @@ public interface ScheduleTimerDAO {
     int upsertSelective(ScheduleTimerDO record);
 
     List<ScheduleTimerDO> selectByJobId(Long jobId);
+
+    /**
+     * @Description: 获取有效的时间规则
+     * @author lizhiyang
+     * @Date 2017-11-23 14:42:23
+     */
+    ScheduleTimerDO selectEffectTimerByJobId(Long jobId);
 }

@@ -2,6 +2,8 @@ package com.lizhy.job;
 
 import com.lizhy.client.AbstractJobRunnable;
 import com.lizhy.client.util.ExecutorManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,17 +14,16 @@ import org.springframework.stereotype.Service;
  */
 @Service("clientTestJob")
 public class ClientTestJob extends AbstractJobRunnable {
+    private static Logger logger = LoggerFactory.getLogger(ClientTestJob.class);
     @Override
     public void run() {
-        System.out.println("开始执行："+logId);
-
+        logger.info("开始执行："+logId);
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        System.out.println("执行结束："+logId);
+        logger.info("执行结束："+logId);
         ExecutorManager.callBack(logId, "execute success", 1);
     }
 }

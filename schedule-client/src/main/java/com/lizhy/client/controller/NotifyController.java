@@ -55,7 +55,6 @@ public class NotifyController {
     private void printResult(Result res, HttpServletResponse response)
             throws Exception {
         response.setHeader("Cache-Control", "no-cache");
-        //2014年4月22日 增加响应编码
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();

@@ -42,8 +42,6 @@ public class TimerServiceImpl extends AbstractBaseService implements TimerServic
     private ScheduleTimerDAO scheduleTimerDAO;
     @Autowired
     private ScheduleJobDAO scheduleJobDAO;
-    @Autowired
-    private ScheduleService scheduleService;
 
     @Override
     public CallResult<Boolean> saveTimer(final TimerModel model) {
@@ -167,22 +165,4 @@ public class TimerServiceImpl extends AbstractBaseService implements TimerServic
     }
 
     /*=========================================================================================*/
-    /**
-     * @Description: 加载任务
-     * @author lizhiyang
-     * @Date 2017-10-27 15:13:08
-     */
-    private boolean loadJob(ScheduleJobDO jobDO, ScheduleTimerDO timerDO) {
-        JobData jobData = new JobData();
-        jobData.setCategory(JobCategoryEnum.CRON.getType());
-        jobData.setName(jobDO.getJobName());
-        jobData.setDesc(jobDO.getJobDesc());
-        jobData.setCronExpression(timerDO.getCron());
-        JobDataMap dataMap = new JobDataMap();
-        dataMap.put("executeRule", jobDO.getExecuteRule());
-        dataMap.put("executeSelect", jobDO.getExecuteSelect());
-        dataMap.put("jobId", jobDO.getJobId());
-        dataMap.put("jobName", jobDO.getJobName());
-        return scheduleService.scheduleJob(jobData, dataMap, ExecuteJob.class);
-    }
 }

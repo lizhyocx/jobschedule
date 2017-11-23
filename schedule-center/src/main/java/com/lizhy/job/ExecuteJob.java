@@ -37,7 +37,7 @@ public class ExecuteJob implements Job {
         JobDetail jobDetail = context.getJobDetail();
         JobDataMap map = jobDetail.getJobDataMap();
 
-        logger.info("ExecuteJob execute....JobDetail={}, JobDataMap={}", jobDetail, map);
+        logger.info("ExecuteJob execute....JobDetail={}, JobDataMap={}", JSON.toJSONString(jobDetail), JSON.toJSONString(map));
 
         long jobId = (Long)map.get("jobId");
         String jobName = map.getString("jobName");
@@ -59,6 +59,8 @@ public class ExecuteJob implements Job {
             for(ScheduleExecutorDO executorDO : executorList) {
                 doExecute(jobId, executorDO.getExeId(), executorDO.getExeInterface(), executorDO.getExeUrl());
             }
+        } else {
+            logger.warn("error executeSelect:{}", executeSelect);
         }
     }
 

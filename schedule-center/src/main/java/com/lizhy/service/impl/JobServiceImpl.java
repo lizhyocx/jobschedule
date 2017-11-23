@@ -1,7 +1,9 @@
 package com.lizhy.service.impl;
 
 import com.lizhy.auto.dao.ScheduleJobDAO;
+import com.lizhy.auto.dao.ScheduleTimerDAO;
 import com.lizhy.auto.model.ScheduleJobDO;
+import com.lizhy.auto.model.ScheduleTimerDO;
 import com.lizhy.common.CallResult;
 import com.lizhy.common.service.AbstractTemplateAction;
 import com.lizhy.enu.JobStatusEnum;
@@ -37,6 +39,8 @@ public class JobServiceImpl extends AbstractBaseService implements JobService {
 
     @Autowired
     private ScheduleJobDAO scheduleJobDAO;
+    @Autowired
+    private ScheduleTimerDAO scheduleTimerDAO;
     @Autowired
     private ScheduleService scheduleService;
 
@@ -165,7 +169,7 @@ public class JobServiceImpl extends AbstractBaseService implements JobService {
     @Override
     public CallResult<Boolean> changeJobStatus(final Long jobId, final Integer status) {
         try {
-            return serviceTemplate.exeOnMaster(new AbstractTemplateAction<Boolean>() {
+            return serviceTemplate.exeInTranscation(new AbstractTemplateAction<Boolean>() {
                 @Override
                 public CallResult<Boolean> checkParam() {
                     if(jobId == null || status == null) {
@@ -184,8 +188,32 @@ public class JobServiceImpl extends AbstractBaseService implements JobService {
                     Map<String, Object> params = new HashMap<>();
                     params.put("jobId", jobId);
                     params.put("status", status);
+                    ScheduleJobDO jobDO = scheduleJobDAO.selectByPrimaryKey(jobId);
+                    if(jobDO == null) {
+                        logger.warn("cannot find job by jobId {}", jobId);
+                        return CallResult.failure("任务不存在");
+                    }
                     int n = scheduleJobDAO.updateJobStatus(params);
                     if(n == 1) {
+                        if(JobStatusEnum.INVALID.getCode() == status) {
+                            boolean b = scheduleService.pauseJob(jobDO.getJobName());
+                            if(b) {
+                                return CallResult.success();
+                            }
+                            logger.warn("quartz pause job fail, jobDO={}", jobDO);
+                            return CallResult.failure("操作失败");
+                        } else if(JobStatusEnum.VALID.getCode() == status) {
+                            ScheduleTimerDO timerDO = scheduleTimerDAO.selectEffectTimerByJobId(jobId);
+                            if(timerDO == null) {
+                                return CallResult.success();
+                            }
+                            boolean b = loadJob(jobDO, timerDO);
+                            if(b) {
+                                return CallResult.success();
+                            }
+                            logger.warn("quartz load job fail, jobDO={}, timerDO={}", jobDO, timerDO);
+                            return CallResult.failure("操作失败");
+                        }
                         return CallResult.success(true);
                     }
                     logger.warn("updateJobStatus fail, n ={}", n);

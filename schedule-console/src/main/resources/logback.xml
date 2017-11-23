@@ -67,6 +67,18 @@
 			<pattern>[%d] [%t] [%-4p] [%c{2}] [%X{traceRootId}/%X{uniqueId}/%X{userId}/%X{userEmail}/%X{userPhone}] - [%m]%n</pattern>
 		</encoder>
 	</appender>
+	<appender name="JOB-APPENDER"
+			  class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log.home}/job/common-job.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log.home}/job/common-job.log.%d{yyyyMMdd}
+			</fileNamePattern>
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder charset="UTF-8">
+			<pattern>[%d] [%t] [%-4p] [%c{2}] [%X{traceRootId}/%X{uniqueId}/%X{userId}/%X{userEmail}/%X{userPhone}] - [%m]%n</pattern>
+		</encoder>
+	</appender>
 	<!-- ===================================================================== -->
 	<!-- Loggers -->
 	<!-- ===================================================================== -->
@@ -89,6 +101,11 @@
 	<logger name="com.lizhy.service" additivity="false">
 		<level value="${log.root.level}" />
 		<appender-ref ref="SERVICE-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+	<logger name="com.lizhy.job" additivity="false">
+		<level value="${log.root.level}" />
+		<appender-ref ref="JOB-APPENDER" />
 		<appender-ref ref="ERROR-APPENDER" />
 	</logger>
 

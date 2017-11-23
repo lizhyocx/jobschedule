@@ -219,4 +219,12 @@
     from schedule_timer
     where job_id = #{jobId,jdbcType=BIGINT}
   </select>
+
+  <select id="selectEffectTimerByJobId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from schedule_timer
+    where job_id = #{jobId,jdbcType=BIGINT}
+    AND (status = 1 OR effective_time > unix_timestamp(now()) * 1000)
+  </select>
 </mapper>

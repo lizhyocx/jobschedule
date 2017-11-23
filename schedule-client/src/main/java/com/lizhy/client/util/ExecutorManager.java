@@ -45,6 +45,9 @@ public class ExecutorManager {
 	 */
 	public static Result runJob(String jobInterface, long logId) {
 		try {
+			if(StringUtils.isBlank(jobInterface)) {
+				return new Result(2, "jobInterface is blank");
+			}
 			Thread thread = threadMap.get(jobInterface);
 			if (thread != null && thread.isAlive()) {
 				//任务正在执行
