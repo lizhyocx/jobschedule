@@ -9,7 +9,8 @@ window.commonUtil = {
     tipTime: 3,
 
     serverIp() {
-       const preIp = "http://localhost:8080";
+       // const preIp = "http://localhost:8080";
+       const preIp = "";
        return preIp;
     },
 
