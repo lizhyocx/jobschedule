@@ -374,3 +374,14 @@ Array.prototype.remove = function(val) {
 Array.prototype.insert = function (index, item) {
     this.splice(index, 0, item);
 };
+
+// 服务端filter重定向
+window.redirect = function(data) {
+    //通过ajax返回的信息判断是否需要重新登录（登录过期）
+    if (data && data.code == 301 && data.resultObject) {
+        // window.location.href="";
+        return true;
+    }else{
+        return false;
+    }
+}
