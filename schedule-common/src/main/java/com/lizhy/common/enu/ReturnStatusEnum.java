@@ -12,10 +12,24 @@ public enum ReturnStatusEnum {
 	/** 2 执行失败 **/
 	STATUS_FAILEXE(2,"执行失败");
 
-	private ReturnStatusEnum(int code, String describe){
+	ReturnStatusEnum(int code, String describe){
 		this.code = code;
 		this.describe = describe;
 	}
+
+	public static ReturnStatusEnum codeOf(Integer code) {
+		if(code == null) {
+			return null;
+		}
+		ReturnStatusEnum[] enums = ReturnStatusEnum.values();
+		for(ReturnStatusEnum enu : enums) {
+			if(enu.getCode() == code) {
+				return enu;
+			}
+		}
+		return null;
+	}
+
 	private int code;
 	private String describe;
 	public int getCode() {

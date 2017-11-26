@@ -1,8 +1,11 @@
 package com.lizhy.controller;
 
+import com.lizhy.common.CallResult;
 import com.lizhy.common.enu.ReturnStatusEnum;
+import com.lizhy.service.JobLogService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,6 +20,8 @@ import java.io.PrintWriter;
 @Controller
 public class FeedBackController {
     private Logger logger = LoggerFactory.getLogger(FeedBackController.class);
+    @Autowired
+    private JobLogService jobLogService;
 
     @RequestMapping("/job/feedback.do")
     public void feedback(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -30,8 +35,8 @@ public class FeedBackController {
             if (!"1".equals(code)) {
                 retCode = ReturnStatusEnum.STATUS_FAILEXE.getCode();
             }
-            int i = 0;//更新log表数据
-            if (i > 0) {
+            CallResult<Boolean> result = jobLogService.feedbackJobLog(Long.parseLong(logId), retCode, finished, retMsg);
+            if (result != null && result.isSuccess()) {
                 printResult(1, "FeadbackSuccess", response);
             } else {
                 printResult(0, "FeadbackFailed", response);

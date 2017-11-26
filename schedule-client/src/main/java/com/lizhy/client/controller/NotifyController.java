@@ -23,7 +23,7 @@ public class NotifyController {
     public void notify(HttpServletRequest request, HttpServletResponse response) throws Exception {
         request.setCharacterEncoding("UTF-8");
         String type = request.getParameter("type");
-        String interf = request.getParameter("interface");
+        String interf = request.getParameter("exeInterface");
         String logIdStr = request.getParameter("logId");
         if(logger.isInfoEnabled()){
             logger.info("business="+getClass().getName()+

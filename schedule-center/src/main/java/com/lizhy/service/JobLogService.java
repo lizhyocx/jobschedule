@@ -12,6 +12,12 @@ import com.lizhy.model.PageData;
  */
 public interface JobLogService {
     /**
+     * @Description: 回掉更新执行日志
+     * @author lizhiyang
+     * @Date 2017-11-26 16:43:14
+     */
+    CallResult<Boolean> feedbackJobLog(Long logId, Integer retCode, String finished, String retMsg);
+    /**
      * @Description: 获取任务执行明细
      * @author lizhiyang
      * @Date 2017-11-26 15:38:08

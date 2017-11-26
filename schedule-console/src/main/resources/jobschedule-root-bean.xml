@@ -12,4 +12,5 @@
         </bean>
         <import resource="classpath:bean/dao-env-bean.xml" />
         <import resource="classpath:spring-quartz.xml" />
+        <import resource="classpath:bean/schedule-client.xml" />
 </beans>

@@ -1,6 +1,8 @@
 package com.lizhy.test;
 
+import com.lizhy.auto.dao.ScheduleJobLogDAO;
 import com.lizhy.auto.dao.ScheduleMonitorDAO;
+import com.lizhy.auto.model.ScheduleJobLogDO;
 import com.lizhy.auto.model.ScheduleMonitorDO;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ import java.util.Map;
 public class DAOTest extends BaseSpringTest {
     @Autowired
     private ScheduleMonitorDAO scheduleMonitorDAO;
+    @Autowired
+    private ScheduleJobLogDAO scheduleJobLogDAO;
 
     @Test
     public void test() {
@@ -26,5 +30,13 @@ public class DAOTest extends BaseSpringTest {
         param.put("pageSize", 5);
         List<ScheduleMonitorDO> list = scheduleMonitorDAO.selectScheduleList(param);
         System.out.println(list);
+    }
+
+    @Test
+    public void test1() {
+        ScheduleJobLogDO record = new ScheduleJobLogDO();
+        record.setJobId(1L);
+        int n = scheduleJobLogDAO.insertSelective(record);
+        System.out.println(record.getLogId());
     }
 }

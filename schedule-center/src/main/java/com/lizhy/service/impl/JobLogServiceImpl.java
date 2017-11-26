@@ -1,11 +1,10 @@
 package com.lizhy.service.impl;
 
-import com.lizhy.auto.dao.ScheduleJobDAO;
 import com.lizhy.auto.dao.ScheduleJobLogDAO;
 import com.lizhy.auto.model.ScheduleJobLogDO;
 import com.lizhy.common.CallResult;
+import com.lizhy.common.enu.ReturnStatusEnum;
 import com.lizhy.common.service.AbstractTemplateAction;
-import com.lizhy.model.JobInfoModel;
 import com.lizhy.model.JobLogModel;
 import com.lizhy.model.PageData;
 import com.lizhy.service.AbstractBaseService;
@@ -35,6 +34,56 @@ public class JobLogServiceImpl extends AbstractBaseService implements JobLogServ
 
     @Autowired
     private ScheduleJobLogDAO scheduleJobLogDAO;
+
+    @Override
+    public CallResult<Boolean> feedbackJobLog(final Long logId, final Integer retCode, final String finished, final String retMsg) {
+        try {
+            CallResult<Boolean> result = serviceTemplate.exeOnMaster(new AbstractTemplateAction<Boolean>() {
+                @Override
+                public CallResult<Boolean> checkParam() {
+                    if(logId == null) {
+                        logger.warn("logId is null");
+                        return CallResult.failure("logId is null");
+                    }
+                    if(ReturnStatusEnum.codeOf(retCode) == null) {
+                        logger.warn("retCode={} is illegal");
+                        return CallResult.failure("retCode is illegal");
+                    }
+                    try {
+                        Long.parseLong(finished);
+                    } catch (Exception e) {
+                        logger.warn("illegal finished={}");
+                        return CallResult.failure("finished is illegal");
+                    }
+                    return super.checkParam();
+                }
+
+                @Override
+                public CallResult<Boolean> doAction() {
+                    ScheduleJobLogDO logDO = scheduleJobLogDAO.selectByPrimaryKey(logId);
+                    if(logDO == null) {
+                        logger.warn("cannot find logDO by logId {}", logId);
+                        return CallResult.failure("cannot find logDO by logId");
+                    }
+                    logDO.setReturnStatus(retCode);
+                    logDO.setFinished(Long.parseLong(finished));
+                    logDO.setRetMsg(retMsg);
+                    int n = scheduleJobLogDAO.updateByPrimaryKeySelective(logDO);
+                    if(n == 1) {
+                        return CallResult.success(true);
+                    }
+                    logger.warn("update jobLog fail, res={}", n);
+                    return CallResult.failure("update jobLog fail");
+                }
+            });
+            if(result != null && result.isSuccess()) {
+                return result;
+            }
+        } catch (Exception e) {
+          logger.error("feedbackJobLog exception", e);
+        }
+        return CallResult.failure("任务回调更新日志失败");
+    }
 
     @Override
     public CallResult<PageData<JobLogModel>> getLogList(final Long jobId, final Integer exeResult, final Integer pageNo, final Integer pageSize) {

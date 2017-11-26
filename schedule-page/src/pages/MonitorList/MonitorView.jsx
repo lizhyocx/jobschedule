@@ -167,7 +167,7 @@ class MonitorView extends React.Component {
                         obj.exeEndTime = commonUtil.formatYYYY_MM_DD_HH_mm_ss(res.finished);
                         expand = parseInt((res.finished - res.notifyStart) / 1000);
                     }
-                    obj.exeTime = expand;
+                    obj.exeTime = expand + '秒';
                     if(this.state.timeout < expand) {
                         obj.timeout = '是';
                     } else {

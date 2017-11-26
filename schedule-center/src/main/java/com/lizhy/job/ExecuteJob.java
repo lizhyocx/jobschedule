@@ -80,9 +80,10 @@ public class ExecuteJob implements Job {
         jobLogDO.setNotifyStart(System.currentTimeMillis());
         jobLogDO.setNotifyStatus(NotifyStatusEnum.STATUS_NOSTART.getCode());
         jobLogDO.setReturnStatus(ReturnStatusEnum.STATUS_NOTEXE.getCode());
-        long logId = scheduleJobLogDAO.insertSelective(jobLogDO);
-        if(logId <= 0) {
-            logger.warn("insert jobLog fail, res={}", logId);
+        int nLog = scheduleJobLogDAO.insertSelective(jobLogDO);
+        Long logId = jobLogDO.getLogId();
+        if(nLog <= 0 || logId == null) {
+            logger.warn("insert jobLog fail, res={}, logId={}", nLog, logId);
             return false;
         }
         Map<String, String> params = new HashMap<>();

@@ -10,7 +10,7 @@
       <property name="scheduleCenterUrls">
          <list>
             <value>http://localhost:8080</value>
-            <value>http://localhost:8081</value>
+            <!--<value>http://localhost:8081</value>-->
          </list>
       </property>
    </bean>
