@@ -198,7 +198,7 @@ class JobList extends React.Component {
                         executeRule:executeRule,
                         timeout:res.timeout,
                         status:status,
-                        updateTime:commonUtil.formatYYYY_MM_DD_HH_mm(res.updateTime),
+                        updateTime:commonUtil.formatYYYY_MM_DD_HH_mm_ss(res.updateTime),
                     };
                     datas.push(obj);
                 }

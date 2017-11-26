@@ -16,5 +16,5 @@ public interface ScheduleMonitorService {
      * @author lizhiyang
      * @Date 2017-11-26 12:02:44
      */
-    CallResult<PageData<ScheduleMonitorModel>> getScheduleList(Integer pageNo, Integer pageSize);
+    CallResult<PageData<ScheduleMonitorModel>> getScheduleList(Long jobId, String jobName, Integer pageNo, Integer pageSize);
 }

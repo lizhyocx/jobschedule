@@ -63,7 +63,7 @@ class ViewJob extends React.Component {
             	let executors = data.resultObject;
             	for(var i=0;i<executors.length;i++) {
             		executors[i].key = i;
-            		executors[i].effectiveTime = commonUtil.formatYYYY_MM_DD_HH_mm(executors[i].effectiveTime);
+            		executors[i].effectiveTime = commonUtil.formatYYYY_MM_DD_HH_mm_ss(executors[i].effectiveTime);
             	}
                 this.setState({executors: executors});
             } else {

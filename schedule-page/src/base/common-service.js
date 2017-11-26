@@ -143,7 +143,7 @@ window.commonUtil = {
      * @param time 时间戳或者Date
      * @returns {string}
      */
-    formatYYYY_MM_DD_HH_mm: function (time) {
+    formatYYYY_MM_DD_HH_mm_ss: function (time) {
         var d = time ? new Date(time) : new Date();
         var month = d.getMonth() + 1;
         if (month < 10) {
@@ -156,7 +156,7 @@ window.commonUtil = {
         var hour = d.getHours() > 9 ? d.getHours() : "0" + d.getHours();
         var minute = d.getMinutes() > 9 ? d.getMinutes() : "0" + d.getMinutes();
         var second = d.getSeconds() > 9 ? d.getSeconds() : "0" + d.getSeconds();
-        return d.getFullYear() + "-" + month + "-" + date + " " + hour + ":" + minute;
+        return d.getFullYear() + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
     },
     /**
      * 转换成标准格式的字符串

@@ -10,6 +10,7 @@ import com.lizhy.model.PageData;
 import com.lizhy.model.ScheduleMonitorModel;
 import com.lizhy.service.AbstractBaseService;
 import com.lizhy.service.ScheduleMonitorService;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class ScheduleMonitorServiceImpl extends AbstractBaseService implements S
     @Autowired
     private ScheduleJobDAO scheduleJobDAO;
     @Override
-    public CallResult<PageData<ScheduleMonitorModel>> getScheduleList(final Integer pageNo, final Integer pageSize) {
+    public CallResult<PageData<ScheduleMonitorModel>> getScheduleList(final Long jobId, final String jobName, final Integer pageNo, final Integer pageSize) {
         try {
             CallResult<PageData<ScheduleMonitorModel>> result = serviceTemplate.exeOnSlave(new AbstractTemplateAction<PageData<ScheduleMonitorModel>>() {
                 @Override
@@ -53,10 +54,15 @@ public class ScheduleMonitorServiceImpl extends AbstractBaseService implements S
                     PageData<ScheduleMonitorModel> pageData = new PageData();
                     Map<String, Object> param = new HashMap<>();
                     param.put("status", JobStatusEnum.VALID.getCode());
+                    if(jobId != null) {
+                        param.put("jobId", jobId);
+                    }
+                    if(StringUtils.isNotBlank(jobName)) {
+                        param.put("jobName", jobName);
+                    }
                     int count = scheduleJobDAO.selectCountByParam(param);
                     pageData.setTotalNumber(count);
                     if(count > 0) {
-                        param.clear();
                         int offset = (pageNo-1) * pageSize;
                         param.put("offset", offset);
                         param.put("pageSize", pageSize);

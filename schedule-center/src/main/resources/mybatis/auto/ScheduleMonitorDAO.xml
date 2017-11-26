@@ -40,6 +40,12 @@
         LEFT JOIN schedule_job_log b ON a.job_id = b.job_id
         LEFT JOIN schedule_qrtz_triggers c ON a.job_name = c.job_name
         where a.`status` = 1
+          <if test="jobId != null">
+              AND a.job_id = #{jobId}
+          </if>
+          <if test="jobName != null">
+              AND a.job_name LIKE concat('%', #{jobName}, '%')
+          </if>
         GROUP BY a.job_id
         limit #{offset}, #{pageSize}
   </select>

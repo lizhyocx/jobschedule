@@ -86,11 +86,16 @@ class ScheduleList extends React.Component {
 				dataIndex: 'lastExecuteTime',
 				key: 'lastExecuteTime',
 				width:130
-			}, {
+			},{
+                title: '执行接口',
+                dataIndex: 'exeInterface',
+                key: 'exeInterface',
+                width:100
+            }, {
 				title: '执行URL',
 				dataIndex: 'exeUrl',
 				key: 'exeUrl',
-				width:250
+				width:200
 			}, {
 				title: '执行结果',
 				dataIndex: 'exeResult',
@@ -100,7 +105,7 @@ class ScheduleList extends React.Component {
 				title: '结果说明',
 				dataIndex: 'resMsg',
 				key: 'resMsg',
-				width:150
+				width:100
 			}, {
 				title: '操作',
 				dataIndex: 'operations',
@@ -126,7 +131,7 @@ class ScheduleList extends React.Component {
     };
 
 	dataRequest = (params) => {
-        let serverUrl = commonUtil.serverIp() + '/mockjsdata/63/job/list.do';
+        let serverUrl = commonUtil.serverIp() + '/schedule/list.do';
         let sucFunc = (data) => {
             if(data && data.success) {
                 let results = data.resultObject.dataList || [];
@@ -137,11 +142,29 @@ class ScheduleList extends React.Component {
                         key:i,
                         jobId:res.jobId,
                         jobName:res.jobName,
-                        lastExecuteTime:res.lastExecuteTime,
+                        exeInterface:res.exeInterface,
                         exeUrl:res.exeUrl,
                         exeResult:res.exeResult,
-                        resMsg:res.resMsg
+                        resMsg:res.retMsg
                     };
+                    if(res.prevFireTime) {
+                        obj.lastExecuteTime = commonUtil.formatYYYY_MM_DD_HH_mm_ss(res.prevFireTime);
+                    } else {
+                        obj.lastExecuteTime = commonUtil.formatYYYY_MM_DD_HH_mm_ss(res.notifyStart) || '';
+                    }
+                    if(Object.is(res.notifyStatus, 0)) {
+                        obj.exeResult = '未通知';
+                    } else if(Object.is(res.notifyStatus, 2)) {
+                        obj.exeResult = '通知失败';
+                    } else if(Object.is(res.notifyStatus, 1)) {
+                        if(Object.is(res.returnStatus, 0)) {
+                            obj.exeResult = '通知成功，未执行';
+                        } else if(Object.is(res.returnStatus, 1)) {
+                            obj.exeResult = '执行成功';
+                        } else if(Object.is(res.returnStatus, 2)) {
+                            obj.exeResult = '执行失败';
+                        }
+                    }
                     datas.push(obj);
                 }
                 let count = data.resultObject.totalNumber || 0;
