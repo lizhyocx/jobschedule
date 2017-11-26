@@ -90,7 +90,7 @@ const SliderMenu = React.createClass({
                             <Link to="/ScheduleList">调度列表</Link>
                         </Menu.Item>
                     </SubMenu>
-                    <SubMenu
+                    {/*<SubMenu
                         key="rwjk"
                         title={
                             <span>
@@ -101,7 +101,7 @@ const SliderMenu = React.createClass({
                         <Menu.Item key="MonitorList">
                             <Link to="/MonitorList">监控列表</Link>
                         </Menu.Item>
-                    </SubMenu>
+                    </SubMenu>*/}
                     
                 </Menu>
             </div>

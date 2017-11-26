@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Table, Popconfirm, Form, Select, Input, Row, Col } from 'antd';
+import { Button, Table, Popconfirm, Form, Select, Input, Row, Col, Tooltip, Icon } from 'antd';
 import ProTitle from '../../components/ProTitle/ProTitle';
 import OperMore from '../../components/OperMore/OperMore';
 
@@ -80,32 +80,27 @@ class ScheduleList extends React.Component {
 				title: '任务名称',
 				dataIndex: 'jobName',
 				key: 'jobName',
-				width:130
+				width:150
 			}, {
 				title: '最后执行时间',
 				dataIndex: 'lastExecuteTime',
 				key: 'lastExecuteTime',
-				width:130
+				width:150
 			},{
-                title: '执行接口',
-                dataIndex: 'exeInterface',
-                key: 'exeInterface',
-                width:100
+                title: '下次执行时间',
+                dataIndex: 'nextExecuteTime',
+                key: 'nextExecuteTime',
+                width:150
             }, {
-				title: '执行URL',
-				dataIndex: 'exeUrl',
-				key: 'exeUrl',
-				width:200
-			}, {
 				title: '执行结果',
 				dataIndex: 'exeResult',
 				key: 'exeResult',
-				width:100
+				width:150
 			}, {
 				title: '结果说明',
 				dataIndex: 'resMsg',
 				key: 'resMsg',
-				width:100
+				width:150
 			}, {
 				title: '操作',
 				dataIndex: 'operations',
@@ -113,9 +108,23 @@ class ScheduleList extends React.Component {
 				render: (text, record, index) =>{
 	        		return (
 	        		    <span>
-                          <a onClick={() => {this.editExecutor(record)}}>人工执行</a>
-                          <span className="ant-divider" />
-                          <a onClick={() => {this.deleteExecutor(record.exeId)}}>暂停调度</a>
+                            <Tooltip placement="topLeft" title='查看明细'>
+                                <a onClick={() => {this.viewMonitorDetail(record.jobId)}}>
+                                    <Icon type="bars" style={{ fontSize: 16}} />
+                                </a>
+                            </Tooltip>
+                            <span className="ant-divider" />
+                            <Tooltip placement="topLeft" title='人工执行'>
+                                <a>
+                                    <Icon type="forward" style={{ fontSize: 16}}  />
+                                </a>
+                            </Tooltip>
+                            <span className="ant-divider" />
+                            <Tooltip placement="topLeft" title='暂停调度'>
+                                <a>
+                                    <Icon type="pause-circle-o" style={{ fontSize: 16}} />
+                                </a>
+                            </Tooltip>
                         </span>
 	        		)
 	        	}
@@ -128,6 +137,10 @@ class ScheduleList extends React.Component {
      */
     componentDidMount = () => {
         this.dataRequest(this.state.params);
+    };
+
+    viewMonitorDetail = (jobId) => {
+        window.location.href = "#/ScheduleList/MonitorView/" + jobId;
     };
 
 	dataRequest = (params) => {
@@ -152,13 +165,16 @@ class ScheduleList extends React.Component {
                     } else {
                         obj.lastExecuteTime = commonUtil.formatYYYY_MM_DD_HH_mm_ss(res.notifyStart) || '';
                     }
+                    if(res.nextFireTime) {
+                        obj.nextExecuteTime = commonUtil.formatYYYY_MM_DD_HH_mm_ss(res.nextFireTime);
+                    }
                     if(Object.is(res.notifyStatus, 0)) {
-                        obj.exeResult = '未通知';
+                        obj.exeResult = '正在通知';
                     } else if(Object.is(res.notifyStatus, 2)) {
                         obj.exeResult = '通知失败';
                     } else if(Object.is(res.notifyStatus, 1)) {
                         if(Object.is(res.returnStatus, 0)) {
-                            obj.exeResult = '通知成功，未执行';
+                            obj.exeResult = '通知成功，本次任务正在执行';
                         } else if(Object.is(res.returnStatus, 1)) {
                             obj.exeResult = '执行成功';
                         } else if(Object.is(res.returnStatus, 2)) {

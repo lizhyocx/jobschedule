@@ -17,7 +17,7 @@ public class ScheduleMonitorServiceImplTest extends BaseSpringTest {
 
     @Test
     public void testScheduleList() {
-        CallResult result= scheduleMonitorService.getScheduleList(2, 5);
+        CallResult result= scheduleMonitorService.getScheduleList(null, null, 2, 5);
         System.out.println(result);
     }
 }

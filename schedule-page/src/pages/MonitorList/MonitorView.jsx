@@ -70,23 +70,24 @@ class MonitorView extends React.Component {
 			totalCount:0,
 			datas:[],
             jobName:'',
+            timeout:0
 		};
 		this.columns = [
 			{
 				title: '执行ID',
-				dataIndex: 'exeId',
-				key: 'exeId',
+				dataIndex: 'logId',
+				key: 'logId',
 				width:60
 			}, {
 				title: '触发时间',
 				dataIndex: 'exeBeginTime',
 				key: 'exeBeginTime',
-				width:100
+				width:120
 			}, {
 				title: '结束时间',
 				dataIndex: 'exeEndTime',
 				key: 'exeEndTime',
-				width:100
+				width:120
 			}, {
 				title: '耗时',
 				dataIndex: 'exeTime',
@@ -120,12 +121,31 @@ class MonitorView extends React.Component {
      * 生命周期函数调用
      */
     componentDidMount = () => {
-        this.setState({jobName:'异步获取任务名称'});
+        this.getJobName();
         this.dataRequest(this.state.params);
     };
 
+    /*
+     * 获取任务名称
+    */
+    getJobName = () => {
+        let serverUrl = commonUtil.serverIp() + "/job/get.do";
+        let params = {jobId:this.props.params.jobId};
+        let sucFunc = (data) => {
+            if(data && data.success && data.resultObject) {
+                this.setState({jobName:data.resultObject.jobName, timeout:data.resultObject.timeout})
+            } else {
+                commonUtility.messageWarning(data.msg || "获取任务名称失败", commonUtility.tipTime);
+            }
+        }
+        let errFunc = () => {
+            commonUtility.messageWarning(data.msg || "获取任务名称失败", commonUtility.tipTime);
+        }
+        commonUtil.ajaxRequest(serverUrl,  'GET', params, sucFunc, errFunc, false);
+    }
+
 	dataRequest = (params) => {
-        let serverUrl = commonUtil.serverIp() + '/mockjsdata/63/job/list.do';
+        let serverUrl = commonUtil.serverIp() + '/schedule/monitor/list.do';
         let sucFunc = (data) => {
             if(data && data.success) {
                 let results = data.resultObject.dataList || [];
@@ -134,13 +154,38 @@ class MonitorView extends React.Component {
                     let res = results[i];
                     let obj = {
                         key:i,
-                        jobId:res.jobId,
-                        jobName:res.jobName,
-                        lastExecuteTime:res.lastExecuteTime,
+                        logId:res.logId,
                         exeUrl:res.exeUrl,
-                        exeResult:res.exeResult,
-                        resMsg:res.resMsg
+                        resMsg:res.retMsg
                     };
+                    let expand = 0;
+                    if(res.notifyStart) {
+                        obj.exeBeginTime = commonUtil.formatYYYY_MM_DD_HH_mm_ss(res.notifyStart);
+                        expand = parseInt((new Date().getTime() - res.notifyStart) / 1000);
+                    }
+                    if(res.finished) {
+                        obj.exeEndTime = commonUtil.formatYYYY_MM_DD_HH_mm_ss(res.finished);
+                        expand = parseInt((res.finished - res.notifyStart) / 1000);
+                    }
+                    obj.exeTime = expand;
+                    if(this.state.timeout < expand) {
+                        obj.timeout = '是';
+                    } else {
+                        obj.timeout = '否';
+                    }
+                    if(Object.is(res.notifyStatus, 0)) {
+                        obj.exeResult = '正在通知';
+                    } else if(Object.is(res.notifyStatus, 2)) {
+                        obj.exeResult = '通知失败';
+                    } else if(Object.is(res.notifyStatus, 1)) {
+                        if(Object.is(res.returnStatus, 0)) {
+                            obj.exeResult = '通知成功，本次任务正在执行';
+                        } else if(Object.is(res.returnStatus, 1)) {
+                            obj.exeResult = '执行成功';
+                        } else if(Object.is(res.returnStatus, 2)) {
+                            obj.exeResult = '执行失败';
+                        }
+                    }
                     datas.push(obj);
                 }
                 let count = data.resultObject.totalNumber || 0;

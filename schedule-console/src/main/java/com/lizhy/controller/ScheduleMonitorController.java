@@ -1,8 +1,10 @@
 package com.lizhy.controller;
 
 import com.lizhy.common.CallResult;
+import com.lizhy.model.JobLogModel;
 import com.lizhy.model.PageData;
 import com.lizhy.model.ScheduleMonitorModel;
+import com.lizhy.service.JobLogService;
 import com.lizhy.service.ScheduleMonitorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +25,8 @@ public class ScheduleMonitorController {
     private static final int PAGE_SIZE = 10;
     @Autowired
     private ScheduleMonitorService scheduleMonitorService;
+    @Autowired
+    private JobLogService jobLogService;
 
     @RequestMapping("/list.do")
     @ResponseBody
@@ -34,5 +38,16 @@ public class ScheduleMonitorController {
             pageSize = PAGE_SIZE;
         }
         return scheduleMonitorService.getScheduleList(jobId, jobName, pageNo, pageSize);
+    }
+    @RequestMapping("/monitor/list.do")
+    @ResponseBody
+    public CallResult<PageData<JobLogModel>> monitorList(Long jobId, Integer exeResult, Integer pageNo, Integer pageSize) {
+        if(pageNo == null) {
+            pageNo = 1;
+        }
+        if(pageSize == null) {
+            pageSize = PAGE_SIZE;
+        }
+        return jobLogService.getLogList(jobId, exeResult, pageNo, pageSize);
     }
 }

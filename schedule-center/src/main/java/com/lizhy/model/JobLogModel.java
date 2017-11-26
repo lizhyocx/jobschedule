@@ -8,103 +8,113 @@ import com.lizhy.BaseObject;
  */
 public class JobLogModel extends BaseObject {
     private static final long serialVersionUID = 1554015179231338655L;
-    private long jobId;
-    private long executorId;
-    private String executeUrl;
-    private String executeInterface;
-    private long notifyStartTime;
-    private long notifyReturnTime;
-    private long executeReturnTime;
-    private int executeResult;
-    private int notifyStatus;
-    private int executeStatus;
-    private int alertTime;
 
-    public long getJobId() {
+    private Long logId;
+    private Long jobId;
+    private Long executorId;
+    private String exeUrl;
+    private String exeInterface;
+    private Long notifyStart;
+    private Long notifyEnd;
+    private Long finished;
+    private String retMsg;
+    private Integer notifyStatus;
+    private Integer returnStatus;
+    private Integer alertTimes;
+
+    public Long getLogId() {
+        return logId;
+    }
+
+    public void setLogId(Long logId) {
+        this.logId = logId;
+    }
+
+    public Long getJobId() {
         return jobId;
     }
 
-    public void setJobId(long jobId) {
+    public void setJobId(Long jobId) {
         this.jobId = jobId;
     }
 
-    public long getExecutorId() {
+    public Long getExecutorId() {
         return executorId;
     }
 
-    public void setExecutorId(long executorId) {
+    public void setExecutorId(Long executorId) {
         this.executorId = executorId;
     }
 
-    public String getExecuteUrl() {
-        return executeUrl;
+    public String getExeUrl() {
+        return exeUrl;
     }
 
-    public void setExecuteUrl(String executeUrl) {
-        this.executeUrl = executeUrl;
+    public void setExeUrl(String exeUrl) {
+        this.exeUrl = exeUrl;
     }
 
-    public String getExecuteInterface() {
-        return executeInterface;
+    public String getExeInterface() {
+        return exeInterface;
     }
 
-    public void setExecuteInterface(String executeInterface) {
-        this.executeInterface = executeInterface;
+    public void setExeInterface(String exeInterface) {
+        this.exeInterface = exeInterface;
     }
 
-    public long getNotifyStartTime() {
-        return notifyStartTime;
+    public Long getNotifyStart() {
+        return notifyStart;
     }
 
-    public void setNotifyStartTime(long notifyStartTime) {
-        this.notifyStartTime = notifyStartTime;
+    public void setNotifyStart(Long notifyStart) {
+        this.notifyStart = notifyStart;
     }
 
-    public long getNotifyReturnTime() {
-        return notifyReturnTime;
+    public Long getNotifyEnd() {
+        return notifyEnd;
     }
 
-    public void setNotifyReturnTime(long notifyReturnTime) {
-        this.notifyReturnTime = notifyReturnTime;
+    public void setNotifyEnd(Long notifyEnd) {
+        this.notifyEnd = notifyEnd;
     }
 
-    public long getExecuteReturnTime() {
-        return executeReturnTime;
+    public Long getFinished() {
+        return finished;
     }
 
-    public void setExecuteReturnTime(long executeReturnTime) {
-        this.executeReturnTime = executeReturnTime;
+    public void setFinished(Long finished) {
+        this.finished = finished;
     }
 
-    public int getExecuteResult() {
-        return executeResult;
+    public String getRetMsg() {
+        return retMsg;
     }
 
-    public void setExecuteResult(int executeResult) {
-        this.executeResult = executeResult;
+    public void setRetMsg(String retMsg) {
+        this.retMsg = retMsg;
     }
 
-    public int getNotifyStatus() {
+    public Integer getNotifyStatus() {
         return notifyStatus;
     }
 
-    public void setNotifyStatus(int notifyStatus) {
+    public void setNotifyStatus(Integer notifyStatus) {
         this.notifyStatus = notifyStatus;
     }
 
-    public int getExecuteStatus() {
-        return executeStatus;
+    public Integer getReturnStatus() {
+        return returnStatus;
     }
 
-    public void setExecuteStatus(int executeStatus) {
-        this.executeStatus = executeStatus;
+    public void setReturnStatus(Integer returnStatus) {
+        this.returnStatus = returnStatus;
     }
 
-    public int getAlertTime() {
-        return alertTime;
+    public Integer getAlertTimes() {
+        return alertTimes;
     }
 
-    public void setAlertTime(int alertTime) {
-        this.alertTime = alertTime;
+    public void setAlertTimes(Integer alertTimes) {
+        this.alertTimes = alertTimes;
     }
 }
