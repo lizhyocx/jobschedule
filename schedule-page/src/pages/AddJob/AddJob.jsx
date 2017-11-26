@@ -1,7 +1,7 @@
 import React from 'react';
-import {Form, Input, Button, Select, InputNumber} from 'antd';
+import {Button, Form, Input, InputNumber, Select} from 'antd';
 import ProTitle from '../../components/ProTitle/ProTitle';
-import ItemTitleName from '../../components/ItemTitleName/ItemTitleName';
+
 const FormItem = Form.Item;
 class AddJobForm extends React.Component {
 	constructor(props) {

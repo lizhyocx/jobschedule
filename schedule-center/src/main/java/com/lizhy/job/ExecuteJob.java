@@ -50,7 +50,14 @@ public class ExecuteJob implements Job {
             logger.warn("JObId[{}]-JobName[{}] has no executor", jobId, jobName);
             return;
         }
-        if(executeSelect == ExecuteSelectEnum.ANY.getCode()) {
+        if(executeSelect == ExecuteSelectEnum.FIRST.getCode()) {
+            //第一台
+            ScheduleExecutorDO executorDO = executorList.get(0);
+            doExecute(jobId, executorDO.getExeId(), executorDO.getExeInterface(), executorDO.getExeUrl());
+        } else if(executeSelect == ExecuteSelectEnum.ORDER.getCode()) {
+            //顺序执行
+
+        } else if(executeSelect == ExecuteSelectEnum.ANY.getCode()) {
             //任选其一
             ScheduleExecutorDO executorDO = executorList.get(new Random().nextInt(executorList.size()));
             doExecute(jobId, executorDO.getExeId(), executorDO.getExeInterface(), executorDO.getExeUrl());

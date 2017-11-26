@@ -5,8 +5,10 @@ package com.lizhy.common.enu;
  * Created by lizhiyang on 2017-02-06 15:33.
  */
 public enum ExecuteSelectEnum {
-    ANY(1, "任意一台"),
-    ALL(2, "所有机器"),
+    FIRST(0, "第一台"),
+    ORDER(1, "顺序选择"),
+    ANY(2, "任意一台"),
+    ALL(3, "所有机器"),
     ;
 
     int code;
