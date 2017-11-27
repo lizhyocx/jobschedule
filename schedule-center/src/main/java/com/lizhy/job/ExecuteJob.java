@@ -12,6 +12,7 @@ import com.lizhy.common.enu.ReturnStatusEnum;
 import com.lizhy.common.http.HttpClientManager;
 import com.lizhy.common.http.HttpResult;
 import com.lizhy.common.util.SpringContextUtil;
+import org.apache.commons.lang.StringUtils;
 import org.quartz.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -105,12 +106,19 @@ public class ExecuteJob implements Job {
                 } else {
                     jobLogDO.setNotifyStatus(NotifyStatusEnum.STATUS_NOTIFY.getCode());
                     jobLogDO.setReturnStatus(ReturnStatusEnum.STATUS_FAILEXE.getCode());
+                    jobLogDO.setFinished(System.currentTimeMillis());
                     jobLogDO.setRetMsg(res.getMsg());
                 }
             } catch (Exception e) {
                 logger.error("resonseTxt is illegal,{}", responseTxt);
                 jobLogDO.setNotifyStatus(NotifyStatusEnum.STATUS_FAIL.getCode());
+                jobLogDO.setFinished(System.currentTimeMillis());
                 jobLogDO.setRetMsg("illegal response:"+responseTxt);
+            }
+            String retMsg = jobLogDO.getRetMsg();
+            if(StringUtils.isNotBlank(retMsg) && retMsg.length() > 64) {
+                retMsg = retMsg.substring(0, 64);
+                jobLogDO.setRetMsg(retMsg);
             }
             int n = scheduleJobLogDAO.updateByPrimaryKeySelective(jobLogDO);
             if(n == 0) {

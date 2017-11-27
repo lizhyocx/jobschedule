@@ -37,7 +37,8 @@
         max(b.log_id) AS last_log_id
     FROM
         schedule_job a
-        LEFT JOIN schedule_job_log b ON a.job_id = b.job_id
+        LEFT JOIN (select max(log_id), job_id, log_id from schedule_job_log group by job_id) t ON a.job_id = t.job_id
+        LEFT JOIN schedule_job_log b ON t.log_id = b.log_id
         LEFT JOIN schedule_qrtz_triggers c ON a.job_name = c.job_name
         where a.`status` = 1
           <if test="jobId != null">
