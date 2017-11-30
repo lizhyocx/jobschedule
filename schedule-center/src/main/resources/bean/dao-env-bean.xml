@@ -12,12 +12,22 @@
         <property name="password" value="${datasource.password}"></property>
         <property name="driverClass" value="${datasource.driverclass}" />
         <property name="jdbcUrl" value="${datasource.jdbcurl}" />
+        <property name="initialPoolSize" value="2"/>
+        <property name="maxPoolSize" value="10"/>
+        <property name="testConnectionOnCheckin" value="false"/>
+        <property name="testConnectionOnCheckout" value="true"/>
+        <property name="preferredTestQuery" value="SELECT 1"/>
     </bean>
     <bean id="readDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="user" value="${datasource.username}" />
         <property name="password" value="${datasource.password}"></property>
         <property name="driverClass" value="${datasource.driverclass}" />
         <property name="jdbcUrl" value="${datasource.jdbcurl}" />
+        <property name="initialPoolSize" value="2"/>
+        <property name="maxPoolSize" value="10"/>
+        <property name="testConnectionOnCheckin" value="false"/>
+        <property name="testConnectionOnCheckout" value="true"/>
+        <property name="preferredTestQuery" value="SELECT 1"/>
     </bean>
     <bean id="dataSource" class="com.lizhy.common.datasource.MultiRoutingDataSource">
         <property name="targetDataSources">
